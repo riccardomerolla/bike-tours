@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Details - Alps Cycling Trip</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="tour-detail-page">
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">BikeTours</a>
+            <nav>
+                <a href="tours.html">Tours</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <section class="tour-hero">
+        <div class="container">
+            <h1 id="tour-title">Alps Cycling Trip - Tour de France</h1>
+        </div>
+    </section>
+    <main class="tour-main">
+        <div class="container tour-layout">
+            <div class="tour-content">
+                <h2>Ride the legendary climbs of the French Alps</h2>
+                <p>Have you ever dreamt of conquering the most famous climbs of the Tour de France? Join us on this epic trip for an experience of a lifetime. From the chalet base in Morzine, we will guide you up legendary cols, providing full support, pro-level coaching, and an unforgettable team atmosphere.</p>
+                <div class="itinerary-section">
+                    <h2>Itinerary</h2>
+                    <div class="day">
+                        <div class="day-header"><div class="day-number">1</div><h3 class="day-title">Arrival in Morzine</h3></div>
+                        <p>We will pick you up from Geneva airport and drive you to our premium chalet. You'll meet the team, get your bike set up, and enjoy a welcome dinner where we'll brief you on the epic week ahead.</p>
+                    </div>
+                    <div class="day">
+                        <div class="day-header"><div class="day-number">2</div><h3 class="day-title">Col de la Colombière</h3></div>
+                        <p>Our first ride takes us up the stunning Col de la Colombière. Enjoy the breathtaking views from the top before a thrilling descent back to the chalet for a recovery massage.</p>
+                        <div class="day-stats"><strong>Distance:</strong> 95km | <strong>Elevation:</strong> 1,850m</div>
+                        <div class="day-media"><div class="map-placeholder"></div><div class="altitude-placeholder"></div></div>
+                    </div>
+                    <div class="day">
+                        <div class="day-header"><div class="day-number">3</div><h3 class="day-title">Col de Joux Plane</h3></div>
+                        <p>Today, we tackle the legendary Col de Joux Plane, a challenging climb that has been the scene of many dramatic moments in Tour de France history. The reward is an unforgettable view of Mont Blanc from the summit.</p>
+                        <div class="day-stats"><strong>Distance:</strong> 78km | <strong>Elevation:</strong> 2,100m</div>
+                        <div class="day-media"><div class="map-placeholder"></div><div class="altitude-placeholder"></div></div>
+                    </div>
+                </div>
+            </div>
+            <aside class="tour-sidebar">
+                <h3>€2.590 per person</h3>
+                <div class="tour-meta">
+                    <p><strong>📅 Duration:</strong> <span id="tour-duration">8 Days / 7 Nights</span></p>
+                    <p><strong>🏁 Difficulty:</strong> Advanced</p>
+                    <p><strong>👥 Group Size:</strong> Max 10 riders</p>
+                    <p><strong>📍 Location:</strong> <span id="tour-location">French Alps</span></p>
+                </div>
+                <a href="#" class="btn">Book This Tour</a>
+                <button id="packing-list-btn" class="btn secondary">✨ Generate Packing List</button>
+            </aside>
+        </div>
+    </main>
+    <div id="packing-list-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Packing List</h2>
+                <button id="modal-close-btn" class="modal-close">&times;</button>
+            </div>
+            <div id="packing-list-content"></div>
+        </div>
+    </div>
+    <script>
+        const packingListBtn=document.getElementById("packing-list-btn"),packingListModal=document.getElementById("packing-list-modal"),modalCloseBtn=document.getElementById("modal-close-btn"),packingListContent=document.getElementById("packing-list-content");packingListBtn.addEventListener("click",async()=>{packingListModal.classList.add("visible"),packingListContent.innerHTML="<p>✨ Preparing your personalized list...</p>";const t=document.getElementById("tour-title").textContent,e=document.getElementById("tour-duration").textContent,o=document.getElementById("tour-location").textContent,n=`Create a detailed packing list for a cycling tour with the following details. Categorize the list into "On The Bike", "Off The Bike (Casual)", and "Essentials & Documents". The tone should be helpful and professional. Tour Title: "${t}". Duration: "${e}". Location: "${o}".`;try{let t=[{role:"user",parts:[{text:n}]}];const e={contents:t},o="",a=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${o}`,s=await fetch(a,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)});if(!s.ok)throw new Error(`API Error: ${s.status}`);const i=await s.json();i.candidates&&i.candidates[0].content.parts.length>0?packingListContent.innerHTML=i.candidates[0].content.parts[0].text.replace(/\*\*On The Bike\*\*/g,"<h3>On The Bike</h3><ul>").replace(/\*\*Off The Bike \(Casual\)\*\*/g,"</ul><h3>Off The Bike (Casual)</h3><ul>").replace(/\*\*Essentials & Documents\*\*/g,"</ul><h3>Essentials & Documents</h3><ul>").replace(/\* /g,"<li>").replace(/(\n|\r)/g,"</li>")+"</li></ul>":packingListContent.innerHTML="<p>Could not generate a list. Please try again.</p>"}catch(t){console.error("Packing List Error:",t),packingListContent.innerHTML=`<p>An error occurred: ${t.message}</p>`}}),modalCloseBtn.addEventListener("click",()=>{packingListModal.classList.remove("visible")}),packingListModal.addEventListener("click",t=>{t.target===packingListModal&&packingListModal.classList.remove("visible")});
+    </script>
+</body>
+</html>
