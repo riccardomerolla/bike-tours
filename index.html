@@ -3,171 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bike Tours - Homepage</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>BikeTours - Epic Cycling Adventures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#000000',
+                        accent: '#ff6b00',
+                        gray: {
+                            850: '#1f2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <a href="index.html" class="logo">BikeTours</a>
-            <nav>
-                <a href="tours.html">Tours</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-            </nav>
+<body class="font-sans bg-white text-gray-900">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <a href="index.html" class="text-2xl lg:text-3xl font-bold text-black">BikeTours</a>
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <!-- Desktop navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="tours.html" class="text-gray-700 hover:text-black font-medium transition-colors">Tours</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium transition-colors">About Us</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium transition-colors">Contact</a>
+                </nav>
+            </div>
+            <!-- Mobile navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="tours.html" class="text-gray-700 hover:text-black font-medium">Tours</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium">About Us</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium">Contact</a>
+                </div>
+            </div>
         </div>
     </header>
-    <section class="hero">
-        <h1>Experience the Ride of Your Life</h1>
-        <p>Join us for unforgettable cycling adventures in the world's most stunning locations.</p>
-        <a href="#tours" class="btn">Explore Tours</a>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" 
+                 class="w-full h-full object-cover opacity-70" alt="Cycling adventure">
+        </div>
+        <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                Experience the<br><span class="text-accent">Ride of Your Life</span>
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
+                Join us for unforgettable cycling adventures in the world's most stunning locations.
+            </p>
+            <a href="#tours" class="inline-block bg-accent hover:bg-orange-600 text-white font-bold py-4 px-8 lg:py-5 lg:px-10 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
+                Explore Tours
+            </a>
+        </div>
     </section>
-    <section id="tours" class="tours">
-        <div class="container">
-            <div class="section-header">
-                <h2>Upcoming Tours</h2>
+
+    <!-- Tours Section -->
+    <section id="tours" class="py-16 lg:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Upcoming Tours</h2>
             </div>
-            <div class="carousel-wrapper">
-                <button id="prev-tour" class="carousel-arrow">‹</button>
-                <div class="carousel-viewport">
-                    <div class="tour-grid">
-                        <!-- Card 1 -->
-                        <div class="tour-card">
-                            <div class="tour-card-image-container">
-                                <div class="status-badge spot-left">ONE SPOT LEFT</div>
-                                <img src="https://images.unsplash.com/photo-1559196144-8d390b6c69f2?q=80&w=2070&auto=format&fit=crop" class="tour-image"><img src="https://i.imgur.com/gC5kIuY.png" class="map-image"><div class="heart-icon">♡</div>
-                            </div>
-                            <div class="tour-card-content">
-                                <div class="category">Epic Climbs, Pro Experience</div><h3>Alps Cycling Trip</h3>
-                                <div class="tour-card-details"><div class="duration">27 June - 4 July 2025</div><div class="rating"><span>★</span> 5 (31)</div></div>
-                                <div class="tour-card-footer"><div class="price-section"><div class="current-price">€2.590</div><div class="old-price">€2.790</div><div class="discount">-7%</div></div><a href="tour-detail.html" class="btn">View Details</a></div>
-                            </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="tour-card">
-                            <div class="tour-card-image-container">
-                                <div class="status-badge sold-out">SOLD OUT</div>
-                                <img src="https://images.unsplash.com/photo-1541625602330-22773444f413?q=80&w=2070&auto=format&fit=crop" class="tour-image"><img src="https://i.imgur.com/gC5kIuY.png" class="map-image"><div class="heart-icon">♡</div>
-                            </div>
-                            <div class="tour-card-content">
-                                <div class="category">Island Paradise, All-Inclusive</div><h3>Mallorca Cycling Camp</h3>
-                                <div class="tour-card-details"><div class="duration">5 - 12 July 2025</div><div class="rating"><span>★</span> 4.9 (42)</div></div>
-                                <div class="tour-card-footer"><div class="price-section"><div class="current-price">€2.350</div></div><a href="tour-detail.html" class="btn">View Details</a></div>
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="tour-card">
-                            <div class="tour-card-image-container">
-                                <img src="https://images.unsplash.com/photo-1544641399-2cd4a38ab14b?q=80&w=2070&auto=format&fit=crop" class="tour-image"><img src="https://i.imgur.com/gC5kIuY.png" class="map-image"><div class="heart-icon">♡</div>
-                            </div>
-                            <div class="tour-card-content">
-                                <div class="category">Pro Training, Coastal Roads</div><h3>Calpe Training Camp</h3>
-                                <div class="tour-card-details"><div class="duration">13 - 20 July 2025</div><div class="rating"><span>★</span> 5 (28)</div></div>
-                                <div class="tour-card-footer"><div class="price-section"><div class="current-price">€2.190</div><div class="old-price">€2.400</div><div class="discount">-9%</div></div><a href="tour-detail.html" class="btn">View Details</a></div>
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="tour-card">
-                            <div class="tour-card-image-container">
-                                <img src="https://images.unsplash.com/photo-1565934394623-3a2b724c95a3?q=80&w=2070&auto=format&fit=crop" class="tour-image"><img src="https://i.imgur.com/gC5kIuY.png" class="map-image"><div class="heart-icon">♡</div>
-                            </div>
-                            <div class="tour-card-content">
-                                <div class="category">Mountain Peaks, Italian Passion</div><h3>Dolomites Adventure</h3>
-                                <div class="tour-card-details"><div class="duration">22 - 29 August 2025</div><div class="rating"><span>★</span> 4.9 (35)</div></div>
-                                <div class="tour-card-footer"><div class="price-section"><div class="current-price">€2.650</div></div><a href="tour-detail.html" class="btn">View Details</a></div>
+            
+            <!-- Tour Cards Container -->
+            <div class="relative">
+                <div class="overflow-hidden">
+                    <div id="tour-carousel" class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3">
+                        <!-- Tour Card 1 -->
+                        <div class="flex-none w-full md:w-1/2 lg:w-1/3">
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                                <div class="relative h-64 lg:h-72 overflow-hidden">
+                                    <div class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                                        ONE SPOT LEFT
+                                    </div>
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5a?q=80&w=2070&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                         alt="Alps Cycling Trip">
+                                    <div class="absolute top-4 right-4 text-white text-2xl hover:text-red-500 cursor-pointer transition-colors">♡</div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="text-sm text-gray-500 font-medium mb-2 uppercase tracking-wide">Epic Climbs, Pro Experience</div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Alps Cycling Trip</h3>
+                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                                        <span>27 June - 4 July 2025</span>
+                                        <div class="flex items-center">
+                                            <span class="text-yellow-500">★</span>
+                                            <span class="ml-1 font-medium">5 (31)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 mb-6">
+                                        <span class="text-2xl lg:text-3xl font-bold text-gray-900">€2.590</span>
+                                        <span class="text-gray-500 line-through">€2.790</span>
+                                        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">-7%</span>
+                                    </div>
+                                    <a href="tour-detail.html" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-center block">
+                                        View Details
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <!-- Card 5 -->
-                        <div class="tour-card">
-                            <div class="tour-card-image-container">
-                                <img src="https://images.unsplash.com/photo-1598539825969-ffe438861e5f?q=80&w=2070&auto=format&fit=crop" class="tour-image"><img src="https://i.imgur.com/gC5kIuY.png" class="map-image"><div class="heart-icon">♡</div>
-                            </div>
-                            <div class="tour-card-content">
-                                <div class="category">Rolling Hills, Fine Wine</div><h3>Tuscany Gravel Ride</h3>
-                                <div class="tour-card-details"><div class="duration">5 - 12 September 2025</div><div class="rating"><span>★</span> 5 (51)</div></div>
-                                <div class="tour-card-footer"><div class="price-section"><div class="current-price">€2.450</div></div><a href="tour-detail.html" class="btn">View Details</a></div>
+
+                        <!-- Tour Card 2 -->
+                        <div class="flex-none w-full md:w-1/2 lg:w-1/3">
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                                <div class="relative h-64 lg:h-72 overflow-hidden">
+                                    <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-10">
+                                        <span class="text-white text-2xl lg:text-3xl font-bold uppercase">SOLD OUT</span>
+                                    </div>
+                                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover" alt="Mallorca Cycling Camp">
+                                    <div class="absolute top-4 right-4 text-white text-2xl hover:text-red-500 cursor-pointer transition-colors">♡</div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="text-sm text-gray-500 font-medium mb-2 uppercase tracking-wide">Island Paradise, All-Inclusive</div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Mallorca Cycling Camp</h3>
+                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                                        <span>5 - 12 July 2025</span>
+                                        <div class="flex items-center">
+                                            <span class="text-yellow-500">★</span>
+                                            <span class="ml-1 font-medium">4.9 (42)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 mb-6">
+                                        <span class="text-2xl lg:text-3xl font-bold text-gray-900">€2.350</span>
+                                    </div>
+                                    <a href="tour-detail.html" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-center block">
+                                        View Details
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <!-- Card 6 -->
-                        <div class="tour-card">
-                            <div class="tour-card-image-container">
-                                <div class="status-badge sold-out">SOLD OUT</div>
-                                <img src="https://images.unsplash.com/photo-1604797184662-d042c15b137a?q=80&w=2070&auto=format&fit=crop" class="tour-image"><img src="https://i.imgur.com/gC5kIuY.png" class="map-image"><div class="heart-icon">♡</div>
-                            </div>
-                            <div class="tour-card-content">
-                                <div class="category">Rugged Landscapes, Quiet Roads</div><h3>Pyrenees Crossing</h3>
-                                <div class="tour-card-details"><div class="duration">15 - 22 September 2025</div><div class="rating"><span>★</span> 4.8 (22)</div></div>
-                                <div class="tour-card-footer"><div class="price-section"><div class="current-price">€2.500</div></div><a href="tour-detail.html" class="btn">View Details</a></div>
+
+                        <!-- Tour Card 3 -->
+                        <div class="flex-none w-full md:w-1/2 lg:w-1/3">
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                                <div class="relative h-64 lg:h-72 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" 
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                         alt="Calpe Training Camp">
+                                    <div class="absolute top-4 right-4 text-white text-2xl hover:text-red-500 cursor-pointer transition-colors">♡</div>
+                                </div>
+                                <div class="p-6">
+                                    <div class="text-sm text-gray-500 font-medium mb-2 uppercase tracking-wide">Pro Training, Coastal Roads</div>
+                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Calpe Training Camp</h3>
+                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                                        <span>13 - 20 July 2025</span>
+                                        <div class="flex items-center">
+                                            <span class="text-yellow-500">★</span>
+                                            <span class="ml-1 font-medium">5 (28)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 mb-6">
+                                        <span class="text-2xl lg:text-3xl font-bold text-gray-900">€2.190</span>
+                                        <span class="text-gray-500 line-through">€2.400</span>
+                                        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">-9%</span>
+                                    </div>
+                                    <a href="tour-detail.html" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-center block">
+                                        View Details
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button id="next-tour" class="carousel-arrow">›</button>
+                
+                <!-- Carousel Navigation -->
+                <button id="prev-tour" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hidden lg:block">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="next-tour" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hidden lg:block">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
             </div>
-            <a href="tours.html" class="see-all-btn">See All Tours</a>
-        </div>
-    </section>
-    <section class="destinations-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Choose Your Destination</h2>
-            </div>
-            <div class="destinations-grid">
-                <div class="destination-card"><a href="tours.html?destination=mallorca"><img src="https://images.unsplash.com/photo-1541625602330-22773444f413?q=80&w=2070&auto=format&fit=crop" alt="Mallorca"><h3>MALLORCA</h3></a></div>
-                <div class="destination-card"><a href="tours.html?destination=italy"><img src="https://images.unsplash.com/photo-1598539825969-ffe438861e5f?q=80&w=2070&auto=format&fit=crop" alt="Italy"><h3>ITALY</h3></a></div>
-                <div class="destination-card"><a href="tours.html?destination=switzerland"><img src="https://images.unsplash.com/photo-1565934394623-3a2b724c95a3?q=80&w=2070&auto=format&fit=crop" alt="Switzerland"><h3>SWITZERLAND</h3></a></div>
-            </div>
-        </div>
-    </section>
-    <section class="offer-section">
-        <div class="container">
-            <h2>What We Offer</h2>
-            <div class="offer-grid">
-                <div class="offer-item"><div class="icon">🏠</div><h3>Accommodation</h3><p>Our packages include hotel stays with breakfast and dinner included so you can focus on the ride.</p></div>
-                <div class="offer-item"><div class="icon">🚌</div><h3>Transfers</h3><p>We provide hassle-free transportation for you and your gear to and from the airport and excursions.</p></div>
-                <div class="offer-item"><div class="icon">🚲</div><h3>Bicycle Rental</h3><p>Ride high-end bicycles from top brands. No need to bring your own, we've got you covered.</p></div>
-                <div class="offer-item"><div class="icon">🔧</div><h3>Assistance & Maintenance</h3><p>Daily maintenance and technical assistance during all excursions to keep you rolling smoothly.</p></div>
-                <div class="offer-item"><div class="icon">💆‍♂️</div><h3>Massages</h3><p>Our staff is available for daily massage sessions, and you'll have access to pro recovery systems.</p></div>
-                <div class="offer-item"><div class="icon">🍽️</div><h3>Nutrition</h3><p>The cost includes nutritional supplements for the entire week (gels, bars, and drinks).</p></div>
-                <div class="offer-item"><div class="icon">👕</div><h3>Cycling Kit</h3><p>We provide each participant with a complete cycling kit (jersey, shorts, and socks).</p></div>
-                <div class="offer-item"><div class="icon">🚴</div><h3>Professional Bike Fitting</h3><p>The price includes a professional bike fitting to find your perfect setup for performance and comfort.</p></div>
-                <div class="offer-item"><div class="icon">🏷️</div><h3>Exclusive Discount</h3><p>Receive an exclusive 10% discount at our partner cycling store for any gear you might need.</p></div>
+            
+            <div class="text-center mt-8">
+                <a href="tours.html" class="inline-block border-2 border-black text-black hover:bg-black hover:text-white font-bold py-3 px-8 rounded-lg transition-all duration-300">
+                    See All Tours
+                </a>
             </div>
         </div>
     </section>
-    <section class="contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Dream up a Tour</h2>
-                <p class="subtitle">Describe your perfect cycling trip, and our AI will create a custom tour concept just for you!</p>
+
+    <!-- Destinations Section -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Choose Your Destination</h2>
             </div>
-            <div class="contact-form">
-                <div class="form-group">
-                    <label for="tour-description">Describe your ideal trip (e.g., "A 5-day relaxed tour in Italy with great food and coastal views")</label>
-                    <textarea id="tour-description" name="tour-description" placeholder="e.g., A challenging week in the Swiss Alps, climbing famous passes..."></textarea>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                <div class="group cursor-pointer">
+                    <a href="tours.html?destination=mallorca" class="block">
+                        <div class="relative overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop" 
+                                 class="w-full h-80 lg:h-96 object-cover group-hover:scale-110 transition-transform duration-500" 
+                                 alt="Mallorca">
+                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-center mt-6 group-hover:text-accent transition-colors">MALLORCA</h3>
+                    </a>
                 </div>
-                <button id="generate-suggestion-btn" class="btn">✨ Suggest a Custom Tour</button>
+                <div class="group cursor-pointer">
+                    <a href="tours.html?destination=italy" class="block">
+                        <div class="relative overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=2070&auto=format&fit=crop" 
+                                 class="w-full h-80 lg:h-96 object-cover group-hover:scale-110 transition-transform duration-500" 
+                                 alt="Italy">
+                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-center mt-6 group-hover:text-accent transition-colors">ITALY</h3>
+                    </a>
+                </div>
+                <div class="group cursor-pointer">
+                    <a href="tours.html?destination=switzerland" class="block">
+                        <div class="relative overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1549640540-de326b203774?q=80&w=2070&auto=format&fit=crop" 
+                                 class="w-full h-80 lg:h-96 object-cover group-hover:scale-110 transition-transform duration-500" 
+                                 alt="Switzerland">
+                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-center mt-6 group-hover:text-accent transition-colors">SWITZERLAND</h3>
+                    </a>
+                </div>
             </div>
-            <div id="suggestion-result"></div>
         </div>
     </section>
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about"><a href="index.html" class="logo">BikeTours</a><p>Providing pro-level, all-inclusive cycling experiences in the world's most breathtaking locations.</p></div>
-                <div class="footer-links"><h3>Explore</h3><ul><li><a href="index.html">Home</a></li><li><a href="tours.html">Tours</a></li><li><a href="#">About Us</a></li><li><a href="#">Contact</a></li></ul></div>
-                <div class="footer-contact"><h3>Contact</h3><p>Rue de Mont-Blanc, 1201 Geneva, Switzerland</p><p>Email: <a href="mailto:contact@biketours.com">contact@biketours.com</a></p></div>
-                <div class="footer-social"><h3>Follow Us</h3><ul class="social-links"><li><a href="#">FB</a></li><li><a href="#">IN</a></li><li><a href="#">TW</a></li></ul></div>
+
+    <!-- What We Offer Section -->
+    <section class="py-16 lg:py-24 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">What We Offer</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+                <div class="text-center group">
+                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🏠</div>
+                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Accommodation</h3>
+                    <p class="text-gray-300 leading-relaxed">Our packages include hotel stays with breakfast and dinner included so you can focus on the ride.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚌</div>
+                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Transfers</h3>
+                    <p class="text-gray-300 leading-relaxed">We provide hassle-free transportation for you and your gear to and from the airport and excursions.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚲</div>
+                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Bicycle Rental</h3>
+                    <p class="text-gray-300 leading-relaxed">Ride high-end bicycles from top brands. No need to bring your own, we've got you covered.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🔧</div>
+                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Assistance & Maintenance</h3>
+                    <p class="text-gray-300 leading-relaxed">Daily maintenance and technical assistance during all excursions to keep you rolling smoothly.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">💆‍♂️</div>
+                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Massages</h3>
+                    <p class="text-gray-300 leading-relaxed">Our staff is available for daily massage sessions, and you'll have access to pro recovery systems.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🍽️</div>
+                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Nutrition</h3>
+                    <p class="text-gray-300 leading-relaxed">The cost includes nutritional supplements for the entire week (gels, bars, and drinks).</p>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom"><p>&copy; 2024 BikeTours. All Rights Reserved.</p></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Dream up a Tour</h2>
+                <p class="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
+                    Describe your perfect cycling trip, and our AI will create a custom tour concept just for you!
+                </p>
+            </div>
+            <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
+                <div class="mb-6">
+                    <label for="tour-description" class="block text-sm font-bold text-gray-900 mb-3">
+                        Describe your ideal trip (e.g., "A 5-day relaxed tour in Italy with great food and coastal views")
+                    </label>
+                    <textarea id="tour-description" name="tour-description" rows="4" 
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 resize-none"
+                              placeholder="e.g., A challenging week in the Swiss Alps, climbing famous passes..."></textarea>
+                </div>
+                <button id="generate-suggestion-btn" class="w-full bg-accent hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                    ✨ Suggest a Custom Tour
+                </button>
+                <div id="suggestion-result" class="hidden mt-8 p-6 bg-gray-50 rounded-lg"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div>
+                    <a href="index.html" class="text-2xl lg:text-3xl font-bold mb-4 block">BikeTours</a>
+                    <p class="text-gray-300 leading-relaxed">
+                        Providing pro-level, all-inclusive cycling experiences in the world's most breathtaking locations.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Explore</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="tours.html" class="text-gray-300 hover:text-white transition-colors">Tours</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Contact</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <p>Rue de Mont-Blanc<br>1201 Geneva, Switzerland</p>
+                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-white transition-colors">contact@biketours.com</a></p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">FB</a>
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">IN</a>
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BikeTours. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded',function(){const t=document.querySelector('.tour-grid'),e=document.getElementById('prev-tour'),o=document.getElementById('next-tour');if(!t||!e||!o)return;const r=document.querySelectorAll('.tour-card');let d=0;const a=r.length,n=()=>window.innerWidth<=768?1:window.innerWidth<=1200?2:3,i=()=>{const c=n(),s=t.querySelector('.tour-card');if(!s)return;const l=s.offsetWidth,u=-d*(l+30);t.style.transform=`translateX(${u}px)`,e.disabled=0===d,o.disabled=d>=a-c};o.addEventListener('click',()=>{const c=n();d<a-c&&(d++,i())}),e.addEventListener('click',()=>{d>0&&(d--,i())}),window.addEventListener('resize',i),i()});
-        const generateSuggestionBtn=document.getElementById("generate-suggestion-btn"),tourDescriptionInput=document.getElementById("tour-description"),suggestionResultDiv=document.getElementById("suggestion-result");generateSuggestionBtn.addEventListener("click",async()=>{const e=tourDescriptionInput.value;if(!e)return void alert("Please describe your ideal trip first!");suggestionResultDiv.style.display="block",suggestionResultDiv.innerHTML="<p>✨ Thinking up your dream tour...</p>";const t=`Based on the following user description for a dream cycling trip, generate a creative and appealing tour concept. The concept should have a catchy title, a short, exciting description, and a list of 3-4 highlight activities. The tone should be inspiring and adventurous. User description: "${e}"`;try{let e=[{role:"user",parts:[{text:t}]}];const o={contents:e},n="",s=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${n}`,a=await fetch(s,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)});if(!a.ok)throw new Error(`API request failed with status ${a.status}`);const i=await a.json();i.candidates&&i.candidates.length>0&&i.candidates[0].content.parts.length>0?suggestionResultDiv.innerHTML=i.candidates[0].content.parts[0].text.replace(/\*\*Title:\*\*/g,"<h3>").replace(/\*\*Description:\*\*/g,"</h3><p>").replace(/\*\*Highlights:\*\*/g,"</p><h4>Highlights:</h4><ul>").replace(/\* /g,"<li>").replace(/(\n|\r)/g,"</li>")+"</li></ul>":suggestionResultDiv.innerHTML='<p>Sorry, we couldn\'t generate a suggestion at this time. Please try again.</p>'}catch(e){console.error("Error calling Gemini API:",e),suggestionResultDiv.innerHTML=`<p>An error occurred: ${e.message}. Please check the console for details.</p>`}});
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tour carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('tour-carousel');
+            const prevBtn = document.getElementById('prev-tour');
+            const nextBtn = document.getElementById('next-tour');
+            
+            if (!carousel || !prevBtn || !nextBtn) return;
+            
+            const cards = document.querySelectorAll('#tour-carousel > div');
+            let currentIndex = 0;
+            const totalCards = cards.length;
+            
+            const getVisibleCards = () => {
+                if (window.innerWidth <= 768) return 1;
+                if (window.innerWidth <= 1024) return 2;
+                return 3;
+            };
+            
+            const updateCarousel = () => {
+                const visibleCards = getVisibleCards();
+                const cardElement = carousel.querySelector('div');
+                if (!cardElement) return;
+                
+                const cardWidth = cardElement.offsetWidth;
+                const gap = 32; // 8 * 4 = 32px for lg:gap-8
+                const translateX = -currentIndex * (cardWidth + gap);
+                
+                carousel.style.transform = `translateX(${translateX}px)`;
+                
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= totalCards - visibleCards;
+            };
+            
+            nextBtn.addEventListener('click', () => {
+                const visibleCards = getVisibleCards();
+                if (currentIndex < totalCards - visibleCards) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+            
+            window.addEventListener('resize', updateCarousel);
+            updateCarousel();
+        });
+
+        // AI Tour Suggestion
+        const generateSuggestionBtn = document.getElementById("generate-suggestion-btn");
+        const tourDescriptionInput = document.getElementById("tour-description");
+        const suggestionResultDiv = document.getElementById("suggestion-result");
+
+        generateSuggestionBtn.addEventListener("click", async () => {
+            const description = tourDescriptionInput.value;
+            if (!description) {
+                alert("Please describe your ideal trip first!");
+                return;
+            }
+
+            suggestionResultDiv.classList.remove('hidden');
+            suggestionResultDiv.innerHTML = "<p class='text-gray-600'>✨ Thinking up your dream tour...</p>";
+
+            const prompt = `Based on the following user description for a dream cycling trip, generate a creative and appealing tour concept. The concept should have a catchy title, a short, exciting description, and a list of 3-4 highlight activities. The tone should be inspiring and adventurous. User description: "${description}"`;
+
+            try {
+                let messages = [{
+                    role: "user",
+                    parts: [{text: prompt}]
+                }];
+
+                const requestBody = { contents: messages };
+                const apiKey = ""; // Add your API key here if needed
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates.length > 0 && data.candidates[0].content.parts.length > 0) {
+                    const content = data.candidates[0].content.parts[0].text
+                        .replace(/\*\*Title:\*\*/g, "<h3 class='text-xl font-bold text-gray-900 mb-3'>")
+                        .replace(/\*\*Description:\*\*/g, "</h3><p class='text-gray-700 mb-4'>")
+                        .replace(/\*\*Highlights:\*\*/g, "</p><h4 class='text-lg font-semibold text-gray-900 mb-2'>Highlights:</h4><ul class='list-disc list-inside space-y-1 text-gray-700'>")
+                        .replace(/\* /g, "<li>")
+                        .replace(/(\n|\r)/g, "</li>") + "</li></ul>";
+                    
+                    suggestionResultDiv.innerHTML = content;
+                } else {
+                    suggestionResultDiv.innerHTML = '<p class="text-red-600">Sorry, we couldn\'t generate a suggestion at this time. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                suggestionResultDiv.innerHTML = `<p class="text-red-600">An error occurred: ${error.message}. Please check the console for details.</p>`;
+            }
+        });
     </script>
 </body>
 </html>

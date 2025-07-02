@@ -4,76 +4,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Details - Alps Cycling Trip</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#000000',
+                        accent: '#ff6b00',
+                        gray: {
+                            850: '#1f2937',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="tour-detail-page">
-    <header>
-        <div class="container">
-            <a href="index.html" class="logo">BikeTours</a>
-            <nav>
-                <a href="tours.html">Tours</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-            </nav>
+<body class="font-sans bg-white text-gray-900">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <a href="index.html" class="text-2xl lg:text-3xl font-bold text-black">BikeTours</a>
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <!-- Desktop navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="tours.html" class="text-gray-700 hover:text-black font-medium transition-colors">Tours</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium transition-colors">About Us</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium transition-colors">Contact</a>
+                </nav>
+            </div>
+            <!-- Mobile navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="tours.html" class="text-gray-700 hover:text-black font-medium">Tours</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium">About Us</a>
+                    <a href="#" class="text-gray-700 hover:text-black font-medium">Contact</a>
+                </div>
+            </div>
         </div>
     </header>
-    <section class="tour-hero">
-        <div class="container">
-            <h1 id="tour-title">Alps Cycling Trip - Tour de France</h1>
+
+    <!-- Hero Section -->
+    <section class="relative h-[70vh] flex items-end overflow-hidden">
+        <div class="absolute inset-0 bg-black">
+            <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5a?q=80&w=2070&auto=format&fit=crop" 
+                 class="w-full h-full object-cover opacity-70" alt="Alps Cycling Trip">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <h1 id="tour-title" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+                Alps Cycling Trip - Tour de France
+            </h1>
         </div>
     </section>
-    <main class="tour-main">
-        <div class="container tour-layout">
-            <div class="tour-content">
-                <h2>Ride the legendary climbs of the French Alps</h2>
-                <p>Have you ever dreamt of conquering the most famous climbs of the Tour de France? Join us on this epic trip for an experience of a lifetime. From the chalet base in Morzine, we will guide you up legendary cols, providing full support, pro-level coaching, and an unforgettable team atmosphere.</p>
-                <div class="itinerary-section">
-                    <h2>Itinerary</h2>
-                    <div class="day">
-                        <div class="day-header"><div class="day-number">1</div><h3 class="day-title">Arrival in Morzine</h3></div>
-                        <p>We will pick you up from Geneva airport and drive you to our premium chalet. You'll meet the team, get your bike set up, and enjoy a welcome dinner where we'll brief you on the epic week ahead.</p>
+
+    <!-- Main Content -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+                <!-- Content Column -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                        Ride the legendary climbs of the French Alps
+                    </h2>
+                    <p class="text-lg lg:text-xl text-gray-700 leading-relaxed mb-12">
+                        Have you ever dreamt of conquering the most famous climbs of the Tour de France? Join us on this epic trip for an experience of a lifetime. From the chalet base in Morzine, we will guide you up legendary cols, providing full support, pro-level coaching, and an unforgettable team atmosphere.
+                    </p>
+
+                    <!-- Itinerary Section -->
+                    <div>
+                        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">Itinerary</h2>
+                        
+                        <!-- Day 1 -->
+                        <div class="mb-12 pb-8 border-b border-gray-200">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-black text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center font-bold text-lg lg:text-xl mr-6">
+                                    1
+                                </div>
+                                <h3 class="text-2xl lg:text-3xl font-bold text-gray-900">Arrival in Morzine</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                We will pick you up from Geneva airport and drive you to our premium chalet. You'll meet the team, get your bike set up, and enjoy a welcome dinner where we'll brief you on the epic week ahead.
+                            </p>
+                        </div>
+
+                        <!-- Day 2 -->
+                        <div class="mb-12 pb-8 border-b border-gray-200">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-black text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center font-bold text-lg lg:text-xl mr-6">
+                                    2
+                                </div>
+                                <h3 class="text-2xl lg:text-3xl font-bold text-gray-900">Col de la Colombière</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                                Our first ride takes us up the stunning Col de la Colombière. Enjoy the breathtaking views from the top before a thrilling descent back to the chalet for a recovery massage.
+                            </p>
+                            <div class="text-sm text-gray-600 mb-6">
+                                <strong>Distance:</strong> 95km | <strong>Elevation:</strong> 1,850m
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-100 rounded-xl h-48 flex items-center justify-center text-gray-500 font-semibold">
+                                    Route Map Placeholder
+                                </div>
+                                <div class="bg-gray-100 rounded-xl h-48 flex items-center justify-center text-gray-500 font-semibold">
+                                    Elevation Profile
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 3 -->
+                        <div class="mb-12">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-black text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center font-bold text-lg lg:text-xl mr-6">
+                                    3
+                                </div>
+                                <h3 class="text-2xl lg:text-3xl font-bold text-gray-900">Col de Joux Plane</h3>
+                            </div>
+                            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                                Today, we tackle the legendary Col de Joux Plane, a challenging climb that has been the scene of many dramatic moments in Tour de France history. The reward is an unforgettable view of Mont Blanc from the summit.
+                            </p>
+                            <div class="text-sm text-gray-600 mb-6">
+                                <strong>Distance:</strong> 78km | <strong>Elevation:</strong> 2,100m
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-100 rounded-xl h-48 flex items-center justify-center text-gray-500 font-semibold">
+                                    Route Map Placeholder
+                                </div>
+                                <div class="bg-gray-100 rounded-xl h-48 flex items-center justify-center text-gray-500 font-semibold">
+                                    Elevation Profile
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="day">
-                        <div class="day-header"><div class="day-number">2</div><h3 class="day-title">Col de la Colombière</h3></div>
-                        <p>Our first ride takes us up the stunning Col de la Colombière. Enjoy the breathtaking views from the top before a thrilling descent back to the chalet for a recovery massage.</p>
-                        <div class="day-stats"><strong>Distance:</strong> 95km | <strong>Elevation:</strong> 1,850m</div>
-                        <div class="day-media"><div class="map-placeholder"></div><div class="altitude-placeholder"></div></div>
-                    </div>
-                    <div class="day">
-                        <div class="day-header"><div class="day-number">3</div><h3 class="day-title">Col de Joux Plane</h3></div>
-                        <p>Today, we tackle the legendary Col de Joux Plane, a challenging climb that has been the scene of many dramatic moments in Tour de France history. The reward is an unforgettable view of Mont Blanc from the summit.</p>
-                        <div class="day-stats"><strong>Distance:</strong> 78km | <strong>Elevation:</strong> 2,100m</div>
-                        <div class="day-media"><div class="map-placeholder"></div><div class="altitude-placeholder"></div></div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-50 rounded-2xl p-8 sticky top-32">
+                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">€2.590 per person</h3>
+                        
+                        <div class="space-y-6 mb-8">
+                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                                <strong class="text-gray-900">📅 Duration:</strong>
+                                <span id="tour-duration" class="text-gray-700">8 Days / 7 Nights</span>
+                            </div>
+                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                                <strong class="text-gray-900">🏁 Difficulty:</strong>
+                                <span class="text-gray-700">Advanced</span>
+                            </div>
+                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
+                                <strong class="text-gray-900">👥 Group Size:</strong>
+                                <span class="text-gray-700">Max 10 riders</span>
+                            </div>
+                            <div class="flex justify-between items-center py-4">
+                                <strong class="text-gray-900">📍 Location:</strong>
+                                <span id="tour-location" class="text-gray-700">French Alps</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-4 px-6 rounded-lg transition-colors duration-300 text-center block mb-4">
+                            Book This Tour
+                        </a>
+                        
+                        <button id="packing-list-btn" class="w-full border-2 border-black text-black hover:bg-black hover:text-white font-bold py-4 px-6 rounded-lg transition-all duration-300">
+                            ✨ Generate Packing List
+                        </button>
                     </div>
                 </div>
             </div>
-            <aside class="tour-sidebar">
-                <h3>€2.590 per person</h3>
-                <div class="tour-meta">
-                    <p><strong>📅 Duration:</strong> <span id="tour-duration">8 Days / 7 Nights</span></p>
-                    <p><strong>🏁 Difficulty:</strong> Advanced</p>
-                    <p><strong>👥 Group Size:</strong> Max 10 riders</p>
-                    <p><strong>📍 Location:</strong> <span id="tour-location">French Alps</span></p>
-                </div>
-                <a href="#" class="btn">Book This Tour</a>
-                <button id="packing-list-btn" class="btn secondary">✨ Generate Packing List</button>
-            </aside>
         </div>
-    </main>
-    <div id="packing-list-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Your Packing List</h2>
-                <button id="modal-close-btn" class="modal-close">&times;</button>
+    </section>
+
+    <!-- Packing List Modal -->
+    <div id="packing-list-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-900">Your Packing List</h2>
+                <button id="modal-close-btn" class="text-gray-500 hover:text-gray-700 text-3xl font-bold transition-colors">
+                    &times;
+                </button>
             </div>
-            <div id="packing-list-content"></div>
+            <div id="packing-list-content" class="p-6 overflow-y-auto max-h-[60vh]">
+                <!-- Content will be generated here -->
+            </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div>
+                    <a href="index.html" class="text-2xl lg:text-3xl font-bold mb-4 block">BikeTours</a>
+                    <p class="text-gray-300 leading-relaxed">
+                        Providing pro-level, all-inclusive cycling experiences in the world's most breathtaking locations.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Explore</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="tours.html" class="text-gray-300 hover:text-white transition-colors">Tours</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Contact</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <p>Rue de Mont-Blanc<br>1201 Geneva, Switzerland</p>
+                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-white transition-colors">contact@biketours.com</a></p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">FB</a>
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">IN</a>
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BikeTours. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const packingListBtn=document.getElementById("packing-list-btn"),packingListModal=document.getElementById("packing-list-modal"),modalCloseBtn=document.getElementById("modal-close-btn"),packingListContent=document.getElementById("packing-list-content");packingListBtn.addEventListener("click",async()=>{packingListModal.classList.add("visible"),packingListContent.innerHTML="<p>✨ Preparing your personalized list...</p>";const t=document.getElementById("tour-title").textContent,e=document.getElementById("tour-duration").textContent,o=document.getElementById("tour-location").textContent,n=`Create a detailed packing list for a cycling tour with the following details. Categorize the list into "On The Bike", "Off The Bike (Casual)", and "Essentials & Documents". The tone should be helpful and professional. Tour Title: "${t}". Duration: "${e}". Location: "${o}".`;try{let t=[{role:"user",parts:[{text:n}]}];const e={contents:t},o="",a=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${o}`,s=await fetch(a,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)});if(!s.ok)throw new Error(`API Error: ${s.status}`);const i=await s.json();i.candidates&&i.candidates[0].content.parts.length>0?packingListContent.innerHTML=i.candidates[0].content.parts[0].text.replace(/\*\*On The Bike\*\*/g,"<h3>On The Bike</h3><ul>").replace(/\*\*Off The Bike \(Casual\)\*\*/g,"</ul><h3>Off The Bike (Casual)</h3><ul>").replace(/\*\*Essentials & Documents\*\*/g,"</ul><h3>Essentials & Documents</h3><ul>").replace(/\* /g,"<li>").replace(/(\n|\r)/g,"</li>")+"</li></ul>":packingListContent.innerHTML="<p>Could not generate a list. Please try again.</p>"}catch(t){console.error("Packing List Error:",t),packingListContent.innerHTML=`<p>An error occurred: ${t.message}</p>`}}),modalCloseBtn.addEventListener("click",()=>{packingListModal.classList.remove("visible")}),packingListModal.addEventListener("click",t=>{t.target===packingListModal&&packingListModal.classList.remove("visible")});
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Packing list functionality
+        const packingListBtn = document.getElementById("packing-list-btn");
+        const packingListModal = document.getElementById("packing-list-modal");
+        const modalCloseBtn = document.getElementById("modal-close-btn");
+        const packingListContent = document.getElementById("packing-list-content");
+
+        packingListBtn.addEventListener("click", async () => {
+            packingListModal.classList.remove('opacity-0', 'invisible');
+            packingListContent.innerHTML = "<p class='text-gray-600'>✨ Preparing your personalized list...</p>";
+
+            const tourTitle = document.getElementById("tour-title").textContent;
+            const tourDuration = document.getElementById("tour-duration").textContent;
+            const tourLocation = document.getElementById("tour-location").textContent;
+
+            const prompt = `Create a detailed packing list for a cycling tour with the following details. Categorize the list into "On The Bike", "Off The Bike (Casual)", and "Essentials & Documents". The tone should be helpful and professional. Tour Title: "${tourTitle}". Duration: "${tourDuration}". Location: "${tourLocation}".`;
+
+            try {
+                let messages = [{
+                    role: "user",
+                    parts: [{text: prompt}]
+                }];
+
+                const requestBody = { contents: messages };
+                const apiKey = ""; // Add your API key here if needed
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0].content.parts.length > 0) {
+                    const content = data.candidates[0].content.parts[0].text
+                        .replace(/\*\*On The Bike\*\*/g, "<h3 class='text-xl font-bold text-gray-900 mb-3'>On The Bike</h3><ul class='list-disc list-inside space-y-1 text-gray-700 mb-6'>")
+                        .replace(/\*\*Off The Bike \(Casual\)\*\*/g, "</ul><h3 class='text-xl font-bold text-gray-900 mb-3'>Off The Bike (Casual)</h3><ul class='list-disc list-inside space-y-1 text-gray-700 mb-6'>")
+                        .replace(/\*\*Essentials & Documents\*\*/g, "</ul><h3 class='text-xl font-bold text-gray-900 mb-3'>Essentials & Documents</h3><ul class='list-disc list-inside space-y-1 text-gray-700 mb-6'>")
+                        .replace(/\* /g, "<li>")
+                        .replace(/(\n|\r)/g, "</li>") + "</li></ul>";
+                    
+                    packingListContent.innerHTML = content;
+                } else {
+                    packingListContent.innerHTML = "<p class='text-red-600'>Could not generate a list. Please try again.</p>";
+                }
+            } catch (error) {
+                console.error("Packing List Error:", error);
+                packingListContent.innerHTML = `<p class='text-red-600'>An error occurred: ${error.message}</p>`;
+            }
+        });
+
+        modalCloseBtn.addEventListener("click", () => {
+            packingListModal.classList.add('opacity-0', 'invisible');
+        });
+
+        packingListModal.addEventListener("click", (e) => {
+            if (e.target === packingListModal) {
+                packingListModal.classList.add('opacity-0', 'invisible');
+            }
+        });
     </script>
 </body>
 </html>
