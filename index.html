@@ -15,7 +15,11 @@
                     },
                     colors: {
                         primary: '#000000',
-                        accent: '#ff6b00',
+                        celeste: '#40E0D0',
+                        'celeste-dark': '#359A9A',
+                        'celeste-light': '#B8F3F0',
+                        accent: '#40E0D0',
+                        'bianchi-blue': '#1E3A8A',
                         gray: {
                             850: '#1f2937',
                         }
@@ -27,58 +31,62 @@
 </head>
 <body class="font-sans bg-white text-gray-900">
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 lg:h-20">
-                <a href="index.html" class="text-2xl lg:text-3xl font-bold text-black">BikeTours</a>
+                <a href="index.html" class="text-2xl lg:text-3xl font-light text-black tracking-wide">BikeTours</a>
                 <!-- Mobile menu button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
                 <!-- Desktop navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="tours.html" class="text-gray-700 hover:text-black font-medium transition-colors">Tours</a>
-                    <a href="#" class="text-gray-700 hover:text-black font-medium transition-colors">About Us</a>
-                    <a href="#" class="text-gray-700 hover:text-black font-medium transition-colors">Contact</a>
+                <nav class="hidden md:flex space-x-10">
+                    <a href="tours.html" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+                    <a href="#" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
                 </nav>
             </div>
             <!-- Mobile navigation -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="tours.html" class="text-gray-700 hover:text-black font-medium">Tours</a>
-                    <a href="#" class="text-gray-700 hover:text-black font-medium">About Us</a>
-                    <a href="#" class="text-gray-700 hover:text-black font-medium">Contact</a>
+                    <a href="tours.html" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">Tours</a>
+                    <a href="#" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">Contact</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-black">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+        <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" 
-                 class="w-full h-full object-cover opacity-70" alt="Cycling adventure">
+                 class="w-full h-full object-cover opacity-80" alt="Cycling adventure">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
         </div>
-        <div class="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Experience the<br><span class="text-accent">Ride of Your Life</span>
-            </h1>
-            <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
-                Join us for unforgettable cycling adventures in the world's most stunning locations.
-            </p>
-            <a href="#tours" class="inline-block bg-accent hover:bg-orange-600 text-white font-bold py-4 px-8 lg:py-5 lg:px-10 rounded-lg text-lg transition-all duration-300 transform hover:scale-105">
-                Explore Tours
-            </a>
+        <div class="relative z-10 text-left text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight tracking-wide">
+                    PREMIUM<br><span class="text-celeste font-normal">CYCLING</span><br>EXPERIENCES
+                </h1>
+                <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 font-light leading-relaxed">
+                    Discover extraordinary cycling adventures in the world's most breathtaking destinations.
+                </p>
+                <a href="#tours" class="inline-block bg-celeste hover:bg-celeste-dark text-black font-medium py-4 px-8 lg:py-5 lg:px-10 uppercase tracking-wider text-sm transition-all duration-300">
+                    Explore Collection
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Tours Section -->
-    <section id="tours" class="py-16 lg:py-24 bg-gray-50">
+    <section id="tours" class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 lg:mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Upcoming Tours</h2>
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">UPCOMING TOURS</h2>
+                <div class="w-24 h-0.5 bg-celeste mx-auto"></div>
             </div>
             
             <!-- Tour Cards Container -->
@@ -87,32 +95,32 @@
                     <div id="tour-carousel" class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3">
                         <!-- Tour Card 1 -->
                         <div class="flex-none w-full md:w-1/2 lg:w-1/3">
-                            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <div class="relative h-64 lg:h-72 overflow-hidden">
-                                    <div class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
-                                        ONE SPOT LEFT
+                            <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
+                                <div class="relative h-80 lg:h-96 overflow-hidden">
+                                    <div class="absolute top-4 left-4 bg-celeste text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">
+                                        Last Spot
                                     </div>
                                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3" 
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                                          alt="Alps Cycling Trip - Mountain road cycling in the Swiss Alps">
-                                    <div class="absolute top-4 right-4 text-white text-2xl hover:text-red-500 cursor-pointer transition-colors">♡</div>
+                                    <div class="absolute top-4 right-4 text-white text-xl hover:text-celeste cursor-pointer transition-colors">♡</div>
                                 </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-500 font-medium mb-2 uppercase tracking-wide">Epic Climbs, Pro Experience</div>
-                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Alps Cycling Trip</h3>
-                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
-                                        <span>27 June - 4 July 2025</span>
+                                <div class="p-8">
+                                    <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">Epic Climbs • Pro Experience</div>
+                                    <h3 class="text-2xl lg:text-3xl font-light text-gray-900 mb-6 tracking-wide">Alps Cycling Trip</h3>
+                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-8">
+                                        <span class="font-light">27 June - 4 July 2025</span>
                                         <div class="flex items-center">
-                                            <span class="text-yellow-500">★</span>
-                                            <span class="ml-1 font-medium">5 (31)</span>
+                                            <span class="text-celeste">★</span>
+                                            <span class="ml-1 font-light">5.0 (31)</span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3 mb-6">
-                                        <span class="text-2xl lg:text-3xl font-bold text-gray-900">€2.590</span>
-                                        <span class="text-gray-500 line-through">€2.790</span>
-                                        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">-7%</span>
+                                    <div class="flex items-baseline gap-3 mb-8">
+                                        <span class="text-3xl lg:text-4xl font-light text-gray-900">€2.590</span>
+                                        <span class="text-gray-400 line-through font-light">€2.790</span>
+                                        <span class="bg-celeste text-black text-xs font-medium px-2 py-1 uppercase tracking-wider">Save 7%</span>
                                     </div>
-                                    <a href="tour-detail.html" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-center block">
+                                    <a href="tour-detail.html" class="w-full border border-black hover:bg-black hover:text-white text-black font-medium py-4 px-6 transition-all duration-300 text-center block uppercase tracking-wider text-sm">
                                         View Details
                                     </a>
                                 </div>
@@ -121,30 +129,30 @@
 
                         <!-- Tour Card 2 -->
                         <div class="flex-none w-full md:w-1/2 lg:w-1/3">
-                            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <div class="relative h-64 lg:h-72 overflow-hidden">
-                                    <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-10">
-                                        <span class="text-white text-2xl lg:text-3xl font-bold uppercase">SOLD OUT</span>
+                            <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
+                                <div class="relative h-80 lg:h-96 overflow-hidden">
+                                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+                                        <span class="text-white text-xl lg:text-2xl font-light uppercase tracking-widest">Sold Out</span>
                                     </div>
                                     <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop" 
                                          class="w-full h-full object-cover" alt="Mallorca Cycling Camp">
-                                    <div class="absolute top-4 right-4 text-white text-2xl hover:text-red-500 cursor-pointer transition-colors">♡</div>
+                                    <div class="absolute top-4 right-4 text-white text-xl hover:text-celeste cursor-pointer transition-colors">♡</div>
                                 </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-500 font-medium mb-2 uppercase tracking-wide">Island Paradise, All-Inclusive</div>
-                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Mallorca Cycling Camp</h3>
-                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
-                                        <span>5 - 12 July 2025</span>
+                                <div class="p-8">
+                                    <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">Island Paradise • All-Inclusive</div>
+                                    <h3 class="text-2xl lg:text-3xl font-light text-gray-900 mb-6 tracking-wide">Mallorca Cycling Camp</h3>
+                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-8">
+                                        <span class="font-light">5 - 12 July 2025</span>
                                         <div class="flex items-center">
-                                            <span class="text-yellow-500">★</span>
-                                            <span class="ml-1 font-medium">4.9 (42)</span>
+                                            <span class="text-celeste">★</span>
+                                            <span class="ml-1 font-light">4.9 (42)</span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3 mb-6">
-                                        <span class="text-2xl lg:text-3xl font-bold text-gray-900">€2.350</span>
+                                    <div class="flex items-baseline gap-3 mb-8">
+                                        <span class="text-3xl lg:text-4xl font-light text-gray-900">€2.350</span>
                                     </div>
-                                    <a href="tour-detail.html" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-center block">
-                                        View Details
+                                    <a href="tour-detail.html" class="w-full border border-gray-300 text-gray-400 font-medium py-4 px-6 text-center block uppercase tracking-wider text-sm cursor-not-allowed">
+                                        Sold Out
                                     </a>
                                 </div>
                             </div>
@@ -152,29 +160,29 @@
 
                         <!-- Tour Card 3 -->
                         <div class="flex-none w-full md:w-1/2 lg:w-1/3">
-                            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <div class="relative h-64 lg:h-72 overflow-hidden">
+                            <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
+                                <div class="relative h-80 lg:h-96 overflow-hidden">
                                     <img src="https://images.unsplash.com/photo-1682686581427-7c80ab60e3f3?q=80&w=2070&auto=format&fit=crop" 
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                                          alt="Calpe Training Camp">
-                                    <div class="absolute top-4 right-4 text-white text-2xl hover:text-red-500 cursor-pointer transition-colors">♡</div>
+                                    <div class="absolute top-4 right-4 text-white text-xl hover:text-celeste cursor-pointer transition-colors">♡</div>
                                 </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-500 font-medium mb-2 uppercase tracking-wide">Pro Training, Coastal Roads</div>
-                                    <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Calpe Training Camp</h3>
-                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
-                                        <span>13 - 20 July 2025</span>
+                                <div class="p-8">
+                                    <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">Pro Training • Coastal Roads</div>
+                                    <h3 class="text-2xl lg:text-3xl font-light text-gray-900 mb-6 tracking-wide">Calpe Training Camp</h3>
+                                    <div class="flex justify-between items-center text-sm text-gray-600 mb-8">
+                                        <span class="font-light">13 - 20 July 2025</span>
                                         <div class="flex items-center">
-                                            <span class="text-yellow-500">★</span>
-                                            <span class="ml-1 font-medium">5 (28)</span>
+                                            <span class="text-celeste">★</span>
+                                            <span class="ml-1 font-light">5.0 (28)</span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3 mb-6">
-                                        <span class="text-2xl lg:text-3xl font-bold text-gray-900">€2.190</span>
-                                        <span class="text-gray-500 line-through">€2.400</span>
-                                        <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">-9%</span>
+                                    <div class="flex items-baseline gap-3 mb-8">
+                                        <span class="text-3xl lg:text-4xl font-light text-gray-900">€2.190</span>
+                                        <span class="text-gray-400 line-through font-light">€2.400</span>
+                                        <span class="bg-celeste text-black text-xs font-medium px-2 py-1 uppercase tracking-wider">Save 9%</span>
                                     </div>
-                                    <a href="tour-detail.html" class="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-center block">
+                                    <a href="tour-detail.html" class="w-full border border-black hover:bg-black hover:text-white text-black font-medium py-4 px-6 transition-all duration-300 text-center block uppercase tracking-wider text-sm">
                                         View Details
                                     </a>
                                 </div>
@@ -196,52 +204,62 @@
                 </button>
             </div>
             
-            <div class="text-center mt-8">
-                <a href="tours.html" class="inline-block border-2 border-black text-black hover:bg-black hover:text-white font-bold py-3 px-8 rounded-lg transition-all duration-300">
-                    See All Tours
+            <div class="text-center mt-16">
+                <a href="tours.html" class="inline-block border border-black text-black hover:bg-black hover:text-white font-medium py-4 px-8 uppercase tracking-wider text-sm transition-all duration-300">
+                    View All Tours
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Destinations Section -->
-    <section class="py-16 lg:py-24 bg-white">
+    <section class="py-20 lg:py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 lg:mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Choose Your Destination</h2>
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">DESTINATIONS</h2>
+                <div class="w-24 h-0.5 bg-celeste mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
                 <div class="group cursor-pointer">
                     <a href="tours.html?destination=mallorca" class="block">
-                        <div class="relative overflow-hidden rounded-2xl">
+                        <div class="relative overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1682686581427-7c80ab60e3f3?q=80&w=2070&auto=format&fit=crop" 
-                                 class="w-full h-80 lg:h-96 object-cover group-hover:scale-110 transition-transform duration-500" 
+                                 class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" 
                                  alt="Mallorca">
-                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">MALLORCA</h3>
+                                <div class="w-16 h-0.5 bg-celeste transition-all duration-500 group-hover:w-24"></div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl lg:text-3xl font-bold text-center mt-6 group-hover:text-accent transition-colors">MALLORCA</h3>
                     </a>
                 </div>
                 <div class="group cursor-pointer">
                     <a href="tours.html?destination=italy" class="block">
-                        <div class="relative overflow-hidden rounded-2xl">
+                        <div class="relative overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=2070&auto=format&fit=crop" 
-                                 class="w-full h-80 lg:h-96 object-cover group-hover:scale-110 transition-transform duration-500" 
+                                 class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" 
                                  alt="Italy">
-                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">ITALY</h3>
+                                <div class="w-16 h-0.5 bg-celeste transition-all duration-500 group-hover:w-24"></div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl lg:text-3xl font-bold text-center mt-6 group-hover:text-accent transition-colors">ITALY</h3>
                     </a>
                 </div>
                 <div class="group cursor-pointer">
                     <a href="tours.html?destination=switzerland" class="block">
-                        <div class="relative overflow-hidden rounded-2xl">
+                        <div class="relative overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop" 
-                                 class="w-full h-80 lg:h-96 object-cover group-hover:scale-110 transition-transform duration-500" 
+                                 class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" 
                                  alt="Switzerland">
-                            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all duration-300"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">SWITZERLAND</h3>
+                                <div class="w-16 h-0.5 bg-celeste transition-all duration-500 group-hover:w-24"></div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl lg:text-3xl font-bold text-center mt-6 group-hover:text-accent transition-colors">SWITZERLAND</h3>
                     </a>
                 </div>
             </div>
@@ -249,108 +267,109 @@
     </section>
 
     <!-- What We Offer Section -->
-    <section class="py-16 lg:py-24 bg-black text-white">
+    <section class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 lg:mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">What We Offer</h2>
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">WHAT WE OFFER</h2>
+                <div class="w-24 h-0.5 bg-celeste mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
                 <div class="text-center group">
-                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🏠</div>
-                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Accommodation</h3>
-                    <p class="text-gray-300 leading-relaxed">Our packages include hotel stays with breakfast and dinner included so you can focus on the ride.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🏠</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Accommodation</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">Premium hotel stays with breakfast and dinner included, allowing you to focus entirely on the ride.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚌</div>
-                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Transfers</h3>
-                    <p class="text-gray-300 leading-relaxed">We provide hassle-free transportation for you and your gear to and from the airport and excursions.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🚌</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Transfers</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">Seamless transportation for you and your equipment to and from the airport and all excursions.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚲</div>
-                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Bicycle Rental</h3>
-                    <p class="text-gray-300 leading-relaxed">Ride high-end bicycles from top brands. No need to bring your own, we've got you covered.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🚲</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Bicycle Rental</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">Premium bicycles from leading brands. Professional-grade equipment without the travel hassle.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🔧</div>
-                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Assistance & Maintenance</h3>
-                    <p class="text-gray-300 leading-relaxed">Daily maintenance and technical assistance during all excursions to keep you rolling smoothly.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🔧</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Technical Support</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">Daily maintenance and technical assistance during all rides to ensure peak performance.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">💆‍♂️</div>
-                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Massages</h3>
-                    <p class="text-gray-300 leading-relaxed">Our staff is available for daily massage sessions, and you'll have access to pro recovery systems.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">💆‍♂️</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Recovery</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">Professional massage services and access to advanced recovery systems for optimal performance.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🍽️</div>
-                    <h3 class="text-lg lg:text-xl font-bold mb-3 uppercase tracking-wide">Nutrition</h3>
-                    <p class="text-gray-300 leading-relaxed">The cost includes nutritional supplements for the entire week (gels, bars, and drinks).</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🍽️</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Nutrition</h3>
+                    <p class="text-gray-600 leading-relaxed font-light">Complete nutritional support including premium supplements, gels, bars, and hydration products.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="py-16 lg:py-24 bg-gray-50">
+    <section class="py-20 lg:py-32 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 lg:mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Dream up a Tour</h2>
-                <p class="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
-                    Describe your perfect cycling trip, and our AI will create a custom tour concept just for you!
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">DESIGN YOUR TOUR</h2>
+                <div class="w-24 h-0.5 bg-celeste mx-auto mb-8"></div>
+                <p class="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+                    Describe your perfect cycling experience, and our experts will create a bespoke tour concept tailored to your vision.
                 </p>
             </div>
-            <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-lg">
-                <div class="mb-6">
-                    <label for="tour-description" class="block text-sm font-bold text-gray-900 mb-3">
-                        Describe your ideal trip (e.g., "A 5-day relaxed tour in Italy with great food and coastal views")
+            <div class="bg-white border border-gray-100 p-12 lg:p-16">
+                <div class="mb-8">
+                    <label for="tour-description" class="block text-sm font-light text-gray-900 mb-4 uppercase tracking-widest">
+                        Describe your ideal cycling experience
                     </label>
-                    <textarea id="tour-description" name="tour-description" rows="4" 
-                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-300 resize-none"
-                              placeholder="e.g., A challenging week in the Swiss Alps, climbing famous passes..."></textarea>
+                    <textarea id="tour-description" name="tour-description" rows="6" 
+                              class="w-full px-0 py-4 border-0 border-b border-gray-200 focus:ring-0 focus:border-celeste transition-all duration-300 resize-none bg-transparent placeholder-gray-400 font-light"
+                              placeholder="e.g., A challenging week in the Swiss Alps, climbing legendary passes..."></textarea>
                 </div>
-                <button id="generate-suggestion-btn" class="w-full bg-accent hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-                    ✨ Suggest a Custom Tour
+                <button id="generate-suggestion-btn" class="w-full bg-celeste hover:bg-celeste-dark text-black font-medium py-5 px-8 transition-all duration-300 uppercase tracking-wider text-sm">
+                    ✨ Create Custom Tour
                 </button>
-                <div id="suggestion-result" class="hidden mt-8 p-6 bg-gray-50 rounded-lg"></div>
+                <div id="suggestion-result" class="hidden mt-12 p-8 bg-gray-50 border border-gray-100"></div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-16 lg:py-20">
+    <footer class="bg-white border-t border-gray-100 py-20 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
                 <div>
-                    <a href="index.html" class="text-2xl lg:text-3xl font-bold mb-4 block">BikeTours</a>
-                    <p class="text-gray-300 leading-relaxed">
-                        Providing pro-level, all-inclusive cycling experiences in the world's most breathtaking locations.
+                    <a href="index.html" class="text-2xl lg:text-3xl font-light mb-6 block tracking-wide">BikeTours</a>
+                    <p class="text-gray-600 leading-relaxed font-light">
+                        Premium cycling experiences in the world's most extraordinary destinations.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Explore</h3>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-                        <li><a href="tours.html" class="text-gray-300 hover:text-white transition-colors">Tours</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-900">Navigate</h3>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-gray-600 hover:text-celeste transition-colors font-light">Home</a></li>
+                        <li><a href="tours.html" class="text-gray-600 hover:text-celeste transition-colors font-light">Tours</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light">About</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Contact</h3>
-                    <div class="space-y-3 text-gray-300">
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-900">Contact</h3>
+                    <div class="space-y-4 text-gray-600 font-light">
                         <p>Rue de Mont-Blanc<br>1201 Geneva, Switzerland</p>
-                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-white transition-colors">contact@biketours.com</a></p>
+                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-celeste transition-colors">contact@biketours.com</a></p>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4 uppercase tracking-wide">Follow Us</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">FB</a>
-                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">IN</a>
-                        <a href="#" class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center transition-colors">TW</a>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-900">Follow</h3>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light text-sm uppercase tracking-wider">Instagram</a>
+                        <a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light text-sm uppercase tracking-wider">Facebook</a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+            <div class="border-t border-gray-100 mt-16 pt-8 text-center text-gray-500 font-light text-sm">
                 <p>&copy; 2024 BikeTours. All Rights Reserved.</p>
             </div>
         </div>

@@ -3,7 +3,7 @@
 This website has been refactored to use Tailwind CSS for modern, responsive design.
 
 ## What's New:
-- **Modern Design**: Clean, professional design inspired by Specialized.com
+- **Modern Design**: Clean, professional design inspired by Bianchi.com
 - **Mobile Optimized**: Fully responsive design that works on all devices
 - **Tailwind CSS**: Latest version from CDN for better performance and maintainability
 - **Improved UX**: Better hover effects, transitions, and interactive elements
