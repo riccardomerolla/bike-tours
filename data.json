@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "name": "Alps Cycling Trip",
+        "date": "27 June - 4 July 2025",
+        "description": "Epic Climbs • Pro Experience",
+        "price": "€2.590",
+        "old_price": "€2.790",
+        "discount": "Save 7%",
+        "rating": "5.0 (31)",
+        "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+        "label": "Last Spot",
+        "sold_out": false
+    },
+    {
+        "id": 2,
+        "name": "Mallorca Cycling Camp",
+        "date": "5 - 12 July 2025",
+        "description": "Island Paradise • All-Inclusive",
+        "price": "€2.350",
+        "old_price": "",
+        "discount": "",
+        "rating": "4.9 (42)",
+        "image": "https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop",
+        "label": "Sold Out",
+        "sold_out": true
+    },
+    {
+        "id": 3,
+        "name": "Calpe Training Camp",
+        "date": "13 - 20 July 2025",
+        "description": "Pro Training • Coastal Roads",
+        "price": "€2.190",
+        "old_price": "€2.400",
+        "discount": "Save 9%",
+        "rating": "5.0 (28)",
+        "image": "https://images.unsplash.com/photo-1682686581427-7c80ab60e3f3?q=80&w=2070&auto=format&fit=crop",
+        "label": "",
+        "sold_out": false
+    },
+    {
+        "id": 4,
+        "name": "Dolomites Tour",
+        "date": "21 - 28 July 2025",
+        "description": "Stunning Views • Challenging Climbs",
+        "price": "€2.750",
+        "old_price": "",
+        "discount": "",
+        "rating": "4.8 (35)",
+        "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
+        "label": "",
+        "sold_out": false
+    },
+    {
+        "id": 5,
+        "name": "Pyrenees Adventure",
+        "date": "29 July - 5 August 2025",
+        "description": "Epic Mountains • Scenic Routes",
+        "price": "€2.490",
+        "old_price": "",
+        "discount": "",
+        "rating": "4.9 (30)",
+        "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop",
+        "label": "",
+        "sold_out": false
+    }
+]
