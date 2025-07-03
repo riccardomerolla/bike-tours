@@ -1,0 +1,6 @@
+id,name,date,description,price,old_price,discount,rating,image,label,sold_out
+1,Alps Cycling Trip,"27 June - 4 July 2025","Epic Climbs • Pro Experience","€2.590","€2.790","Save 7%","5.0 (31)","https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3","Last Spot",false
+2,Mallorca Cycling Camp,"5 - 12 July 2025","Island Paradise • All-Inclusive","€2.350","","","4.9 (42)","https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop","Sold Out",true
+3,Calpe Training Camp,"13 - 20 July 2025","Pro Training • Coastal Roads","€2.190","€2.400","Save 9%","5.0 (28)","https://images.unsplash.com/photo-1682686581427-7c80ab60e3f3?q=80&w=2070&auto=format&fit=crop","",false
+4,Dolomites Tour,"21 - 28 July 2025","Stunning Views • Challenging Climbs","€2.750","","","4.8 (35)","https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop","",false
+5,Pyrenees Adventure,"29 July - 5 August 2025","Epic Mountains • Scenic Routes","€2.490","","","4.9 (30)","https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop","",false

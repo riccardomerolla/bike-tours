@@ -7,7 +7,7 @@ export async function fetchToursData(apiUrl) {
     const res = await fetch(url, {
       headers: {
         // Uncomment and set your API key if needed:
-         'xc-token': 'MLdUNvUyk0ct-6oC_d48bULLeG9N4Rr_9vg-1BuG',
+         'xc-token': 'azGmScTi6oyPy2t_Luo6h-MxUflLp57n-r0UOD-V',
         'Content-Type': 'application/json'
       }
     });
