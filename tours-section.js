@@ -78,7 +78,7 @@ class ToursSection extends LitElement {
                 ${visibleTours.length === 0
                   ? html`<p>Loading tours...</p>`
                   : visibleTours.map(tour => html`
-                    <div class="flex-none w-full md:w-1/2 lg:w-1/3">
+                    <div class="flex-none w-full md:w-48 lg:w-96">
                       <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
                         <div class="relative h-80 lg:h-96 overflow-hidden">
                           ${tour.label && !tour.sold_out ? html`
