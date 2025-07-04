@@ -5,33 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tour Details - Cycle Tuscany</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#000000',
-                        celeste: '#40E0D0',
-                        'celeste-dark': '#359A9A',
-                        'celeste-light': '#B8F3F0',
-                        accent: '#40E0D0',
-                        'bianchi-blue': '#1E3A8A',
-                        gray: {
-                            850: '#1f2937',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="font-sans bg-white text-gray-900">
+<body class="font-sans bg-white text-primary">
     <!-- Header -->
-    <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 lg:h-20">
                 <a href="index.html" class="text-2xl lg:text-3xl font-light text-black tracking-wide">BikeTours</a>
@@ -43,17 +22,17 @@
                 </button>
                 <!-- Desktop navigation -->
                 <nav class="hidden md:flex space-x-10">
-                    <a href="tours.html" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">About</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
                 </nav>
             </div>
             <!-- Mobile navigation -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="tours.html" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">Tours</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">About</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">Contact</a>
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Contact</a>
                 </div>
             </div>
         </div>
@@ -72,7 +51,7 @@
             <div class="flex flex-col md:flex-row md:items-center md:gap-8 text-white text-lg font-light">
                 <span>8 days</span>
                 <span class="hidden md:inline">•</span>
-                <span>5.0 <span class="text-celeste">★</span> (48 reviews)</span>
+                <span>5.0 <span class="text-accent">★</span> (48 reviews)</span>
                 <span class="hidden md:inline">•</span>
                 <span>Cycling Adventure</span>
             </div>
@@ -86,8 +65,8 @@
                 <!-- Content Column -->
                 <div class="lg:col-span-2">
                     <!-- Why You'll Love This Trip -->
-                    <h2 class="text-3xl lg:text-4xl font-light text-gray-900 mb-6 tracking-wide">Why you'll love this trip</h2>
-                    <ul class="list-disc list-inside text-lg text-gray-700 mb-12 space-y-3 font-light">
+                    <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Why you'll love this trip</h2>
+                    <ul class="list-disc list-inside text-lg text-base-content-subtle mb-12 space-y-3 font-light">
                         <li>Pedal through the rolling green hills and vineyards of Tuscany, stopping to sample the local cuisine and indulge in a glass (or two) of vino along the way.</li>
                         <li>Follow the Serchio River from Lucca to the world-famous Leaning Tower of Pisa, with time to explore and people-watch.</li>
                         <li>Retrace the steps of Leonardo da Vinci around his home city, Vinci, surrounded by olive groves and Tuscan scenery.</li>
@@ -96,56 +75,56 @@
                     </ul>
 
                     <!-- Itinerary -->
-                    <h2 class="text-3xl lg:text-4xl font-light text-gray-900 mb-6 tracking-wide">Itinerary</h2>
+                    <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Itinerary</h2>
                     <img src="https://www.intrepidtravel.com/v3/assets/blt0de87ff52d9c34a8/blt0b867ffbb0a9e327/6336e721a8f52154ccb5ae95/ZMXT_2020.gif?branch=prd&width=1920&quality=75&format=pjpg&auto=webp" alt="Cycle Tuscany Map" class="w-full max-w-2xl mb-8 rounded shadow">
                     <div class="space-y-10">
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 1 • Florence</h3>
-                            <p class="text-gray-700 font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 1 • Florence</h3>
+                            <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 2 • Cycle Signa to Vinci</h3>
-                            <p class="text-gray-700 font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 2 • Cycle Signa to Vinci</h3>
+                            <p class="text-base-content-subtle font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 3 • Cycle Lucca to Barga</h3>
-                            <p class="text-gray-700 font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 3 • Cycle Lucca to Barga</h3>
+                            <p class="text-base-content-subtle font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 4 • Cycle in the Garfagnana</h3>
-                            <p class="text-gray-700 font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 4 • Cycle in the Garfagnana</h3>
+                            <p class="text-base-content-subtle font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 5 • Cycle the Apuan Alps to Lucca</h3>
-                            <p class="text-gray-700 font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 5 • Cycle the Apuan Alps to Lucca</h3>
+                            <p class="text-base-content-subtle font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 6 • Free day in Lucca</h3>
-                            <p class="text-gray-700 font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 6 • Free day in Lucca</h3>
+                            <p class="text-base-content-subtle font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 7 • Cycle Lucca to Pisa</h3>
-                            <p class="text-gray-700 font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 7 • Cycle Lucca to Pisa</h3>
+                            <p class="text-base-content-subtle font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-light text-celeste mb-2">Day 8 • Pisa</h3>
-                            <p class="text-gray-700 font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
+                            <h3 class="text-2xl font-light text-accent mb-2">Day 8 • Pisa</h3>
+                            <p class="text-base-content-subtle font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
                         </div>
                     </div>
 
                     <!-- Inclusions & Activities -->
-                    <h2 class="text-3xl lg:text-4xl font-light text-gray-900 mt-16 mb-6 tracking-wide">Inclusions & Activities</h2>
+                    <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Inclusions & Activities</h2>
                     <div class="mb-8">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Included</h3>
-                        <ul class="list-disc list-inside text-gray-700 font-light space-y-2">
+                        <h3 class="text-xl font-semibold text-primary mb-2">Included</h3>
+                        <ul class="list-disc list-inside text-base-content-subtle font-light space-y-2">
                             <li>5 breakfasts, 2 lunches</li>
                             <li>Bicycle (e-bike option available), support vehicle, local bus</li>
                             <li>Hotel (7 nights)</li>
                             <li>Guided cycling: Signa to Vinci, Lucca to Barga, Barga to Garfagnana, Garfagnana to Lucca, Lucca to Pisa</li>
                             <li>Devil’s Bridge visit, Garfagnana picnic, Lucca picnic</li>
                         </ul>
-                        <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-2">Optional</h3>
-                        <ul class="list-disc list-inside text-gray-700 font-light space-y-2">
+                        <h3 class="text-xl font-semibold text-primary mt-6 mb-2">Optional</h3>
+                        <ul class="list-disc list-inside text-base-content-subtle font-light space-y-2">
                             <li>Florence - Uffizi Gallery, Accademia, Medici Chapels, Bargello Museum, and more</li>
                             <li>Vinci - Museo Leonardiano</li>
                             <li>Barga - Dinner, Fondazione Pascoli, Cathedral</li>
@@ -156,8 +135,8 @@
                     </div>
 
                     <!-- Is This Trip Right For You? -->
-                    <h2 class="text-3xl lg:text-4xl font-light text-gray-900 mt-16 mb-6 tracking-wide">Is this trip right for you?</h2>
-                    <ul class="list-disc list-inside text-gray-700 font-light space-y-2 mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Is this trip right for you?</h2>
+                    <ul class="list-disc list-inside text-base-content-subtle font-light space-y-2 mb-12">
                         <li>You should be confident and competent riding a bicycle.</li>
                         <li>The terrain is hilly; a reasonable level of fitness is required, but a support vehicle is available.</li>
                         <li>Mostly sealed roads, some gravel cycle paths; no technical skills required, but practice riding downhill is recommended.</li>
@@ -165,8 +144,8 @@
                     </ul>
 
                     <!-- Important Notes -->
-                    <h2 class="text-3xl lg:text-4xl font-light text-gray-900 mt-16 mb-6 tracking-wide">Important Notes</h2>
-                    <ol class="list-decimal list-inside text-gray-700 font-light space-y-2 mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Important Notes</h2>
+                    <ol class="list-decimal list-inside text-base-content-subtle font-light space-y-2 mb-12">
                         <li>Provide your height at booking for correct bike sizing.</li>
                         <li>Single supplement available (except last night in Pisa, twin share).</li>
                         <li>E-bike option available on request, not guaranteed.</li>
@@ -176,77 +155,77 @@
                     </ol>
 
                     <!-- Reviews -->
-                    <h2 class="text-3xl lg:text-4xl font-light text-gray-900 mt-16 mb-6 tracking-wide">Reviews</h2>
+                    <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Reviews</h2>
                     <div class="space-y-8">
-                        <div class="border border-gray-100 p-6 rounded shadow-sm">
+                        <div class="border border-base-background-secondary p-6 rounded shadow-sm">
                             <div class="flex items-center mb-2">
-                                <span class="text-celeste text-xl mr-2">★</span>
-                                <span class="font-semibold text-gray-900">Belinda</span>
-                                <span class="ml-4 text-gray-500 text-sm">May 2025</span>
+                                <span class="text-accent text-xl mr-2">★</span>
+                                <span class="font-semibold text-primary">Belinda</span>
+                                <span class="ml-4 text-base-content-subtle text-sm">May 2025</span>
                             </div>
-                            <p class="text-gray-700 font-light">Absolutely loved every moment! The scenery, the food, and the group were all amazing. Highly recommend this trip for anyone who loves cycling and Italy.</p>
+                            <p class="text-base-content-subtle font-light">Absolutely loved every moment! The scenery, the food, and the group were all amazing. Highly recommend this trip for anyone who loves cycling and Italy.</p>
                         </div>
-                        <div class="border border-gray-100 p-6 rounded shadow-sm">
+                        <div class="border border-base-background-secondary p-6 rounded shadow-sm">
                             <div class="flex items-center mb-2">
-                                <span class="text-celeste text-xl mr-2">★</span>
-                                <span class="font-semibold text-gray-900">Roderick</span>
-                                <span class="ml-4 text-gray-500 text-sm">May 2025</span>
+                                <span class="text-accent text-xl mr-2">★</span>
+                                <span class="font-semibold text-primary">Roderick</span>
+                                <span class="ml-4 text-base-content-subtle text-sm">May 2025</span>
                             </div>
-                            <p class="text-gray-700 font-light">A fantastic way to see Tuscany! The support team was great and the e-bike option made the hills much more manageable.</p>
+                            <p class="text-base-content-subtle font-light">A fantastic way to see Tuscany! The support team was great and the e-bike option made the hills much more manageable.</p>
                         </div>
-                        <div class="border border-gray-100 p-6 rounded shadow-sm">
+                        <div class="border border-base-background-secondary p-6 rounded shadow-sm">
                             <div class="flex items-center mb-2">
-                                <span class="text-celeste text-xl mr-2">★</span>
-                                <span class="font-semibold text-gray-900">Kim</span>
-                                <span class="ml-4 text-gray-500 text-sm">May 2025</span>
+                                <span class="text-accent text-xl mr-2">★</span>
+                                <span class="font-semibold text-primary">Kim</span>
+                                <span class="ml-4 text-base-content-subtle text-sm">May 2025</span>
                             </div>
-                            <p class="text-gray-700 font-light">Wonderful group, beautiful routes, and delicious food. Would do it again in a heartbeat!</p>
+                            <p class="text-base-content-subtle font-light">Wonderful group, beautiful routes, and delicious food. Would do it again in a heartbeat!</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sidebar -->
                 <div class="lg:col-span-1">
-                    <div class="border border-gray-200 bg-white p-8 sticky top-32 rounded">
-                        <h3 class="text-2xl lg:text-3xl font-light text-gray-900 mb-6 tracking-wide">From CHF 1,677</h3>
+                    <div class="border border-base-background-secondary bg-white p-8 sticky top-32 rounded">
+                        <h3 class="text-2xl lg:text-3xl font-light text-primary mb-6 tracking-wide">From CHF 1,677</h3>
                         <div class="space-y-6 mb-8">
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">📅 Duration:</strong>
-                                <span class="text-gray-600 font-light">8 Days</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">📅 Duration:</strong>
+                                <span class="text-base-content-subtle font-light">8 Days</span>
                             </div>
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">👥 Group Size:</strong>
-                                <span class="text-gray-600 font-light">Max 15</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">👥 Group Size:</strong>
+                                <span class="text-base-content-subtle font-light">Max 15</span>
                             </div>
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">💪 Physical Rating:</strong>
-                                <span class="text-gray-600 font-light">Moderate</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">💪 Physical Rating:</strong>
+                                <span class="text-base-content-subtle font-light">Moderate</span>
                             </div>
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">🚩 Start:</strong>
-                                <span class="text-gray-600 font-light">Florence</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">🚩 Start:</strong>
+                                <span class="text-base-content-subtle font-light">Florence</span>
                             </div>
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">🏁 End:</strong>
-                                <span class="text-gray-600 font-light">Pisa</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">🏁 End:</strong>
+                                <span class="text-base-content-subtle font-light">Pisa</span>
                             </div>
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">🍽️ Meals:</strong>
-                                <span class="text-gray-600 font-light">5 breakfasts, 2 lunches</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">🍽️ Meals:</strong>
+                                <span class="text-base-content-subtle font-light">5 breakfasts, 2 lunches</span>
                             </div>
-                            <div class="flex justify-between items-center py-4 border-b border-gray-200">
-                                <strong class="text-gray-900 font-normal">🏨 Accommodation:</strong>
-                                <span class="text-gray-600 font-light">Hotel (7 nights)</span>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">🏨 Accommodation:</strong>
+                                <span class="text-base-content-subtle font-light">Hotel (7 nights)</span>
                             </div>
                             <div class="flex justify-between items-center py-4">
-                                <strong class="text-gray-900 font-normal">🚲 Transport:</strong>
-                                <span class="text-gray-600 font-light">Bicycle, support vehicle, local bus</span>
+                                <strong class="text-primary font-normal">🚲 Transport:</strong>
+                                <span class="text-base-content-subtle font-light">Bicycle, support vehicle, local bus</span>
                             </div>
                         </div>
-                        <a href="#" class="w-full bg-celeste hover:bg-celeste-dark text-white font-light py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
+                        <a href="#" class="w-full bg-accent hover:bg-accent-dark text-white font-light py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
                             Book This Tour
                         </a>
-                        <button id="packing-list-btn" class="w-full border border-celeste text-celeste hover:bg-celeste hover:text-white font-light py-4 px-6 transition-all duration-300 uppercase tracking-wider text-sm rounded">
+                        <button id="packing-list-btn" class="w-full border border-accent text-accent hover:bg-accent hover:text-white font-light py-4 px-6 transition-all duration-300 uppercase tracking-wider text-sm rounded">
                             ✨ Generate Packing List
                         </button>
                     </div>
@@ -257,10 +236,10 @@
 
     <!-- Packing List Modal -->
     <div id="packing-list-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
-        <div class="bg-white border border-gray-200 max-w-2xl w-full max-h-[80vh] overflow-hidden">
-            <div class="flex justify-between items-center p-6 border-b border-gray-200">
-                <h2 class="text-2xl lg:text-3xl font-light text-gray-900 tracking-wide">Your Packing List</h2>
-                <button id="modal-close-btn" class="text-gray-400 hover:text-celeste text-3xl font-light transition-colors">
+        <div class="bg-white border border-base-background-secondary max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            <div class="flex justify-between items-center p-6 border-b border-base-background-secondary">
+                <h2 class="text-2xl lg:text-3xl font-light text-primary tracking-wide">Your Packing List</h2>
+                <button id="modal-close-btn" class="text-gray-400 hover:text-accent text-3xl font-light transition-colors">
                     &times;
                 </button>
             </div>
@@ -271,41 +250,41 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 py-16 lg:py-20">
+    <footer class="bg-white border-t border-base-background-secondary py-16 lg:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                 <div>
                     <a href="index.html" class="text-2xl lg:text-3xl font-light mb-4 block text-black tracking-wide">BikeTours</a>
-                    <p class="text-gray-600 leading-relaxed font-light">
+                    <p class="text-base-content-subtle leading-relaxed font-light">
                         Providing pro-level, all-inclusive cycling experiences in the world's most breathtaking locations.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-normal mb-4 uppercase tracking-wide text-gray-900">Explore</h3>
+                    <h3 class="text-lg font-normal mb-4 uppercase tracking-wide text-primary">Explore</h3>
                     <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-600 hover:text-celeste transition-colors font-light">Home</a></li>
-                        <li><a href="tours.html" class="text-gray-600 hover:text-celeste transition-colors font-light">Tours</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light">About Us</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light">Contact</a></li>
+                        <li><a href="index.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">Home</a></li>
+                        <li><a href="tours.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">Tours</a></li>
+                        <li><a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light">About Us</a></li>
+                        <li><a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-normal mb-4 uppercase tracking-wide text-gray-900">Contact</h3>
-                    <div class="space-y-3 text-gray-600 font-light">
+                    <h3 class="text-lg font-normal mb-4 uppercase tracking-wide text-primary">Contact</h3>
+                    <div class="space-y-3 text-base-content-subtle font-light">
                         <p>Rue de Mont-Blanc<br>1201 Geneva, Switzerland</p>
-                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-celeste transition-colors">contact@biketours.com</a></p>
+                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-accent transition-colors">contact@biketours.com</a></p>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-normal mb-4 uppercase tracking-wide text-gray-900">Follow Us</h3>
+                    <h3 class="text-lg font-normal mb-4 uppercase tracking-wide text-primary">Follow Us</h3>
                     <div class="flex space-x-4">
-                        <a href="#" class="border border-gray-200 hover:border-celeste hover:text-celeste w-10 h-10 flex items-center justify-center transition-colors font-light text-sm">FB</a>
-                        <a href="#" class="border border-gray-200 hover:border-celeste hover:text-celeste w-10 h-10 flex items-center justify-center transition-colors font-light text-sm">IN</a>
-                        <a href="#" class="border border-gray-200 hover:border-celeste hover:text-celeste w-10 h-10 flex items-center justify-center transition-colors font-light text-sm">TW</a>
+                        <a href="#" class="border border-base-background-secondary hover:border-accent hover:text-accent w-10 h-10 flex items-center justify-center transition-colors font-light text-sm">FB</a>
+                        <a href="#" class="border border-base-background-secondary hover:border-accent hover:text-accent w-10 h-10 flex items-center justify-center transition-colors font-light text-sm">IN</a>
+                        <a href="#" class="border border-base-background-secondary hover:border-accent hover:text-accent w-10 h-10 flex items-center justify-center transition-colors font-light text-sm">TW</a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-200 mt-12 pt-8 text-center text-gray-500 font-light">
+            <div class="border-t border-base-background-secondary mt-12 pt-8 text-center text-base-content-subtle font-light">
                 <p>&copy; 2024 BikeTours. All Rights Reserved.</p>
             </div>
         </div>
@@ -328,7 +307,7 @@
 
         packingListBtn.addEventListener("click", async () => {
             packingListModal.classList.remove('opacity-0', 'invisible');
-            packingListContent.innerHTML = "<p class='text-gray-600'>✨ Preparing your personalized list...</p>";
+            packingListContent.innerHTML = "<p class='text-base-content-subtle'>✨ Preparing your personalized list...</p>";
 
             const tourTitle = document.getElementById("tour-title").textContent;
             const tourDuration = document.getElementById("tour-duration").textContent;
@@ -360,9 +339,9 @@
                 
                 if (data.candidates && data.candidates[0].content.parts.length > 0) {
                     const content = data.candidates[0].content.parts[0].text
-                        .replace(/\*\*On The Bike\*\*/g, "<h3 class='text-xl font-bold text-gray-900 mb-3'>On The Bike</h3><ul class='list-disc list-inside space-y-1 text-gray-700 mb-6'>")
-                        .replace(/\*\*Off The Bike \(Casual\)\*\*/g, "</ul><h3 class='text-xl font-bold text-gray-900 mb-3'>Off The Bike (Casual)</h3><ul class='list-disc list-inside space-y-1 text-gray-700 mb-6'>")
-                        .replace(/\*\*Essentials & Documents\*\*/g, "</ul><h3 class='text-xl font-bold text-gray-900 mb-3'>Essentials & Documents</h3><ul class='list-disc list-inside space-y-1 text-gray-700 mb-6'>")
+                        .replace(/\*\*On The Bike\*\*/g, "<h3 class='text-xl font-bold text-primary mb-3'>On The Bike</h3><ul class='list-disc list-inside space-y-1 text-base-content-subtle mb-6'>")
+                        .replace(/\*\*Off The Bike \(Casual\)\*\*/g, "</ul><h3 class='text-xl font-bold text-primary mb-3'>Off The Bike (Casual)</h3><ul class='list-disc list-inside space-y-1 text-base-content-subtle mb-6'>")
+                        .replace(/\*\*Essentials & Documents\*\*/g, "</ul><h3 class='text-xl font-bold text-primary mb-3'>Essentials & Documents</h3><ul class='list-disc list-inside space-y-1 text-base-content-subtle mb-6'>")
                         .replace(/\* /g, "<li>")
                         .replace(/(\n|\r)/g, "</li>") + "</li></ul>";
                     

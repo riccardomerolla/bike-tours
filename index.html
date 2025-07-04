@@ -5,35 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BikeTours - Epic Cycling Adventures</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js"></script>
     <script type="module" src="tours-section.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#000000',
-                        celeste: '#40E0D0',
-                        'celeste-dark': '#359A9A',
-                        'celeste-light': '#B8F3F0',
-                        accent: '#40E0D0',
-                        'bianchi-blue': '#1E3A8A',
-                        gray: {
-                            850: '#1f2937',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="font-sans bg-white text-gray-900">
+<body class="font-sans bg-white text-primary">
     <!-- Header -->
-    <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 lg:h-20">
                 <a href="index.html" class="text-2xl lg:text-3xl font-light text-black tracking-wide">BikeTours</a>
@@ -45,24 +24,24 @@
                 </button>
                 <!-- Desktop navigation -->
                 <nav class="hidden md:flex space-x-10">
-                    <a href="tours.html" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">About</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
                 </nav>
             </div>
             <!-- Mobile navigation -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="tours.html" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">Tours</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">About</a>
-                    <a href="#" class="text-gray-900 hover:text-celeste font-normal uppercase tracking-wider text-sm">Contact</a>
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Contact</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-base-background-secondary">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop" 
                  class="w-full h-full object-cover opacity-80" alt="Cycling adventure">
@@ -71,12 +50,12 @@
         <div class="relative z-10 text-left text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-2xl">
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight tracking-wide">
-                    PREMIUM<br><span class="text-celeste font-normal">CYCLING</span><br>EXPERIENCES
+                    PREMIUM<br><span class="text-accent font-normal">CYCLING</span><br>EXPERIENCES
                 </h1>
                 <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 font-light leading-relaxed">
                     Discover extraordinary cycling adventures in the world's most breathtaking destinations.
                 </p>
-                <a href="#tours" class="inline-block bg-celeste hover:bg-celeste-dark text-black font-medium py-4 px-8 lg:py-5 lg:px-10 uppercase tracking-wider text-sm transition-all duration-300">
+                <a href="#tours" class="inline-block bg-accent hover:bg-accent-dark text-black font-medium py-4 px-8 lg:py-5 lg:px-10 uppercase tracking-wider text-sm transition-all duration-300">
                     Explore Collection
                 </a>
             </div>
@@ -87,23 +66,23 @@
     <tours-section></tours-section>
 
     <!-- Destinations Section -->
-    <section class="py-20 lg:py-32 bg-gray-50">
+    <section class="py-20 lg:py-32 bg-base-background-secondary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 lg:mb-24">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">DESTINATIONS</h2>
-                <div class="w-24 h-0.5 bg-celeste mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-primary mb-4 tracking-wide">DESTINATIONS</h2>
+                <div class="w-24 h-0.5 bg-accent mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
                 <div class="group cursor-pointer">
                     <a href="tours.html?destination=mallorca" class="block">
                         <div class="relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1682686581427-7c80ab60e3f3?q=80&w=2070&auto=format&fit=crop" 
+                            <img src="https://images.unsplash.com/photo-1625243316186-6d7537d930b7?q=80&w=2070&auto=format&fit=crop" 
                                  class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" 
                                  alt="Mallorca">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
                             <div class="absolute bottom-8 left-8 text-white">
                                 <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">MALLORCA</h3>
-                                <div class="w-16 h-0.5 bg-celeste transition-all duration-500 group-hover:w-24"></div>
+                                <div class="w-16 h-0.5 bg-accent transition-all duration-500 group-hover:w-24"></div>
                             </div>
                         </div>
                     </a>
@@ -111,14 +90,14 @@
                 <div class="group cursor-pointer">
                     <a href="tours.html?destination=italy" class="block">
                         <div class="relative overflow-hidden">
-                            <span class="absolute top-4 left-4 bg-celeste text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Coming Soon</span>
+                            <span class="absolute top-4 left-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Coming Soon</span>
                             <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=2070&auto=format&fit=crop" 
                                  class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" 
                                  alt="Italy">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
                             <div class="absolute bottom-8 left-8 text-white">
                                 <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">ITALY</h3>
-                                <div class="w-16 h-0.5 bg-celeste transition-all duration-500 group-hover:w-24"></div>
+                                <div class="w-16 h-0.5 bg-accent transition-all duration-500 group-hover:w-24"></div>
                             </div>
                         </div>
                     </a>
@@ -126,14 +105,14 @@
                 <div class="group cursor-pointer">
                     <a href="tours.html?destination=switzerland" class="block">
                         <div class="relative overflow-hidden">
-                            <span class="absolute top-4 left-4 bg-celeste text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Coming Soon</span>
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop" 
+                            <span class="absolute top-4 left-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Coming Soon</span>
+                            <img src="https://images.unsplash.com/photo-1712409166386-3311d9e520c9?q=80&w=2070&auto=format&fit=crop" 
                                  class="w-full h-96 lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" 
                                  alt="Switzerland">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
                             <div class="absolute bottom-8 left-8 text-white">
                                 <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">SWITZERLAND</h3>
-                                <div class="w-16 h-0.5 bg-celeste transition-all duration-500 group-hover:w-24"></div>
+                                <div class="w-16 h-0.5 bg-accent transition-all duration-500 group-hover:w-24"></div>
                             </div>
                         </div>
                     </a>
@@ -146,106 +125,106 @@
     <section class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 lg:mb-24">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">WHAT WE OFFER</h2>
-                <div class="w-24 h-0.5 bg-celeste mx-auto"></div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-primary mb-4 tracking-wide">WHAT WE OFFER</h2>
+                <div class="w-24 h-0.5 bg-accent mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
                 <div class="text-center group">
-                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🏠</div>
-                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Accommodation</h3>
-                    <p class="text-gray-600 leading-relaxed font-light">Premium hotel stays with breakfast and dinner included, allowing you to focus entirely on the ride.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🏠</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Accommodation</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-light">Premium hotel stays with breakfast and dinner included, allowing you to focus entirely on the ride.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🚌</div>
-                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Transfers</h3>
-                    <p class="text-gray-600 leading-relaxed font-light">Seamless transportation for you and your equipment to and from the airport and all excursions.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🚌</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Transfers</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-light">Seamless transportation for you and your equipment to and from the airport and all excursions.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🚲</div>
-                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Bicycle Rental</h3>
-                    <p class="text-gray-600 leading-relaxed font-light">Premium bicycles from leading brands. Professional-grade equipment without the travel hassle.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🚲</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Bicycle Rental</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-light">Premium bicycles from leading brands. Professional-grade equipment without the travel hassle.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🔧</div>
-                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Technical Support</h3>
-                    <p class="text-gray-600 leading-relaxed font-light">Daily maintenance and technical assistance during all rides to ensure peak performance.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🔧</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Technical Support</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-light">Daily maintenance and technical assistance during all rides to ensure peak performance.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">💆‍♂️</div>
-                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Recovery</h3>
-                    <p class="text-gray-600 leading-relaxed font-light">Professional massage services and access to advanced recovery systems for optimal performance.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">💆‍♂️</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Recovery</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-light">Professional massage services and access to advanced recovery systems for optimal performance.</p>
                 </div>
                 <div class="text-center group">
-                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-celeste transition-colors duration-500">🍽️</div>
-                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-gray-900">Nutrition</h3>
-                    <p class="text-gray-600 leading-relaxed font-light">Complete nutritional support including premium supplements, gels, bars, and hydration products.</p>
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🍽️</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Nutrition</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-light">Complete nutritional support including premium supplements, gels, bars, and hydration products.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="py-20 lg:py-32 bg-gray-50">
+    <section class="py-20 lg:py-32 bg-base-background-secondary">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 lg:mb-24">
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-4 tracking-wide">DESIGN YOUR TOUR</h2>
-                <div class="w-24 h-0.5 bg-celeste mx-auto mb-8"></div>
-                <p class="text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-primary mb-4 tracking-wide">DESIGN YOUR TOUR</h2>
+                <div class="w-24 h-0.5 bg-accent mx-auto mb-8"></div>
+                <p class="text-lg lg:text-xl text-base-content-subtle max-w-2xl mx-auto font-light leading-relaxed">
                     Describe your perfect cycling experience, and our experts will create a bespoke tour concept tailored to your vision.
                 </p>
             </div>
-            <div class="bg-white border border-gray-100 p-12 lg:p-16">
+            <div class="bg-white border border-base-background-secondary p-12 lg:p-16">
                 <div class="mb-8">
-                    <label for="tour-description" class="block text-sm font-light text-gray-900 mb-4 uppercase tracking-widest">
+                    <label for="tour-description" class="block text-sm font-light text-primary mb-4 uppercase tracking-widest">
                         Describe your ideal cycling experience
                     </label>
                     <textarea id="tour-description" name="tour-description" rows="6" 
-                              class="w-full px-0 py-4 border-0 border-b border-gray-200 focus:ring-0 focus:border-celeste transition-all duration-300 resize-none bg-transparent placeholder-gray-400 font-light"
+                              class="w-full px-0 py-4 border-0 border-b border-gray-200 focus:ring-0 focus:border-accent transition-all duration-300 resize-none bg-transparent placeholder-gray-400 font-light"
                               placeholder="e.g., A challenging week in the Swiss Alps, climbing legendary passes..."></textarea>
                 </div>
-                <button id="generate-suggestion-btn" class="w-full bg-celeste hover:bg-celeste-dark text-black font-medium py-5 px-8 transition-all duration-300 uppercase tracking-wider text-sm">
+                <button id="generate-suggestion-btn" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-5 px-8 transition-all duration-300 uppercase tracking-wider text-sm">
                     ✨ Create Custom Tour
                 </button>
-                <div id="suggestion-result" class="hidden mt-12 p-8 bg-gray-50 border border-gray-100"></div>
+                <div id="suggestion-result" class="hidden mt-12 p-8 bg-base-background-secondary border border-base-background-secondary"></div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 py-20 lg:py-24">
+    <footer class="bg-white border-t border-base-background-secondary py-20 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
                 <div>
                     <a href="index.html" class="text-2xl lg:text-3xl font-light mb-6 block tracking-wide">BikeTours</a>
-                    <p class="text-gray-600 leading-relaxed font-light">
+                    <p class="text-base-content-subtle leading-relaxed font-light">
                         Premium cycling experiences in the world's most extraordinary destinations.
                     </p>
                 </div>
                 <div>
-                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-900">Navigate</h3>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-primary">Navigate</h3>
                     <ul class="space-y-4">
-                        <li><a href="index.html" class="text-gray-600 hover:text-celeste transition-colors font-light">Home</a></li>
-                        <li><a href="tours.html" class="text-gray-600 hover:text-celeste transition-colors font-light">Tours</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light">About</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light">Contact</a></li>
+                        <li><a href="index.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">Home</a></li>
+                        <li><a href="tours.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">Tours</a></li>
+                        <li><a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light">About</a></li>
+                        <li><a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-900">Contact</h3>
-                    <div class="space-y-4 text-gray-600 font-light">
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-primary">Contact</h3>
+                    <div class="space-y-4 text-base-content-subtle font-light">
                         <p>Rue de Mont-Blanc<br>1201 Geneva, Switzerland</p>
-                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-celeste transition-colors">contact@biketours.com</a></p>
+                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-accent transition-colors">contact@biketours.com</a></p>
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-gray-900">Follow</h3>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-primary">Follow</h3>
                     <div class="flex space-x-6">
-                        <a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light text-sm uppercase tracking-wider">Instagram</a>
-                        <a href="#" class="text-gray-600 hover:text-celeste transition-colors font-light text-sm uppercase tracking-wider">Facebook</a>
+                        <a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light text-sm uppercase tracking-wider">Instagram</a>
+                        <a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light text-sm uppercase tracking-wider">Facebook</a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-100 mt-16 pt-8 text-center text-gray-500 font-light text-sm">
+            <div class="border-t border-base-background-secondary mt-16 pt-8 text-center text-base-content-subtle font-light text-sm">
                 <p>&copy; 2024 BikeTours. All Rights Reserved.</p>
             </div>
         </div>
@@ -325,7 +304,7 @@
             }
 
             suggestionResultDiv.classList.remove('hidden');
-            suggestionResultDiv.innerHTML = "<p class='text-gray-600'>✨ Thinking up your dream tour...</p>";
+            suggestionResultDiv.innerHTML = "<p class='text-base-content-subtle'>✨ Thinking up your dream tour...</p>";
 
             const prompt = `Based on the following user description for a dream cycling trip, generate a creative and appealing tour concept. The concept should have a catchy title, a short, exciting description, and a list of 3-4 highlight activities. The tone should be inspiring and adventurous. User description: "${description}"`;
 
@@ -353,9 +332,9 @@
                 
                 if (data.candidates && data.candidates.length > 0 && data.candidates[0].content.parts.length > 0) {
                     const content = data.candidates[0].content.parts[0].text
-                        .replace(/\*\*Title:\*\*/g, "<h3 class='text-xl font-bold text-gray-900 mb-3'>")
-                        .replace(/\*\*Description:\*\*/g, "</h3><p class='text-gray-700 mb-4'>")
-                        .replace(/\*\*Highlights:\*\*/g, "</p><h4 class='text-lg font-semibold text-gray-900 mb-2'>Highlights:</h4><ul class='list-disc list-inside space-y-1 text-gray-700'>")
+                        .replace(/\*\*Title:\*\*/g, "<h3 class='text-xl font-bold text-primary mb-3'>")
+                        .replace(/\*\*Description:\*\*/g, "</h3><p class='text-base-content-subtle mb-4'>")
+                        .replace(/\*\*Highlights:\*\*/g, "</p><h4 class='text-lg font-semibold text-primary mb-2'>Highlights:</h4><ul class='list-disc list-inside space-y-1 text-base-content-subtle'>")
                         .replace(/\* /g, "<li>")
                         .replace(/(\n|\r)/g, "</li>") + "</li></ul>";
                     
