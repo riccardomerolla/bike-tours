@@ -76,7 +76,16 @@
 
                     <!-- Itinerary -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Itinerary</h2>
-                    <img src="https://www.intrepidtravel.com/v3/assets/blt0de87ff52d9c34a8/blt0b867ffbb0a9e327/6336e721a8f52154ccb5ae95/ZMXT_2020.gif?branch=prd&width=1920&quality=75&format=pjpg&auto=webp" alt="Cycle Tuscany Map" class="w-full max-w-2xl mb-8 rounded shadow">
+                    <div class="mb-8">
+                        <canvas id="elevation-chart" class="w-full h-64 bg-white rounded shadow"></canvas>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script type="module">
+                      import { renderElevationChart } from './elevation-chart.js';
+                      document.addEventListener('DOMContentLoaded',()=>{
+                        renderElevationChart('elevation-chart','sample/roadmap-sample.gpx');
+                      });
+                    </script>
                     <div class="space-y-10">
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 1 • Florence</h3>
