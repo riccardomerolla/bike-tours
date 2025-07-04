@@ -76,19 +76,20 @@
 
                     <!-- Itinerary -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Itinerary</h2>
-                    <div class="mb-8">
-                        <canvas id="elevation-chart" class="w-full h-64 bg-white rounded shadow"></canvas>
-                    </div>
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <script type="module">
-                      import { renderElevationChart } from './elevation-chart.js';
-                      document.addEventListener('DOMContentLoaded',()=>{
-                        renderElevationChart('elevation-chart','sample/roadmap-sample.gpx');
-                      });
-                    </script>
+                    
                     <div class="space-y-10">
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 1 • Florence</h3>
+                            <div class="mb-8">
+                                <canvas id="elevation-chart" class="w-full h-40 bg-white rounded shadow"></canvas>
+                            </div>
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <script type="module">
+                              import { renderElevationChart } from './elevation-chart.js';
+                              document.addEventListener('DOMContentLoaded',()=>{
+                                renderElevationChart('elevation-chart','sample/roadmap-sample.gpx');
+                              });
+                            </script>
                             <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
                         </div>
                         <div>
@@ -201,6 +202,10 @@
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">📅 Duration:</strong>
                                 <span class="text-base-content-subtle font-light">8 Days</span>
+                            </div>
+                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
+                                <strong class="text-primary font-normal">🚲 Distance:</strong>
+                                <span class="text-base-content-subtle font-light">600km</span>
                             </div>
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">👥 Group Size:</strong>

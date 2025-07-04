@@ -48,17 +48,29 @@ async function renderElevationChart(canvasId, gpxUrl) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: { mode: 'index', intersect: false }
       },
       scales: {
         x: {
-          title: { display: true, text: 'Distance (km)' },
-          ticks: { maxTicksLimit: 10 }
+          title: { display: false, text: 'Distance (km)' },
+          grid: {
+            display: false // Removes vertical grid lines
+          },
+          ticks: {
+            maxTicksLimit: 5 // Reduces the number of x-axis labels
+          }
         },
         y: {
-          title: { display: true, text: 'Elevation (m)' }
+          title: { display: false, text: 'Elevation (m)' },
+          grid: {
+            display: false // Removes horizontal grid lines
+          },
+          ticks: {
+            maxTicksLimit: 5 // Reduces the number of y-axis labels
+          }
         }
       }
     }
