@@ -9,13 +9,23 @@ async function parseGpxElevation(url) {
   const trkpts = Array.from(xml.getElementsByTagName('trkpt'));
   let distance = 0;
   let lastLat = null, lastLon = null;
+  let totalElevationGain = 0;
+  let lastEle = null;
+  let maxElevation = 0;
+  let minElevation = Infinity;
+
   const data = trkpts.map(pt => {
     const lat = parseFloat(pt.getAttribute('lat'));
     const lon = parseFloat(pt.getAttribute('lon'));
     
-    // Check if the 'ele' element exists before accessing textContent
     const eleElement = pt.getElementsByTagName('ele')[0];
-    const ele = eleElement ? parseFloat(eleElement.textContent) : 0; // Use 0 if elevation data is missing
+    const ele = eleElement ? parseFloat(eleElement.textContent) : null; // Keep null if missing for now
+
+    // Update max and min elevation
+    if (ele !== null) {
+      if (ele > maxElevation) maxElevation = ele;
+      if (ele < minElevation) minElevation = ele;
+    }
     
     if (lastLat !== null && lastLon !== null) {
       // Haversine formula for distance in km
@@ -26,19 +36,45 @@ async function parseGpxElevation(url) {
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
       distance += R * c;
     }
+
+    // Calculate elevation gain
+    if (ele !== null && lastEle !== null) {
+      if (ele > lastEle) {
+        totalElevationGain += (ele - lastEle);
+      }
+    }
+    lastEle = ele; // Update last elevation for the next iteration
     lastLat = lat;
     lastLon = lon;
-    return { distance: Math.round(distance * 10) / 10, elevation: Math.round(ele) };
+    
+    return { distance: Math.round(distance * 10) / 10, elevation: Math.round(ele !== null ? ele : 0) }; // Use 0 for chart if ele is null
   });
-  return data;
+
+  // Ensure distance is rounded to one decimal for the final total
+  const totalDistanceKm = Math.round(distance * 10) / 10;
+  const totalElevationGainM = Math.round(totalElevationGain);
+  const maxElevationM = Math.round(maxElevation);
+
+
+  return {
+    data: data,
+    summary: {
+      totalDistance: totalDistanceKm,
+      totalElevationGain: totalElevationGainM,
+      maxElevation: maxElevationM
+    }
+  };
 }
 
 async function renderElevationChart(canvasId, gpxUrl) {
-  const data = await parseGpxElevation(gpxUrl);
+  const result = await parseGpxElevation(gpxUrl); // Parse both data and summary
+  const data = result.data;
+  const summary = result.summary; // Extract summary
+
   const ctx = document.getElementById(canvasId).getContext('2d');
   
   // Return the Chart instance
-  return new Chart(ctx, {
+  const chartInstance = new Chart(ctx, {
     type: 'line',
     data: {
       labels: data.map(d => d.distance),
@@ -81,9 +117,10 @@ async function renderElevationChart(canvasId, gpxUrl) {
       }
     }
   });
+
+  // Attach summary data to the chart instance or return it separately if needed by the Lit component
+  chartInstance.summaryData = summary;
+  return chartInstance;
 }
 
 export { renderElevationChart };
-
-// Usage example (after DOM loaded):
-// renderElevationChart('elevation-chart', 'sample/roadmap-sample.gpx');

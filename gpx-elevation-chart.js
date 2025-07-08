@@ -3,7 +3,12 @@ import { renderElevationChart } from './elevation-chart.js';
 
 class GpxElevationChart extends LitElement {
   static properties = {
-    gpxUrl: { type: String, attribute: 'gpx-url' }
+    gpxUrl: { type: String, attribute: 'gpx-url' },
+    // Add properties for summary data to allow external setting (though we'll set it internally)
+    // We add data-* attributes to identify target elements in the parent HTML
+    distanceTargetId: { type: String, attribute: 'data-distance-target' },
+    gainTargetId: { type: String, attribute: 'data-gain-target' },
+    maxEleTargetId: { type: String, attribute: 'data-max-ele-target' }
   };
 
   #chartInstance = null; 
@@ -14,7 +19,7 @@ class GpxElevationChart extends LitElement {
   }
 
   createRenderRoot() {
-    return this;
+    return this; // Render into the light DOM to update external elements
   }
 
   connectedCallback() {
@@ -45,19 +50,37 @@ class GpxElevationChart extends LitElement {
 
   async initializeChart() {
     await this.updateComplete;
-    const canvas = this.shadowRoot ? this.shadowRoot.getElementById(this.chartId) : document.getElementById(this.chartId);
+    // Get the canvas element directly from the DOM, as we are rendering in light DOM
+    const canvas = document.getElementById(this.chartId);
 
     if (this.gpxUrl && canvas && typeof Chart !== 'undefined') {
       if (this.#chartInstance) {
         this.#chartInstance.destroy();
         this.#chartInstance = null;
       }
-      this.#chartInstance = await renderElevationChart(this.chartId, this.gpxUrl);
+      const chart = await renderElevationChart(this.chartId, this.gpxUrl);
+      this.#chartInstance = chart; // Store the chart instance
+
+      // Update the content of the target elements in the parent HTML
+      if (chart.summaryData) {
+        if (this.distanceTargetId) {
+          const el = document.getElementById(this.distanceTargetId);
+          if (el) el.textContent = `${chart.summaryData.totalDistance} km`;
+        }
+        if (this.gainTargetId) {
+          const el = document.getElementById(this.gainTargetId);
+          if (el) el.textContent = `${chart.summaryData.totalElevationGain} m↑`;
+        }
+        if (this.maxEleTargetId) {
+          const el = document.getElementById(this.maxEleTargetId);
+          if (el) el.textContent = `${chart.summaryData.maxElevation} m`;
+        }
+      }
     }
   }
 
   render() {
-    // Remove 'shadow' from the class list here
+    // The canvas is rendered here. The summary icons are now in the parent HTML.
     return html`
       <canvas id="${this.chartId}" class="w-full h-40 bg-white rounded"></canvas>
     `;
