@@ -68,308 +68,346 @@
 
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Itinerary</h2>
                     
-                    <div class="space-y-10">
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 1 • Florence</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day1-distance"></span>
+                    <div class="space-y-6"> <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 1 • Florence</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day1-distance"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day1-gain"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day1-gain"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day1-max-ele"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
-                                      data-distance-target="day1-distance"
-                                      data-gain-target="day1-gain"
-                                      data-max-ele-target="day1-max-ele"
-                                    ></gpx-elevation-chart>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 2 • Cycle Signa to Vinci</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day2-distance"></span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day2-gain"></span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day2-max-ele"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day1-max-ele"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample2.gpx"
-                                      data-distance-target="day2-distance"
-                                      data-gain-target="day2-gain"
-                                      data-max-ele-target="day2-max-ele"
-                                    ></gpx-elevation-chart>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day1-distance"
+                                          data-gain-target="day1-gain"
+                                          data-max-ele-target="day1-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 3 • Cycle Lucca to Barga</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day3-distance"></span>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 2 • Cycle Signa to Vinci</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day2-distance"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day3-gain"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day2-gain"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day3-max-ele"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample3.gpx"
-                                      data-distance-target="day3-distance"
-                                      data-gain-target="day3-gain"
-                                      data-max-ele-target="day3-max-ele"
-                                    ></gpx-elevation-chart>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 4 • Cycle in the Garfagnana</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day4-distance"></span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day4-gain"></span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day4-max-ele"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day2-max-ele"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample4.gpx"
-                                      data-distance-target="day4-distance"
-                                      data-gain-target="day4-gain"
-                                      data-max-ele-target="day4-max-ele"
-                                    ></gpx-elevation-chart>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day2-distance"
+                                          data-gain-target="day2-gain"
+                                          data-max-ele-target="day2-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 5 • Cycle the Apuan Alps to Lucca</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day5-distance"></span>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 3 • Cycle Lucca to Barga</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day3-distance"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day5-gain"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day3-gain"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day5-max-ele"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample5.gpx"
-                                      data-distance-target="day5-distance"
-                                      data-gain-target="day5-gain"
-                                      data-max-ele-target="day5-max-ele"
-                                    ></gpx-elevation-chart>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 6 • Free day in Lucca</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day6-distance"></span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day6-gain"></span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day6-max-ele"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day3-max-ele"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
-                                      data-distance-target="day6-distance"
-                                      data-gain-target="day6-gain"
-                                      data-max-ele-target="day6-max-ele"
-                                    ></gpx-elevation-chart>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day3-distance"
+                                          data-gain-target="day3-gain"
+                                          data-max-ele-target="day3-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 7 • Cycle Lucca to Pisa</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day7-distance"></span>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 4 • Cycle in the Garfagnana</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day4-distance"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day7-gain"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day4-gain"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day7-max-ele"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day4-max-ele"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
-                                </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
-                                      data-distance-target="day7-distance"
-                                      data-gain-target="day7-gain"
-                                      data-max-ele-target="day7-max-ele"
-                                    ></gpx-elevation-chart>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day4-distance"
+                                          data-gain-target="day4-gain"
+                                          data-max-ele-target="day4-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="text-2xl font-light text-accent mb-2">Day 8 • Pisa</h3>
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 text-primary text-sm mt-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
-                                        <span class="block text-lg font-semibold" id="day8-distance"></span>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 5 • Cycle the Apuan Alps to Lucca</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day5-distance"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
-                                        <span class="block text-lg font-semibold" id="day8-gain"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day5-gain"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
-                                    <div>
-                                        <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
-                                        <span class="block text-lg font-semibold" id="day8-max-ele"></span>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day5-max-ele"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                                <div class="order-2 lg:order-1">
-                                    <p class="text-base-content-subtle font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day5-distance"
+                                          data-gain-target="day5-gain"
+                                          data-max-ele-target="day5-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
                                 </div>
-                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
-                                      data-distance-target="day8-distance"
-                                      data-gain-target="day8-gain"
-                                      data-max-ele-target="day8-max-ele"
-                                    ></gpx-elevation-chart>
+                            </div>
+                        </div>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 6 • Free day in Lucca</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day6-distance"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day6-gain"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day6-max-ele"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day6-distance"
+                                          data-gain-target="day6-gain"
+                                          data-max-ele-target="day6-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 7 • Cycle Lucca to Pisa</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day7-distance"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day7-gain"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day7-max-ele"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day7-distance"
+                                          data-gain-target="day7-gain"
+                                          data-max-ele-target="day7-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-base-background-secondary rounded-lg overflow-hidden">
+                            <div class="flex flex-col p-6 cursor-pointer bg-base-background-secondary hover:bg-base-background-secondary/70 transition-colors duration-200" onclick="toggleAccordion(this)">
+                                <h3 class="text-2xl font-light text-accent mb-2">Day 8 • Pisa</h3>
+                                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-primary text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📏</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Length</span>
+                                            <span class="block text-lg font-semibold" id="day8-distance"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">📈</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">D+</span>
+                                            <span class="block text-lg font-semibold" id="day8-gain"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-accent-light p-2 rounded-full flex items-center justify-center w-8 h-8 text-lg">⛰️</span>
+                                        <div>
+                                            <span class="block uppercase text-xs font-medium text-base-content-subtle">Max. Elev.</span>
+                                            <span class="block text-lg font-semibold" id="day8-max-ele"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                                    <div class="order-2 lg:order-1">
+                                        <p class="text-base-content-subtle font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
+                                    </div>
+                                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                          data-distance-target="day8-distance"
+                                          data-gain-target="day8-gain"
+                                          data-max-ele-target="day8-max-ele"
+                                        ></gpx-elevation-chart>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -379,20 +417,20 @@
                     <div class="mb-8">
                         <h3 class="text-xl font-semibold text-primary mb-2">Included</h3>
                         <ul class="list-disc list-inside text-base-content-subtle font-light space-y-2">
-                            <li>5 breakfasts, 2 lunches</li>
-                            <li>Bicycle (e-bike option available), support vehicle, local bus</li>
-                            <li>Hotel (7 nights)</li>
-                            <li>Guided cycling: Signa to Vinci, Lucca to Barga, Barga to Garfagnana, Garfagnana to Lucca, Lucca to Pisa</li>
-                            <li>Devil’s Bridge visit, Garfagnana picnic, Lucca picnic</li>
+                            <li>5 breakfasts, 2 lunches.</li>
+                            <li>Bicycle (e-bike option available), support vehicle, local bus.</li>
+                            <li>Hotel (7 nights).</li>
+                            <li>Guided cycling: Signa to Vinci, Lucca to Barga, Barga to Garfagnana, Garfagnana to Lucca, Lucca to Pisa.</li>
+                            <li>Devil’s Bridge visit, Garfagnana picnic, Lucca picnic.</li>
                         </ul>
                         <h3 class="text-xl font-semibold text-primary mt-6 mb-2">Optional</h3>
                         <ul class="list-disc list-inside text-base-content-subtle font-light space-y-2">
-                            <li>Florence - Uffizi Gallery, Accademia, Medici Chapels, Bargello Museum, and more</li>
-                            <li>Vinci - Museo Leonardiano</li>
-                            <li>Barga - Dinner, Fondazione Pascoli, Cathedral</li>
-                            <li>Castelnuovo di Garfagnana - Cathedral, Fortezza dell'Este</li>
-                            <li>Lucca - Cathedral, Palazzo Pfanner, Puccini concert, Guinigi Tower, Torre delle Ore, National Gallery, Cathedral Museum</li>
-                            <li>Pisa - Leaning Tower of Pisa</li>
+                            <li>Florence - Uffizi Gallery, Accademia, Medici Chapels, Bargello Museum, and more.</li>
+                            <li>Vinci - Museo Leonardiano.</li>
+                            <li>Barga - Dinner, Fondazione Pascoli, Cathedral.</li>
+                            <li>Castelnuovo di Garfagnana - Cathedral, Fortezza dell'Este.</li>
+                            <li>Lucca - Cathedral, Palazzo Pfanner, Puccini concert, Guinigi Tower, Torre delle Ore, National Gallery, Cathedral Museum.</li>
+                            <li>Pisa - Leaning Tower of Pisa.</li>
                         </ul>
                     </div>
 
@@ -559,6 +597,44 @@
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Accordion Toggle Functionality
+        function toggleAccordion(headerElement) {
+            const accordionContent = headerElement.nextElementSibling;
+            if (accordionContent.classList.contains('hidden')) {
+                accordionContent.classList.remove('hidden');
+                // Use a very large maxHeight to ensure content fits, combined with overflow-hidden on parent
+                accordionContent.style.maxHeight = '9999px'; 
+
+                // Find the gpx-elevation-chart inside and tell it to redraw
+                const gpxChartElement = accordionContent.querySelector('gpx-elevation-chart');
+                if (gpxChartElement && typeof gpxChartElement.redraw === 'function') {
+                    // Increased delay to 300ms to ensure the div is fully visible before redraw
+                    setTimeout(() => gpxChartElement.redraw(), 300); 
+                }
+
+            } else {
+                accordionContent.style.maxHeight = "0"; // Collapse effect
+                // Using a timeout to add 'hidden' class AFTER the transition, if a CSS transition is active
+                setTimeout(() => {
+                    accordionContent.classList.add('hidden');
+                }, 300); // This timeout should match the CSS transition-duration (e.g., duration-300)
+            }
+        }
+        
+        // Initial state: collapse all accordions on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.accordion-content').forEach(content => {
+                content.classList.add('hidden'); // Ensure all content sections are hidden by default
+                content.style.maxHeight = '0'; // Set initial max-height for transition
+            });
+            // You might want to open the first one by default for better UX:
+            const firstAccordionHeader = document.querySelector('.space-y-6 > div > div.flex-col');
+            if (firstAccordionHeader) {
+                toggleAccordion(firstAccordionHeader);
+            }
+        });
+
+
         // Packing list functionality
         const packingListBtn = document.getElementById("packing-list-btn");
         const packingListModal = document.getElementById("packing-list-modal");
@@ -571,14 +647,14 @@
 
             // These IDs need to be present in the HTML for these to work
             const tourTitleElement = document.querySelector('h1.text-6xl'); // Assuming this targets the main tour title
-            const tourDurationElement = document.querySelector('.sidebar .space-y-6 strong:contains("Duration:") + span'); // Adjust selector as needed
+            const tourDurationElement = document.querySelector('.sidebar strong:contains("Duration:") + span'); // Adjust selector as needed
             const tourLocationElement = document.querySelector('.hero-section .text-2xl'); // Adjust selector as needed
 
             const tourTitle = tourTitleElement ? tourTitleElement.textContent.trim() : "Unknown Tour";
             const tourDuration = tourDurationElement ? tourDurationElement.nextElementSibling.textContent.trim() : "Unknown Duration";
             const tourLocation = "Tuscany, Italy"; // Hardcoded as it's not easily extractable from current HTML structure
 
-            const prompt = `Create a detailed packing list for a cycling tour with the following details. Categorize the list into "On The Bike", "Off The Bike (Casual)", and "Essentials & Documents". The tone should be helpful and professional. Tour Title: "${tourTitle}". Duration: "${tourDuration}". Location: "${tourLocation}".`;
+            const prompt = `Create a detailed packing list for a cycling tour with the following details. Categorize the list into "On The Bike", "Off The Bike (Casual)", and "Essentials & Documents". The tone should be inspiring and adventurous. Tour Title: "${tourTitle}". Duration: "${tourDuration}". Location: "${tourLocation}".`;
 
             try {
                 let messages = [{
