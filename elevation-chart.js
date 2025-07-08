@@ -12,7 +12,11 @@ async function parseGpxElevation(url) {
   const data = trkpts.map(pt => {
     const lat = parseFloat(pt.getAttribute('lat'));
     const lon = parseFloat(pt.getAttribute('lon'));
-    const ele = parseFloat(pt.getElementsByTagName('ele')[0].textContent);
+    
+    // Check if the 'ele' element exists before accessing textContent
+    const eleElement = pt.getElementsByTagName('ele')[0];
+    const ele = eleElement ? parseFloat(eleElement.textContent) : 0; // Use 0 if elevation data is missing
+    
     if (lastLat !== null && lastLon !== null) {
       // Haversine formula for distance in km
       const R = 6371;
@@ -32,7 +36,9 @@ async function parseGpxElevation(url) {
 async function renderElevationChart(canvasId, gpxUrl) {
   const data = await parseGpxElevation(gpxUrl);
   const ctx = document.getElementById(canvasId).getContext('2d');
-  new Chart(ctx, {
+  
+  // Return the Chart instance
+  return new Chart(ctx, {
     type: 'line',
     data: {
       labels: data.map(d => d.distance),

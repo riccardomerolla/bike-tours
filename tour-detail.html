@@ -9,25 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-white text-primary">
-    <!-- Header -->
     <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 lg:h-20">
                 <a href="index.html" class="text-2xl lg:text-3xl font-light text-black tracking-wide">BikeTours</a>
-                <!-- Mobile menu button -->
                 <button id="mobile-menu-btn" class="md:hidden p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <!-- Desktop navigation -->
                 <nav class="hidden md:flex space-x-10">
                     <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
                     <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
                     <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
                 </nav>
             </div>
-            <!-- Mobile navigation -->
             <div id="mobile-menu" class="hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-4">
                     <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
@@ -38,7 +34,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="relative h-[60vh] flex items-end overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60">
             <img src="https://www.intrepidtravel.com/v3/assets/blt0de87ff52d9c34a8/blt3c06fdc40b4ae92b/685a2fbc54cdaebe00616188/Intrepid-Travel-Italy-Florence-shutterstock-674716033.jpg?branch=prd&width=1240&quality=75&format=pjpg&auto=webp" 
@@ -58,13 +53,10 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-                <!-- Content Column -->
                 <div class="lg:col-span-2">
-                    <!-- Why You'll Love This Trip -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Why you'll love this trip</h2>
                     <ul class="list-disc list-inside text-lg text-base-content-subtle mb-12 space-y-3 font-light">
                         <li>Pedal through the rolling green hills and vineyards of Tuscany, stopping to sample the local cuisine and indulge in a glass (or two) of vino along the way.</li>
@@ -74,55 +66,99 @@
                         <li>Get away from tourist crowds and experience authentic Italy, connecting with locals and rural landscapes.</li>
                     </ul>
 
-                    <!-- Itinerary -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Itinerary</h2>
                     
                     <div class="space-y-10">
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 1 • Florence</h3>
-                            <div class="mb-8">
-                                <canvas id="elevation-chart" class="w-full h-40 bg-white rounded shadow"></canvas>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"></gpx-elevation-chart>
+                                </div>
                             </div>
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                            <script type="module">
-                              import { renderElevationChart } from './elevation-chart.js';
-                              document.addEventListener('DOMContentLoaded',()=>{
-                                renderElevationChart('elevation-chart','sample/roadmap-sample.gpx');
-                              });
-                            </script>
-                            <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 2 • Cycle Signa to Vinci</h3>
-                            <p class="text-base-content-subtle font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample2.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 3 • Cycle Lucca to Barga</h3>
-                            <p class="text-base-content-subtle font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample3.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 4 • Cycle in the Garfagnana</h3>
-                            <p class="text-base-content-subtle font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample4.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 5 • Cycle the Apuan Alps to Lucca</h3>
-                            <p class="text-base-content-subtle font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample5.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 6 • Free day in Lucca</h3>
-                            <p class="text-base-content-subtle font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 7 • Cycle Lucca to Pisa</h3>
-                            <p class="text-base-content-subtle font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <h3 class="text-2xl font-light text-accent mb-2">Day 8 • Pisa</h3>
-                            <p class="text-base-content-subtle font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div class="order-2 lg:order-1">
+                                    <p class="text-base-content-subtle font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
+                                </div>
+                                <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                                    <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"></gpx-elevation-chart>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Inclusions & Activities -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Inclusions & Activities</h2>
                     <div class="mb-8">
                         <h3 class="text-xl font-semibold text-primary mb-2">Included</h3>
@@ -144,7 +180,6 @@
                         </ul>
                     </div>
 
-                    <!-- Is This Trip Right For You? -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Is this trip right for you?</h2>
                     <ul class="list-disc list-inside text-base-content-subtle font-light space-y-2 mb-12">
                         <li>You should be confident and competent riding a bicycle.</li>
@@ -153,7 +188,6 @@
                         <li>E-bike option available (on request, subject to availability).</li>
                     </ul>
 
-                    <!-- Important Notes -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Important Notes</h2>
                     <ol class="list-decimal list-inside text-base-content-subtle font-light space-y-2 mb-12">
                         <li>Provide your height at booking for correct bike sizing.</li>
@@ -164,7 +198,6 @@
                         <li>Occasional itinerary changes due to local conditions.</li>
                     </ol>
 
-                    <!-- Reviews -->
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mt-16 mb-6 tracking-wide">Reviews</h2>
                     <div class="space-y-8">
                         <div class="border border-base-background-secondary p-6 rounded shadow-sm">
@@ -194,7 +227,6 @@
                     </div>
                 </div>
 
-                <!-- Sidebar -->
                 <div class="lg:col-span-1">
                     <div class="border border-base-background-secondary bg-white p-8 sticky top-32 rounded">
                         <h3 class="text-2xl lg:text-3xl font-light text-primary mb-6 tracking-wide">From CHF 1,677</h3>
@@ -248,7 +280,6 @@
         </div>
     </section>
 
-    <!-- Packing List Modal -->
     <div id="packing-list-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
         <div class="bg-white border border-base-background-secondary max-w-2xl w-full max-h-[80vh] overflow-hidden">
             <div class="flex justify-between items-center p-6 border-b border-base-background-secondary">
@@ -258,12 +289,10 @@
                 </button>
             </div>
             <div id="packing-list-content" class="p-6 overflow-y-auto max-h-[60vh]">
-                <!-- Content will be generated here -->
-            </div>
+                </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-white border-t border-base-background-secondary py-16 lg:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -304,6 +333,7 @@
         </div>
     </footer>
 
+    <script type="module" src="gpx-elevation-chart.js"></script>
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -323,9 +353,9 @@
             packingListModal.classList.remove('opacity-0', 'invisible');
             packingListContent.innerHTML = "<p class='text-base-content-subtle'>✨ Preparing your personalized list...</p>";
 
-            const tourTitle = document.getElementById("tour-title").textContent;
-            const tourDuration = document.getElementById("tour-duration").textContent;
-            const tourLocation = document.getElementById("tour-location").textContent;
+            const tourTitle = "Cycle Tuscany"; // Hardcoded for this example
+            const tourDuration = "8 Days"; // Hardcoded for this example
+            const tourLocation = "Tuscany, Italy"; // Hardcoded for this example
 
             const prompt = `Create a detailed packing list for a cycling tour with the following details. Categorize the list into "On The Bike", "Off The Bike (Casual)", and "Essentials & Documents". The tone should be helpful and professional. Tour Title: "${tourTitle}". Duration: "${tourDuration}". Location: "${tourLocation}".`;
 
