@@ -1,3 +1,4 @@
+// bike-tours2/tours-section.js
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { fetchToursData } from './tours-data.js';
 
@@ -92,7 +93,9 @@ class ToursSection extends LitElement {
                             </div>
                           ` : ''}
                           <img src="${tour.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${tour.name}">
-                          <div class="absolute top-4 right-4 text-white text-xl hover:text-celeste cursor-pointer transition-colors">♡</div>
+                          ${tour.type === 'luxury' ? html`
+                            <span class="absolute top-4 right-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Luxury</span>
+                          ` : ''}
                         </div>
                         <div class="p-8">
                           <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">${tour.description}</div>

@@ -1,3 +1,4 @@
+// bike-tours2/tours-grid.js
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { fetchToursData } from './tours-data.js';
 
@@ -33,6 +34,9 @@ class ToursGrid extends LitElement {
               <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
                 <div class="relative h-80 lg:h-96 overflow-hidden">
                   <img src="${tour.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${tour.name}">
+                  ${tour.type === 'luxury' ? html`
+                    <span class="absolute top-4 right-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Luxury</span>
+                  ` : ''}
                 </div>
                 <div class="p-8">
                   <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">${tour.description}</div>
