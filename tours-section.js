@@ -94,7 +94,7 @@ class ToursSection extends LitElement {
                           ` : ''}
                           <img src="${tour.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${tour.name}">
                           ${tour.type === 'luxury' ? html`
-                            <span class="absolute top-4 right-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">Luxury</span>
+                            <span class="absolute top-4 right-4 bg-accent text-black font-script text-lg px-4 py-1 z-10">Luxury</span>
                           ` : ''}
                         </div>
                         <div class="p-8">

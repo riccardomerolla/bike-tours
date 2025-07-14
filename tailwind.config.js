@@ -27,6 +27,7 @@ tailwind.config = {
         fontFamily: {
           // Sets Inter as the default sans-serif font for the project.
           sans: ['Inter', 'sans-serif'],
+          script: ['Parisienne', 'cursive'],
         },
         colors: {
           // The foundational dark color for backgrounds and text on light surfaces.
