@@ -2,6 +2,7 @@
     {
         "id": 1,
         "name": "Alps Cycling Trip",
+        "type": "luxury",
         "date": "27 June - 4 July 2025",
         "description": "Epic Climbs • Pro Experience",
         "price": "€2.590",
@@ -15,6 +16,7 @@
     {
         "id": 2,
         "name": "Mallorca Cycling Camp",
+        "type": "luxury",
         "date": "5 - 12 July 2025",
         "description": "Island Paradise • All-Inclusive",
         "price": "€2.350",
@@ -28,6 +30,7 @@
     {
         "id": 3,
         "name": "Calpe Training Camp",
+        "type": "classic",
         "date": "13 - 20 July 2025",
         "description": "Pro Training • Coastal Roads",
         "price": "€2.190",
@@ -54,6 +57,7 @@
     {
         "id": 5,
         "name": "Pyrenees Adventure",
+        "type": "luxury",
         "date": "29 July - 5 August 2025",
         "description": "Epic Mountains • Scenic Routes",
         "price": "€2.490",

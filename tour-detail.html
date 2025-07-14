@@ -101,7 +101,7 @@
                                         <p class="text-base-content-subtle font-light">Arrive in Florence, the heart of Tuscany. Meet your group and leader for a welcome meeting and dinner. Explore the city’s Renaissance treasures and prepare for your cycling adventure.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Cap-Salines_course.gpx"
                                           data-distance-target="day1-distance"
                                           data-gain-target="day1-gain"
                                           data-max-ele-target="day1-max-ele"
@@ -144,7 +144,7 @@
                                         <p class="text-base-content-subtle font-light">Ride from Signa to Vinci, birthplace of Leonardo da Vinci. Cycle through olive groves and rolling hills, visit Casa Natale di Leonardo, and enjoy local cuisine in Vinci.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Formentor_course.gpx"
                                           data-distance-target="day2-distance"
                                           data-gain-target="day2-gain"
                                           data-max-ele-target="day2-max-ele"
@@ -187,7 +187,7 @@
                                         <p class="text-base-content-subtle font-light">Follow the Serchio River to Lucca, then cycle to the medieval town of Barga. Enjoy the views and sample local delicacies.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Llucmajor_course.gpx"
                                           data-distance-target="day3-distance"
                                           data-gain-target="day3-gain"
                                           data-max-ele-target="day3-max-ele"
@@ -230,7 +230,7 @@
                                         <p class="text-base-content-subtle font-light">Explore the valleys of Garfagnana, stopping at historic bakeries and enjoying a picnic lunch. Ride through mountain scenery and charming villages.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Orient_course.gpx"
                                           data-distance-target="day4-distance"
                                           data-gain-target="day4-gain"
                                           data-max-ele-target="day4-max-ele"
@@ -273,7 +273,7 @@
                                         <p class="text-base-content-subtle font-light">Cycle through the Apuan Alps, returning to Lucca. Take in the dramatic landscapes and enjoy a group dinner in town.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Petra_course.gpx"
                                           data-distance-target="day5-distance"
                                           data-gain-target="day5-gain"
                                           data-max-ele-target="day5-max-ele"
@@ -316,7 +316,7 @@
                                         <p class="text-base-content-subtle font-light">Enjoy a rest day in Lucca. Explore the city’s walls, visit museums, or simply relax at a local café.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Port-de-Sa-Calobra_course.gpx"
                                           data-distance-target="day6-distance"
                                           data-gain-target="day6-gain"
                                           data-max-ele-target="day6-max-ele"
@@ -359,7 +359,7 @@
                                         <p class="text-base-content-subtle font-light">Ride from Lucca to Pisa, finishing at the iconic Leaning Tower. Celebrate your achievements with a farewell dinner.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/Porto-Cristo_course.gpx"
                                           data-distance-target="day7-distance"
                                           data-gain-target="day7-gain"
                                           data-max-ele-target="day7-max-ele"
@@ -402,7 +402,7 @@
                                         <p class="text-base-content-subtle font-light">Your adventure ends in Pisa. Say goodbye to your group and depart at your leisure.</p>
                                     </div>
                                     <div class="mb-8 lg:mb-0 order-1 lg:order-2">
-                                        <gpx-elevation-chart gpx-url="sample/roadmap-sample.gpx"
+                                        <gpx-elevation-chart gpx-url="tracks/roadmap-sample.gpx"
                                           data-distance-target="day8-distance"
                                           data-gain-target="day8-gain"
                                           data-max-ele-target="day8-max-ele"
@@ -703,6 +703,51 @@
         packingListModal.addEventListener("click", (e) => {
             if (e.target === packingListModal) {
                 packingListModal.classList.add('opacity-0', 'invisible');
+            }
+        });
+    </script>
+    <script type="module">
+        import { fetchToursData } from './tours-data.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Get the tour ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const tourId = parseInt(urlParams.get('id'), 10);
+
+            if (!tourId) return;
+
+            // Fetch all tour data
+            const allTours = await fetchToursData();
+            const tour = allTours.find(t => t.id === tourId);
+
+            // Update page content with dynamic data from the found tour
+            if (tour) {
+                document.querySelector('h1.text-4xl').textContent = tour.name;
+                // You can update other elements here as well, e.g., price, description, etc.
+            }
+            
+            if (tour && tour.type === 'luxury') {
+                const bannerContainer = document.getElementById('luxury-banner-container');
+                const banner = document.getElementById('luxury-banner');
+
+                // Set the content for the luxury banner, inspired by your image
+                banner.innerHTML = `
+                    <div class="grid md:grid-cols-3 items-center gap-6">
+                        <div class="md:col-span-1 text-center md:text-left">
+                            <h2 class="text-5xl font-fancy" style="color: #C84B73;">Luxury</h2>
+                            <p class="font-semibold text-primary text-lg mt-2">This is a Luxury Tour</p>
+                        </div>
+                        <div class="md:col-span-2">
+                            <p class="text-base-content-subtle font-light mb-4">
+                                A trip designed for ultimate comfort, with specially selected hotels, exclusive experiences, and a higher level of service to make your cycling adventure unforgettable.
+                            </p>
+                            <a href="#" class="text-primary hover:text-accent font-medium transition-colors">Discover more</a>
+                        </div>
+                    </div>
+                `;
+
+                // Make the banner visible
+                bannerContainer.classList.remove('hidden');
             }
         });
     </script>
