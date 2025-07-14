@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "day_number": 1,
+      "tour_id": 2,
+      "route_id": 4,
+      "daily_title": "Coastal Welcome Ride",
+      "daily_description": "We'll start with a beautiful coastal ride to Cap Salines to warm up the legs and enjoy the sea breeze."
+    },
+    {
+      "id": 2,
+      "day_number": 2,
+      "tour_id": 2,
+      "route_id": 6,
+      "daily_title": "Rolling Hills of Llucmajor",
+      "daily_description": "A day exploring the scenic rolling hills and farmlands around the classic town of Llucmajor."
+    },
+    {
+      "id": 3,
+      "day_number": 3,
+      "tour_id": 2,
+      "route_id": 3,
+      "daily_title": "Journey to Petra",
+      "daily_description": "Today's ride takes us through the heart of Mallorca to the historic town of Petra, a favorite among local cyclists."
+    },
+    {
+      "id": 4,
+      "day_number": 4,
+      "tour_id": 2,
+      "route_id": 1,
+      "daily_title": "The Orient Valley Loop",
+      "daily_description": "Experience one of the most beautiful and tranquil valleys on the island with the classic Orient loop."
+    },
+    {
+      "id": 5,
+      "day_number": 5,
+      "tour_id": 2,
+      "route_id": 7,
+      "daily_title": "The Queen Stage: Sa Calobra",
+      "daily_description": "The main event. We'll tackle the world-famous, serpentine climb of Sa Calobra."
+    },
+    {
+      "id": 6,
+      "day_number": 6,
+      "tour_id": 2,
+      "route_id": 2,
+      "daily_title": "Lighthouse Views at Formentor",
+      "daily_description": "A stunning ride out to the Formentor peninsula, culminating in breathtaking views from the lighthouse."
+    },
+    {
+      "id": 7,
+      "day_number": 7,
+      "tour_id": 2,
+      "route_id": 5,
+      "daily_title": "East Coast Recovery Ride",
+      "daily_description": "A final, relaxed ride along the beautiful east coast to Porto Cristo to spin out the legs before departure."
+    }
+  ]

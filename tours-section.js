@@ -94,7 +94,7 @@ class ToursSection extends LitElement {
                           ` : ''}
                           <img src="${tour.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${tour.name}">
                           ${tour.type === 'luxury' ? html`
-                            <span class="absolute top-4 right-4 bg-accent text-black font-script text-lg px-4 py-1 z-10">Luxury</span>
+                            <span class="absolute top-4 right-4 bg-accent text-black font-script text-xl px-3 py-1 z-10">Luxury</span>
                           ` : ''}
                         </div>
                         <div class="p-8">
@@ -114,7 +114,7 @@ class ToursSection extends LitElement {
                           </div>
                           ${tour.sold_out
                             ? html`<a class="w-full border border-gray-300 text-gray-400 font-medium py-4 px-6 text-center block uppercase tracking-wider text-sm cursor-not-allowed">Sold Out</a>`
-                            : html`<a href="tour-detail.html" class="w-full border border-black hover:bg-black hover:text-white text-black font-medium py-4 px-6 transition-all duration-300 text-center block uppercase tracking-wider text-sm">View Details</a>`
+                            : html`<a href="tour-detail.html?id=${tour.Id}" class="w-full border border-black hover:bg-black hover:text-white text-black font-medium py-4 px-6 transition-all duration-300 text-center block uppercase tracking-wider text-sm">View Details</a>`
                           }
                         </div>
                       </div>

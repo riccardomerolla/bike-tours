@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "route_name": "Orient Stage",
+    "gpx_url": "tracks/Orient_course.gpx"
+  },
+  {
+    "id": 2,
+    "route_name": "Formentor Stage",
+    "gpx_url": "tracks/Formentor_course.gpx"
+  },
+  {
+    "id": 3,
+    "route_name": "Petra Stage",
+    "gpx_url": "tracks/Petra_course.gpx"
+  },
+  {
+    "id": 4,
+    "route_name": "Cap Salines Stage",
+    "gpx_url": "tracks/Cap-Salines_course.gpx"
+  },
+  {
+    "id": 5,
+    "route_name": "Porto Cristo Stage",
+    "gpx_url": "tracks/Porto-Cristo_course.gpx"
+  },
+  {
+    "id": 6,
+    "route_name": "Llucmajor Stage",
+    "gpx_url": "tracks/Llucmajor_course.gpx"
+  },
+  {
+    "id": 7,
+    "route_name": "Port de Sa Calobra Stage",
+    "gpx_url": "tracks/Port-de-Sa-Calobra_course.gpx"
+  }
+]
