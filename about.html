@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BikeTours</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-white text-primary">
+    <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <a href="index.html" class="text-2xl lg:text-3xl font-light text-black tracking-wide">BikeTours</a>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <nav class="hidden md:flex space-x-10">
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+                    <a href="about.html" class="text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
+                </nav>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
+                    <a href="about.html" class="text-accent font-normal uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative h-[50vh] flex items-center justify-center overflow-hidden bg-base-background-secondary">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1549880196-857e4e13725b?q=80&w=2070&auto=format&fit=crop"
+                 class="w-full h-full object-cover opacity-80" alt="About Us Hero Image">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-left text-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-light mb-4 leading-tight tracking-wide">
+                ABOUT <span class="text-accent font-normal">BIKETOURS</span>
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 font-light leading-relaxed">
+                Your journey, meticulously crafted for the ultimate cycling experience.
+            </p>
+        </div>
+    </section>
+    
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-primary mb-4 tracking-wide">
+                    THE BIKETOURS EXPERIENCE
+                </h2>
+                <div class="w-24 h-0.5 bg-accent mx-auto"></div>
+                <p class="max-w-3xl mx-auto text-lg lg:text-xl text-base-content-subtle font-light leading-relaxed mt-6">
+                    We provide a complete, immersive cycling experience designed for your peace of mind and peak performance. From the moment you book, every detail is handled with professional care.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+                <div class="text-center group">
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🏨</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">All-Inclusive Comfort</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-normal">Premium accommodations, meals, and logistics are handled so you can focus on the ride.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">⚙️</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Optimized Performance</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-normal">Benefit from professional bike fitting and daily maintenance for maximum comfort and power.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="text-5xl lg:text-6xl mb-8 group-hover:text-accent transition-colors duration-500">🧘</div>
+                    <h3 class="text-lg lg:text-xl font-light mb-4 uppercase tracking-widest text-primary">Stress-Free Adventures</h3>
+                    <p class="text-base-content-subtle leading-relaxed font-normal">We manage all transfers and support, leaving you free to immerse yourself in the journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-20 lg:py-32 bg-gray-800">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-20" alt="Cyclists riding together">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light mb-4 tracking-wide">
+                    OUR PHILOSOPHY
+                </h2>
+                <div class="w-24 h-0.5 bg-accent mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="bg-black/20 p-8 rounded-lg">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h3 class="text-xl font-semibold mb-2 text-accent">Small Group Experience</h3>
+                    <p class="font-light text-gray-300">Enjoy a personal journey with a maximum of 15 people, fostering camaraderie and individual attention.</p>
+                </div>
+                <div class="bg-black/20 p-8 rounded-lg">
+                    <div class="text-5xl mb-4">✅</div>
+                    <h3 class="text-xl font-semibold mb-2 text-accent">Easy Booking</h3>
+                    <p class="font-light text-gray-300">Secure your adventure with a low deposit of just CHF/€100 to make planning your next escape simple.</p>
+                </div>
+                <div class="bg-black/20 p-8 rounded-lg">
+                    <div class="text-5xl mb-4">🎁</div>
+                    <h3 class="text-xl font-semibold mb-2 text-accent">Worry-Free Cancellation</h3>
+                    <p class="font-light text-gray-300">Benefit from our free cancellation policy. Your deposit is fully refunded as a gift card for ultimate flexibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 lg:mb-24">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-light text-primary mb-4 tracking-wide">
+                    OUR GUIDES
+                </h2>
+                <div class="w-24 h-0.5 bg-accent mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+                <div class="lg:col-span-2">
+                    <img src="img/image00012.jpeg" class="rounded-lg shadow-xl object-cover w-full h-full" alt="Claudia, our cycling guide">
+                </div>
+                <div class="lg:col-span-3 text-lg text-base-content-subtle font-light leading-relaxed space-y-6">
+                    <p>
+                        Our private guides are experts dedicated to enhancing your cycling experience. They provide personalized support, technical assistance, and continuous help to make your journey safer and more enjoyable. They know every stage of the tour in detail and can adjust the pace to suit your needs.
+                    </p>
+                    <blockquote class="border-l-4 border-accent pl-6 py-2 italic text-primary">
+                        "Claudia, our guide in Mallorca, is a specialist in creating tailor-made routes. She immerses you in the local nature, history, and culture, ensuring your comfort and safety by managing every detail. Her passion shines through in every ride."
+                    </blockquote>
+                    <p>
+                        With a BikeTours guide, you're not just riding; you're discovering.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-base-background-secondary py-20 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+                <div>
+                    <a href="index.html" class="text-2xl lg:text-3xl font-light mb-6 block tracking-wide">BikeTours</a>
+                    <p class="text-base-content-subtle leading-relaxed font-light">
+                        Premium cycling experiences in the world's most extraordinary destinations.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-primary">Navigate</h3>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">Home</a></li>
+                        <li><a href="tours.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">Tours</a></li>
+                        <li><a href="about.html" class="text-base-content-subtle hover:text-accent transition-colors font-light">About</a></li>
+                        <li><a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-primary">Contact</h3>
+                    <div class="space-y-4 text-base-content-subtle font-light">
+                        <p>Rue de Mont-Blanc<br>1201 Geneva, Switzerland</p>
+                        <p>Email: <a href="mailto:contact@biketours.com" class="hover:text-accent transition-colors">contact@biketours.com</a></p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-primary">Follow</h3>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light text-sm uppercase tracking-wider">Instagram</a>
+                        <a href="#" class="text-base-content-subtle hover:text-accent transition-colors font-light text-sm uppercase tracking-wider">Facebook</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-base-background-secondary mt-16 pt-8 text-center text-base-content-subtle font-light text-sm">
+                <p>&copy; 2024 BikeTours. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle - Reused from index.html
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
