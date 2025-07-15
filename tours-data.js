@@ -8,7 +8,6 @@ const NOCODB_API_URL_ITINERARY = 'https://app.nocodb.com/api/v2/tables/mcpl1o0aa
 const NOCODB_TOKEN = 'azGmScTi6oyPy2t_Luo6h-MxUflLp57n-r0UOD-V';
 
 // Helper function to fetch data from a single NocoDB endpoint
-// bike-tours/tours-data.js
 async function fetchData(url) {
   try {
     const res = await fetch(url, {

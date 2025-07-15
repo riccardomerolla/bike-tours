@@ -1,6 +1,29 @@
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { fetchToursData } from './tours-data.js';
 
+// Date formatting helper function (copied for self-containment)
+function formatDateRange(startDateStr, endDateStr) {
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+
+    if (isNaN(startDate) || isNaN(endDate)) {
+        return `${startDateStr} - ${endDateStr}`;
+    }
+
+    const startMonth = startDate.toLocaleString('en-US', { month: 'long' });
+    const endMonth = endDate.toLocaleString('en-US', { month: 'long' });
+    const startDay = startDate.getDate();
+    const endDay = endDate.getDate();
+    const startYear = startDate.getFullYear();
+    const endYear = endDate.getFullYear();
+
+    if (startMonth === endMonth && startYear === endYear) {
+        return `${startDay} - ${endDay} ${startMonth} ${startYear}`;
+    } else {
+        return `${startDay} ${startMonth} - ${endDay} ${endMonth} ${endYear}`;
+    }
+}
+
 class DeparturesSection extends LitElement {
   static properties = {
     tours: { state: true }
@@ -37,13 +60,21 @@ class DeparturesSection extends LitElement {
               <div class="bg-white border border-gray-100 p-8 lg:p-12 hover:shadow-lg transition-all duration-500 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div class="flex-grow">
                   <h4 class="text-2xl lg:text-3xl font-light text-gray-900 mb-3 tracking-wide">${tour.name}</h4>
-                  <p class="text-gray-600 font-light">${tour.date}</p>
+                  <p class="text-gray-600 font-medium text-lg mb-2">${formatDateRange(tour.start_date, tour.end_date)}</p>
+                  ${tour.description ? html`<p class="text-sm text-gray-500">${tour.description}</p>` : ''}
                 </div>
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <span class="text-3xl lg:text-4xl font-light text-gray-900">${tour.price}</span>
-                  <a href="#" class="bg-celeste hover:bg-celeste-dark text-black font-medium py-4 px-8 transition-all duration-300 text-center uppercase tracking-wider text-sm">
-                    Book Now
-                  </a>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-sm lg:text-base font-light text-gray-900">From</span>
+                        <span class="text-xl lg:text-2xl font-light text-gray-900">${tour.price}</span>
+                    </div>
+                    ${tour.sold_out ? html`
+                        <button class="bg-gray-300 text-gray-600 font-medium py-3 px-6 text-center uppercase tracking-wider text-sm rounded cursor-not-allowed" disabled>Sold Out</button>
+                    ` : html`
+                        <a href="tour-detail.html?id=${tour.Id}" class="bg-accent hover:bg-accent-dark text-black font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">
+                        View Details
+                        </a>
+                    `}
                 </div>
               </div>
             `)}

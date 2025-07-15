@@ -1,6 +1,29 @@
-// bike-tours2/tours-section.js
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { fetchToursData } from './tours-data.js';
+
+// Date formatting helper function
+function formatDateRange(startDateStr, endDateStr) {
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+
+    // Fallback for invalid dates
+    if (isNaN(startDate) || isNaN(endDate)) {
+        return `${startDateStr} - ${endDateStr}`;
+    }
+
+    const startMonth = startDate.toLocaleString('en-US', { month: 'long' });
+    const endMonth = endDate.toLocaleString('en-US', { month: 'long' });
+    const startDay = startDate.getDate();
+    const endDay = endDate.getDate();
+    const startYear = startDate.getFullYear();
+    const endYear = endDate.getFullYear();
+
+    if (startMonth === endMonth && startYear === endYear) {
+        return `${startDay} - ${endDay} ${startMonth} ${startYear}`;
+    } else {
+        return `${startDay} ${startMonth} - ${endDay} ${endMonth} ${endYear}`;
+    }
+}
 
 class ToursSection extends LitElement {
   static properties = {
@@ -36,7 +59,9 @@ class ToursSection extends LitElement {
     const newVisible = this.getVisibleCards();
     if (newVisible !== this.visibleCards) {
       this.visibleCards = newVisible;
-      this.currentIndex = 0;
+      // Reset currentIndex to 0 or adjust to prevent out-of-bounds issues
+      this.currentIndex = Math.min(this.currentIndex, this.tours.length - this.visibleCards);
+      if (this.currentIndex < 0) this.currentIndex = 0; // Ensure it's not negative
     }
   }
 
@@ -75,47 +100,52 @@ class ToursSection extends LitElement {
           </div>
           <div class="relative">
             <div class="overflow-hidden">
-              <div class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3">
+              <div class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3"
+                   style="transform: translateX(-${this.currentIndex * (100 / this.visibleCards)}%);">
                 ${visibleTours.length === 0
                   ? html`<p>Loading tours...</p>`
                   : visibleTours.map(tour => html`
-                    <div class="flex-none w-full md:w-48 lg:w-96">
+                    <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-2">
                       <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
                         <div class="relative h-80 lg:h-96 overflow-hidden">
+                          ${tour.sold_out ? html`
+                            <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
+                              <span class="text-white text-3xl lg:text-4xl font-light uppercase tracking-widest">SOLD OUT</span>
+                            </div>
+                          ` : ''}
                           ${tour.label && !tour.sold_out ? html`
-                            <div class="absolute top-4 left-4 bg-celeste text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">
+                            <div class="absolute top-4 right-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">
                               ${tour.label}
                             </div>
                           ` : ''}
-                          ${tour.sold_out ? html`
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-                              <span class="text-white text-xl lg:text-2xl font-light uppercase tracking-widest">Sold Out</span>
+                          ${tour.type === 'luxury' ? html`
+                            <div class="absolute top-4 left-4 bg-white text-accent font-script text-lg px-2 py-0.5 rounded z-10">
+                                Luxury
                             </div>
                           ` : ''}
                           <img src="${tour.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${tour.name}">
-                          ${tour.type === 'luxury' ? html`
-                            <span class="absolute top-4 right-4 bg-accent text-black font-script text-xl px-3 py-1 z-10">Luxury</span>
-                          ` : ''}
+                          
+                          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-500 z-10"></div>
+                          <div class="absolute bottom-6 left-6 text-white z-10">
+                              <h3 class="text-3xl lg:text-4xl font-light tracking-wider mb-2">${tour.name}</h3>
+                              <div class="w-16 h-0.5 bg-accent transition-all duration-500 group-hover:w-24"></div>
+                          </div>
                         </div>
-                        <div class="p-8">
-                          <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">${tour.description}</div>
-                          <h3 class="text-2xl lg:text-3xl font-light text-gray-900 mb-6 tracking-wide">${tour.name}</h3>
-                          <div class="flex justify-between items-center text-sm text-gray-600 mb-8">
-                            <span class="font-light">${tour.date}</span>
-                            <div class="flex items-center">
-                              <span class="text-celeste">★</span>
-                              <span class="ml-1 font-light">${tour.rating}</span>
+                        <div class="p-6">
+                            <p class="text-gray-600 font-medium mb-4 text-lg">${formatDateRange(tour.start_date, tour.end_date)}</p>
+                            <div class="text-xs text-gray-500 font-medium mb-3 uppercase tracking-widest">${tour.description}</div>
+                            <div class="flex justify-between items-center text-sm text-gray-600 mb-6">
+                                </div>
+                            <div class="flex items-center justify-between mt-6">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-sm lg:text-base font-light text-gray-900">From</span>
+                                    <span class="text-xl lg:text-2xl font-light text-gray-900">${tour.price}</span>
+                                </div>
+                                ${tour.sold_out
+                                    ? html`<button class="bg-gray-300 text-gray-600 font-medium py-3 px-6 text-center uppercase tracking-wider text-sm rounded cursor-not-allowed" disabled>Sold Out</button>`
+                                    : html`<a href="tour-detail.html?id=${tour.Id}" class="bg-accent hover:bg-accent-dark text-black font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">View Details</a>`
+                                }
                             </div>
-                          </div>
-                          <div class="flex items-baseline gap-3 mb-8">
-                            <span class="text-3xl lg:text-4xl font-light text-gray-900">${tour.price}</span>
-                            ${tour.old_price ? html`<span class="text-gray-400 line-through font-light">${tour.old_price}</span>` : ''}
-                            ${tour.discount ? html`<span class="bg-celeste text-black text-xs font-medium px-2 py-1 uppercase tracking-wider">${tour.discount}</span>` : ''}
-                          </div>
-                          ${tour.sold_out
-                            ? html`<a class="w-full border border-gray-300 text-gray-400 font-medium py-4 px-6 text-center block uppercase tracking-wider text-sm cursor-not-allowed">Sold Out</a>`
-                            : html`<a href="tour-detail.html?id=${tour.Id}" class="w-full border border-black hover:bg-black hover:text-white text-black font-medium py-4 px-6 transition-all duration-300 text-center block uppercase tracking-wider text-sm">View Details</a>`
-                          }
                         </div>
                       </div>
                     </div>
