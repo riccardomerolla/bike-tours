@@ -1,7 +1,7 @@
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { fetchToursData } from './tours-data.js';
 
-// Date formatting helper function (copied for self-containment)
+// Date formatting helper function for full date range
 function formatDateRange(startDateStr, endDateStr) {
     const startDate = new Date(startDateStr);
     const endDate = new Date(endDateStr);
@@ -23,6 +23,16 @@ function formatDateRange(startDateStr, endDateStr) {
         return `${startDay} ${startMonth} - ${endDay} ${endMonth} ${endYear}`;
     }
 }
+
+// Date formatting helper function for left-aligned date (e.g., "18 JUL")
+function formatLeftDate(dateStr) {
+    const date = new Date(dateStr);
+    if (isNaN(date)) return html``; // Return empty if date is invalid
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+    return html`<span class="block text-4xl lg:text-5xl font-light leading-none">${day}</span><span class="block text-sm font-medium tracking-wide">${month}</span>`;
+}
+
 
 class DeparturesSection extends LitElement {
   static properties = {
@@ -57,14 +67,34 @@ class DeparturesSection extends LitElement {
           </div>
           <div class="space-y-6 lg:space-y-8 max-w-4xl mx-auto">
             ${this.tours.map(tour => html`
-              <div class="bg-white border border-gray-100 p-8 lg:p-12 hover:shadow-lg transition-all duration-500 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div class="flex-grow">
-                  <h4 class="text-2xl lg:text-3xl font-light text-gray-900 mb-3 tracking-wide">${tour.name}</h4>
-                  <p class="text-gray-600 font-medium text-lg mb-2">${formatDateRange(tour.start_date, tour.end_date)}</p>
-                  ${tour.description ? html`<p class="text-sm text-gray-500">${tour.description}</p>` : ''}
+              <div class="bg-white border border-gray-100 p-6 lg:p-8 hover:shadow-lg transition-all duration-500 flex items-start gap-6">
+                <div class="flex-shrink-0 text-center pt-2">
+                    <div class="text-primary">
+                        ${formatLeftDate(tour.start_date)}
+                    </div>
                 </div>
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                    <div class="flex items-baseline gap-2">
+
+                <div class="flex-grow">
+                  <h4 class="text-xl font-normal text-primary mb-2">${tour.name}</h4>
+                  <p class="text-base font-normal text-base-content-subtle mb-3">${formatDateRange(tour.start_date, tour.end_date)}</p>
+                  
+                  <div class="flex flex-wrap items-center gap-2 mb-4">
+                      ${tour.eta_group ? html`
+                        <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2 py-1 rounded">ETA ${tour.eta_group}</span>
+                      ` : ''}
+                      ${tour.type === 'luxury' ? html`
+                        <span class="bg-white text-accent font-script text-lg px-2 py-0.5 rounded border border-gray-200">Luxury</span>
+                      ` : ''}
+                      ${tour.label && !tour.sold_out ? html`
+                        <span class="bg-accent text-black text-xs font-medium px-2 py-1 uppercase tracking-wider">${tour.label}</span>
+                      ` : ''}
+                  </div>
+
+                  ${tour.description ? html`<p class="text-sm text-base-content-subtle mb-4">${tour.description}</p>` : ''}
+                </div>
+
+                <div class="flex-shrink-0 flex flex-col items-end justify-between h-full pt-2">
+                    <div class="flex items-baseline gap-2 mb-4">
                         <span class="text-sm lg:text-base font-light text-gray-900">From</span>
                         <span class="text-xl lg:text-2xl font-light text-gray-900">${tour.price}</span>
                     </div>
