@@ -106,11 +106,11 @@
         </div>
     </section>
 
-    <footer class="bg-white border-t border-base-background-secondary py-16 lg:py-20">
-        </footer>
+    <similar-tours-section></similar-tours-section>
 
     <script type="module" src="gpx-elevation-chart.js"></script>
     <script type="module" src="tour-itinerary.js"></script>
+    <script type="module" src="similar-tours-section.js"></script>
 
     <script>
         // --- RESTORED SCRIPT BLOCK ---
@@ -162,37 +162,62 @@
             }
 
             const allTours = await fetchCombinedToursData();
-            const tour = allTours.find(t => t.Id === tourId);
+            const currentTour = allTours.find(t => t.Id === tourId);
 
-            if (tour) {
-                document.title = `Tour Details - ${tour.name}`;
-                document.getElementById('hero-title').textContent = tour.name;
-                document.getElementById('hero-image').src = tour.image || '';
+            if (currentTour) {
+                // This part that sets up the page content remains the same
+                document.title = `Tour Details - ${currentTour.name}`;
+                document.getElementById('hero-title').textContent = currentTour.name;
+                document.getElementById('hero-image').src = currentTour.image || '';
                 document.getElementById('hero-subtitle').innerHTML = `
-                    <span>${tour.duration_days || 'N/A'} days</span>
+                    <span>${currentTour.duration_days || 'N/A'} days</span>
                     <span class="hidden md:inline">•</span>
-                    <span>${tour.description || ''}</span>
+                    <span>${currentTour.description || ''}</span>
                 `;
-
-                document.getElementById('sidebar-price').textContent = tour.price ? `From ${tour.price}`: '';
-                document.getElementById('sidebar-duration').textContent = tour.duration_days ? `${tour.duration_days} Days` : '';
-                document.getElementById('sidebar-distance').textContent = tour.total_distance_km ? `${tour.total_distance_km} km` : '';
-                document.getElementById('sidebar-group-size').textContent = tour.group_size_max ? `Max ${tour.group_size_max}` : '';
-                document.getElementById('sidebar-rating').textContent = tour.physical_rating || '';
-                document.getElementById('sidebar-start').textContent = tour.start_location || '';
-                document.getElementById('sidebar-end').textContent = tour.end_location || '';
-                document.getElementById('sidebar-meals').textContent = tour.meals_summary || '';
-                document.getElementById('sidebar-accommodation').textContent = tour.accommodation || '';
-                document.getElementById('sidebar-transport').textContent = tour.transport || '';
-                
+                document.getElementById('sidebar-price').textContent = currentTour.price ? `From ${currentTour.price}` : '';
+                document.getElementById('sidebar-duration').textContent = currentTour.duration_days ? `${currentTour.duration_days} Days` : '';
+                document.getElementById('sidebar-distance').textContent = currentTour.total_distance_km ? `${currentTour.total_distance_km} km` : '';
+                document.getElementById('sidebar-group-size').textContent = currentTour.group_size_max ? `Max ${currentTour.group_size_max}` : '';
+                document.getElementById('sidebar-rating').textContent = currentTour.physical_rating || '';
+                document.getElementById('sidebar-start').textContent = currentTour.start_location || '';
+                document.getElementById('sidebar-end').textContent = currentTour.end_location || '';
+                document.getElementById('sidebar-meals').textContent = currentTour.meals_summary || '';
+                document.getElementById('sidebar-accommodation').textContent = currentTour.accommodation || '';
+                document.getElementById('sidebar-transport').textContent = currentTour.transport || '';
                 const highlightsContainer = document.getElementById('trip-highlights');
-                if (highlightsContainer && tour.trip_highlights) {
-                    highlightsContainer.innerHTML = markdownListToHtml(tour.trip_highlights);
+                if (highlightsContainer && currentTour.trip_highlights) {
+                    highlightsContainer.innerHTML = markdownListToHtml(currentTour.trip_highlights);
                 }
-
                 const itineraryComponent = document.querySelector('tour-itinerary');
                 if (itineraryComponent) {
-                    itineraryComponent.itinerary = tour.itinerary;
+                    itineraryComponent.itinerary = currentTour.itinerary;
+                }
+
+                // --- CORRECTED FILTER LOGIC ---
+                const similarToursSection = document.querySelector('similar-tours-section');
+                if (similarToursSection) {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    const availableTours = allTours.filter(tour => {
+                        // Condition 1: Only include tours with the same name.
+                        if (tour.name === currentTour.name) {
+                            const tourEndDate = new Date(tour.end_date);
+                            
+                            // Handle cases with invalid dates.
+                            if (isNaN(tourEndDate)) {
+                                return false;
+                            }
+
+                            // Condition 2: Include the tour if it's the one being viewed (for context)
+                            // AND if it's a future departure.
+                            return tour.Id === currentTour.Id || tourEndDate >= today;
+                        }
+                        // If the name doesn't match, exclude it.
+                        return false;
+                    });
+                    
+                    similarToursSection.tours = availableTours;
                 }
             } else {
                 document.getElementById('hero-title').textContent = "Tour not found";

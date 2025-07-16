@@ -18,6 +18,10 @@ async function fetchData(url) {
     });
     if (!res.ok) throw new Error(`NocoDB fetch failed for ${url} with status: ${res.status}`);
     const data = await res.json();
+    
+    // --- LOGGING ADDED ---
+    console.log(`[Debug] Raw data fetched from: ${url}`, data);
+    
     return data.list || [];
   } catch (e) {
     console.error(`Error fetching data from NocoDB: ${e.message}`);
@@ -26,6 +30,8 @@ async function fetchData(url) {
 }
 
 export async function fetchCombinedToursData() {
+  console.log("[Debug] Starting fetchCombinedToursData...");
+  
   const [tours, routes, itineraryDays] = await Promise.all([
     fetchData(NOCODB_API_URL_TOURS),
     fetchData(NOCODB_API_URL_ROUTES),
@@ -42,14 +48,12 @@ export async function fetchCombinedToursData() {
   const combinedTours = tours.map(tour => {
     const tourItinerary = itineraryDays
       .filter(day => {
-        const tourIdFromDay = (typeof day.tour_id === 'object' && day.tour_id !== null) ? day.tour_id.Id : day.tour_id;
-        return tourIdFromDay == tour.Id;
+        const tourIdFromDay = (typeof day.tour_id === 'object' && day.tour_id !== null) ? String(day.tour_id.Id) : String(day.tour_id);
+        return tourIdFromDay === String(tour.Id);
       })
       .map(day => {
         let routeIdFromDay = (typeof day.route_id === 'object' && day.route_id !== null) ? day.route_id.Id : day.route_id;
-        
-        // FINAL FIX: Convert the route ID to a number before lookup.
-        const routeDetails = routesMap.get(parseInt(routeIdFromDay, 10));
+        const routeDetails = routesMap.get(routeIdFromDay);
 
         return {
           day_number: day.day_number,
@@ -66,9 +70,15 @@ export async function fetchCombinedToursData() {
     };
   });
 
+  // --- LOGGING ADDED ---
+  console.log("[Debug] Final combined tour data being sent to components:", combinedTours);
+
   return combinedTours;
 }
 
 export async function fetchToursData() {
-    return await fetchData(NOCODB_API_URL_TOURS);
+    console.log("[Debug] Starting fetchToursData (for index/tours page)...");
+    const tours = await fetchData(NOCODB_API_URL_TOURS);
+    console.log("[Debug] Data from fetchToursData:", tours);
+    return tours;
 }
