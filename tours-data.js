@@ -18,7 +18,6 @@ async function fetchData(url) {
     });
     if (!res.ok) throw new Error(`NocoDB fetch failed for ${url} with status: ${res.status}`);
     const data = await res.json();
-    
     return data.list || [];
   } catch (e) {
     console.error(`Error fetching data from NocoDB: ${e.message}`);
@@ -43,12 +42,14 @@ export async function fetchCombinedToursData() {
   const combinedTours = tours.map(tour => {
     const tourItinerary = itineraryDays
       .filter(day => {
-        const tourIdFromDay = (typeof day.tour_id === 'object' && day.tour_id !== null) ? String(day.tour_id.Id) : String(day.tour_id);
-        return tourIdFromDay === String(tour.Id);
+        const tourIdFromDay = (typeof day.tour_id === 'object' && day.tour_id !== null) ? day.tour_id.Id : day.tour_id;
+        return tourIdFromDay == tour.Id;
       })
       .map(day => {
         let routeIdFromDay = (typeof day.route_id === 'object' && day.route_id !== null) ? day.route_id.Id : day.route_id;
-        const routeDetails = routesMap.get(routeIdFromDay);
+        
+        // FINAL FIX: Convert the route ID to a number before lookup.
+        const routeDetails = routesMap.get(parseInt(routeIdFromDay, 10));
 
         return {
           day_number: day.day_number,
@@ -69,6 +70,5 @@ export async function fetchCombinedToursData() {
 }
 
 export async function fetchToursData() {
-    const tours = await fetchData(NOCODB_API_URL_TOURS);
-    return tours;
+    return await fetchData(NOCODB_API_URL_TOURS);
 }

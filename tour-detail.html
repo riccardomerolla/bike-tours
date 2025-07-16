@@ -36,8 +36,9 @@
     </header>
 
     <section class="relative h-[60vh] flex items-end overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60">
-            <img id="hero-image" src="" class="w-full h-full object-cover" alt="Tour hero image">
+        <div class="absolute inset-0">
+             <img id="hero-image" src="" class="w-full h-full object-cover" alt="Tour hero image">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60"></div>
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
             <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide"></h1>
@@ -51,6 +52,37 @@
                 <div class="lg:col-span-2">
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Why you'll love this trip</h2>
                     <div id="trip-highlights" class="mb-12"></div>
+
+                    <div id="luxury-section" class="hidden mb-12 border border-base-background-secondary rounded-lg">
+                        <div class="p-8">
+                            <p class="font-script text-accent text-3xl mb-2">Luxury</p>
+                            <h2 class="text-2xl font-light text-primary tracking-wide">This is a Luxury Tour</h2>
+                            <p class="text-base-content-subtle font-light mt-2 mb-6">AA journey designed for maximum comfort, with selected facilities and unique experiences.</p>
+                            
+                            <div id="luxury-toggle-container-top">
+                                 <button id="luxury-accordion-toggle" class="w-full flex justify-center items-center text-accent font-semibold hover:underline py-2">
+                                    <span class="toggle-text">More Details</span>
+                                    <span class="toggle-arrow ml-2">↓</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="luxury-accordion-content" class="hidden px-8 pb-8">
+                            <div class="border-t border-base-background-secondary pt-6">
+                                <p class="text-base-content-subtle font-light leading-relaxed mb-6">
+                                    Ride legendary roads by day, unwind in boutique 5-star hotels by night. Our Luxury Tours combine curated cycling routes, breathtaking landscapes, and refined hospitality.
+                                </p>
+                                <ul class="space-y-3 font-light text-base-content-subtle">
+                                    <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span><span><strong>Gourmet Dining:</strong> Savor exquisite meals that refuel your body and delight your senses.</span></li>
+                                    <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span><span><strong>5-Star Hotels:</strong> Relax and recover in handpicked, high-end accommodations.</span></li>
+                                    <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span><span><strong>Spa & Wellness:</strong> Enjoy access to relaxing spa moments to rejuvenate after a long day's ride.</span></li>
+                                    <li class="flex items-start"><span class="text-accent mr-3 mt-1">✓</span><span><strong>Refined Hospitality:</strong> Experience premium service where every detail is taken care of.</span></li>
+                                </ul>
+    
+                                <div id="luxury-toggle-container-bottom" class="mt-6">
+                                     </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <h2 class="text-3xl lg:text-4xl font-light text-primary mb-6 tracking-wide">Itinerary</h2>
                     <tour-itinerary></tour-itinerary>
@@ -106,14 +138,14 @@
         </div>
     </section>
 
-    <similar-tours-section></similar-tours-section>
+    <footer class="bg-white border-t border-base-background-secondary py-16 lg:py-20">
+    </footer>
 
     <script type="module" src="gpx-elevation-chart.js"></script>
     <script type="module" src="tour-itinerary.js"></script>
-    <script type="module" src="similar-tours-section.js"></script>
 
     <script>
-        // --- RESTORED SCRIPT BLOCK ---
+        // --- SCRIPT BLOCK ---
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -122,7 +154,7 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Accordion Toggle Functionality
+        // Accordion Toggle Functionality (for Itinerary)
         function toggleAccordion(headerElement) {
             const accordionContent = headerElement.nextElementSibling;
             if (accordionContent.classList.contains('hidden')) {
@@ -140,6 +172,39 @@
                     accordionContent.classList.add('hidden');
                 }, 300);
             }
+        }
+
+        // Luxury Accordion Toggle
+        const luxuryAccordionToggle = document.getElementById('luxury-accordion-toggle');
+        const luxuryContent = document.getElementById('luxury-accordion-content');
+        const topContainer = document.getElementById('luxury-toggle-container-top');
+        const bottomContainer = document.getElementById('luxury-toggle-container-bottom');
+
+        if (luxuryAccordionToggle && luxuryContent && topContainer && bottomContainer) {
+            luxuryAccordionToggle.addEventListener('click', () => {
+                const text = luxuryAccordionToggle.querySelector('.toggle-text');
+                const arrow = luxuryAccordionToggle.querySelector('.toggle-arrow');
+                
+                const isCurrentlyHidden = luxuryContent.classList.contains('hidden');
+                
+                if (isCurrentlyHidden) {
+                    // Content is hidden, so EXPAND it.
+                    luxuryContent.classList.remove('hidden');
+                    // Move button to the bottom container.
+                    bottomContainer.appendChild(luxuryAccordionToggle);
+                    // Update text to "Less Details".
+                    text.textContent = 'Less Details';
+                    arrow.textContent = '↑';
+                } else {
+                    // Content is visible, so COLLAPSE it.
+                    luxuryContent.classList.add('hidden');
+                    // Move button back to the top container.
+                    topContainer.appendChild(luxuryAccordionToggle);
+                    // Update text to "More Details".
+                    text.textContent = 'More Details';
+                    arrow.textContent = '↓';
+                }
+            });
         }
     </script>
 
@@ -162,62 +227,45 @@
             }
 
             const allTours = await fetchCombinedToursData();
-            const currentTour = allTours.find(t => t.Id === tourId);
+            const tour = allTours.find(t => t.Id === tourId);
 
-            if (currentTour) {
-                // This part that sets up the page content remains the same
-                document.title = `Tour Details - ${currentTour.name}`;
-                document.getElementById('hero-title').textContent = currentTour.name;
-                document.getElementById('hero-image').src = currentTour.image || '';
+            if (tour) {
+                document.title = `Tour Details - ${tour.name}`;
+                document.getElementById('hero-title').textContent = tour.name;
+                document.getElementById('hero-image').src = tour.image || '';
                 document.getElementById('hero-subtitle').innerHTML = `
-                    <span>${currentTour.duration_days || 'N/A'} days</span>
+                    <span>${tour.duration_days || 'N/A'} days</span>
                     <span class="hidden md:inline">•</span>
-                    <span>${currentTour.description || ''}</span>
+                    <span>${tour.description || ''}</span>
                 `;
-                document.getElementById('sidebar-price').textContent = currentTour.price ? `From ${currentTour.price}` : '';
-                document.getElementById('sidebar-duration').textContent = currentTour.duration_days ? `${currentTour.duration_days} Days` : '';
-                document.getElementById('sidebar-distance').textContent = currentTour.total_distance_km ? `${currentTour.total_distance_km} km` : '';
-                document.getElementById('sidebar-group-size').textContent = currentTour.group_size_max ? `Max ${currentTour.group_size_max}` : '';
-                document.getElementById('sidebar-rating').textContent = currentTour.physical_rating || '';
-                document.getElementById('sidebar-start').textContent = currentTour.start_location || '';
-                document.getElementById('sidebar-end').textContent = currentTour.end_location || '';
-                document.getElementById('sidebar-meals').textContent = currentTour.meals_summary || '';
-                document.getElementById('sidebar-accommodation').textContent = currentTour.accommodation || '';
-                document.getElementById('sidebar-transport').textContent = currentTour.transport || '';
+
+                document.getElementById('sidebar-price').textContent = tour.price ? `From ${tour.price}`: '';
+                document.getElementById('sidebar-duration').textContent = tour.duration_days ? `${tour.duration_days} Days` : '';
+                document.getElementById('sidebar-distance').textContent = tour.total_distance_km ? `${tour.total_distance_km} km` : '';
+                document.getElementById('sidebar-group-size').textContent = tour.group_size_max ? `Max ${tour.group_size_max}` : '';
+                document.getElementById('sidebar-rating').textContent = tour.physical_rating || '';
+                document.getElementById('sidebar-start').textContent = tour.start_location || '';
+                document.getElementById('sidebar-end').textContent = tour.end_location || '';
+                document.getElementById('sidebar-meals').textContent = tour.meals_summary || '';
+                document.getElementById('sidebar-accommodation').textContent = tour.accommodation || '';
+                document.getElementById('sidebar-transport').textContent = tour.transport || '';
+                
                 const highlightsContainer = document.getElementById('trip-highlights');
-                if (highlightsContainer && currentTour.trip_highlights) {
-                    highlightsContainer.innerHTML = markdownListToHtml(currentTour.trip_highlights);
+                if (highlightsContainer && tour.trip_highlights) {
+                    highlightsContainer.innerHTML = markdownListToHtml(tour.trip_highlights);
                 }
+
+                // Show luxury accordion if tour type is 'luxury'
+                if (tour.type === 'luxury') {
+                    const luxurySection = document.getElementById('luxury-section');
+                    if (luxurySection) {
+                        luxurySection.classList.remove('hidden');
+                    }
+                }
+
                 const itineraryComponent = document.querySelector('tour-itinerary');
                 if (itineraryComponent) {
-                    itineraryComponent.itinerary = currentTour.itinerary;
-                }
-
-                // --- CORRECTED FILTER LOGIC ---
-                const similarToursSection = document.querySelector('similar-tours-section');
-                if (similarToursSection) {
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-
-                    const availableTours = allTours.filter(tour => {
-                        // Condition 1: Only include tours with the same name.
-                        if (tour.name === currentTour.name) {
-                            const tourEndDate = new Date(tour.end_date);
-                            
-                            // Handle cases with invalid dates.
-                            if (isNaN(tourEndDate)) {
-                                return false;
-                            }
-
-                            // Condition 2: Include the tour if it's the one being viewed (for context)
-                            // AND if it's a future departure.
-                            return tour.Id === currentTour.Id || tourEndDate >= today;
-                        }
-                        // If the name doesn't match, exclude it.
-                        return false;
-                    });
-                    
-                    similarToursSection.tours = availableTours;
+                    itineraryComponent.itinerary = tour.itinerary;
                 }
             } else {
                 document.getElementById('hero-title').textContent = "Tour not found";
