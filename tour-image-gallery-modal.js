@@ -81,31 +81,7 @@ class TourImageGalleryModal extends LitElement {
   }
 
   render() {
-    // We'll group images into "rows" dynamically to apply odd/even row styling
-    const rows = [];
-    for (let i = 0; i < this._images.length; i++) {
-        if (i % 2 === 0) { // Start of an "odd" row (single picture) or first of "even" row (two pictures)
-            rows.push({ type: 'single', images: [this._images[i]] });
-        } else { // Second picture of an "even" row (two pictures)
-            // Check if the previous row was a 'single' type (which means current image is part of next pair)
-            // If the current row is the first image in an 'odd' index pair (i.e. if the previous index i-1 was an odd image)
-            // then current image is the second in a pair.
-            if (rows.length > 0 && rows[rows.length - 1].type === 'single') {
-                 // This means the previous push was a single image row, so this image is a new single row.
-                 rows.push({ type: 'single', images: [this._images[i]] });
-            } else if (rows.length > 0 && rows[rows.length - 1].images.length === 1 && (i - 1) % 2 === 0) {
-                // This means the previous item was the first of a pair, so add this to it
-                rows[rows.length - 1].type = 'double';
-                rows[rows.length - 1].images.push(this._images[i]);
-            } else {
-                // Default to single if logic is unexpected, or explicitly start a new single row
-                 rows.push({ type: 'single', images: [this._images[i]] });
-            }
-        }
-    }
-
     // Corrected logic for grouping images for odd/even rows.
-    // Let's create actual rows of images.
     const structuredRows = [];
     let i = 0;
     while (i < this._images.length) {
@@ -128,119 +104,23 @@ class TourImageGalleryModal extends LitElement {
         }
     }
 
-
     return html`
-      <style>
-        .modal-overlay-base {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.9);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .modal-content-base {
-          background-color: black;
-          color: white;
-          width: 100vw;
-          height: 100vh;
-          border-radius: 0;
-          padding: 1rem;
-          display: flex;
-          flex-direction: column;
-          box-sizing: border-box;
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            flex-shrink: 0;
-        }
-
-        .modal-header h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin: 0;
-        }
-
-        .modal-header button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            line-height: 1;
-        }
-
-        .image-grid-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 1rem 0;
-            margin-top: 1rem;
-        }
-
-        /* --- New/Updated Grid Styles --- */
-        .image-row {
-            display: grid;
-            gap: 0.5rem; /* Gap between images in a row */
-            margin-bottom: 0.5rem; /* Gap between rows */
-            padding: 0 1rem; /* Horizontal padding for the rows */
-        }
-
-        .image-row img {
-            width: 100%;
-            height: 400px; /* Fixed height for all images as requested */
-            object-fit: cover;
-            border-radius: 0.25rem;
-        }
-
-        .image-row.single-picture {
-            grid-template-columns: 1fr; /* One column for single picture rows */
-        }
-
-        .image-row.two-pictures {
-            grid-template-columns: repeat(2, 1fr); /* Two columns for two picture rows */
-        }
-
-        /* Medium screens and up for larger gaps/padding */
-        @media (min-width: 768px) {
-            .image-row {
-                gap: 1rem;
-                margin-bottom: 1rem;
-                padding: 0 2rem;
-            }
-        }
-        /* --- End New/Updated Grid Styles --- */
-      </style>
-
       <div 
-        class="modal-overlay-base" 
-        style="
-          ${this.isOpen ? 'display: flex !important; opacity: 1 !important; visibility: visible !important;' : 'display: none !important; opacity: 0 !important; visibility: hidden !important;'} 
-          z-index: 99999 !important; /* Extremely high z-index */
-        " 
+        class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center transition-opacity duration-300 ${this.isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} z-[99999]" 
         @click="${this.closeModal}"
       >
-        <div class="modal-content-base" @click="${(e) => e.stopPropagation()}">
-          <div class="modal-header">
-            <h3>${this._tourName} Gallery</h3>
-            <button @click="${this.closeModal}">X</button>
+        <div class="bg-black text-white w-screen h-screen p-4 flex flex-col box-border" @click="${(e) => e.stopPropagation()}">
+          <div class="flex justify-between items-center px-4 py-4 border-b border-gray-800 flex-shrink-0">
+            <h3 class="text-2xl font-light m-0">${this._tourName} Gallery</h3>
+            <button @click="${this.closeModal}" class="bg-transparent border-none text-white text-4xl cursor-pointer p-2 leading-none">X</button>
           </div>
-          <div class="image-grid-container">
+          <div class="flex-grow overflow-y-auto py-4 mt-4">
             ${this._images.length > 0
               ? structuredRows.map(row => html`
-                  <div class="image-row ${row.type === 'single' ? 'single-picture' : 'two-pictures'}">
+                  <div class="grid gap-2 mb-2 px-4 md:gap-4 md:mb-4 md:px-8 
+                    ${row.type === 'single' ? 'grid-cols-1' : 'grid-cols-2'}">
                     ${row.images.map(image => html`
-                      <img src="${image}" alt="Gallery Image">
+                      <img src="${image}" alt="Gallery Image" class="w-full h-[400px] object-cover rounded-md">
                     `)}
                   </div>
                 `)
