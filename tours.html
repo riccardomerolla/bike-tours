@@ -79,11 +79,17 @@
             const destination = urlParams.get('destination');
             const pageTitle = document.getElementById('page-title');
             const departuresTitle = document.getElementById('departures-title');
+            const toursGrid = document.querySelector('tours-grid');
 
             if (destination) {
                 const capitalizedDestination = destination.charAt(0).toUpperCase() + destination.slice(1);
                 pageTitle.textContent = `Our tours in ${capitalizedDestination}`;
-                departuresTitle.textContent = `All our departures for ${capitalizedDestination}`;
+                if(departuresTitle) {
+                    departuresTitle.textContent = `All our departures for ${capitalizedDestination}`;
+                }
+                if(toursGrid) {
+                    toursGrid.destination = destination;
+                }
             }
         });
     </script>

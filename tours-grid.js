@@ -40,11 +40,18 @@ class ToursGrid extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.loadTours();
+    const urlParams = new URLSearchParams(window.location.search);
+    const destination = urlParams.get('destination');
+    this.loadTours(destination);
   }
 
-  async loadTours() {
-    this.tours = await fetchToursData();
+  async loadTours(destination) {
+    let allTours = await fetchToursData();
+    if (destination) {
+      this.tours = allTours.filter(tour => tour.region && tour.region.toLowerCase() === destination.toLowerCase());
+    } else {
+      this.tours = allTours;
+    }
   }
 
   render() {
