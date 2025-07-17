@@ -199,7 +199,7 @@
     <div id="tour-calendar-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
         <!-- MODAL WIDTH ADJUSTED HERE from max-w-2xl to max-w-6xl -->
         <div class="bg-white rounded-lg p-6 lg:p-8 max-w-6xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button onclick="showTourCalendarModal()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-semibold">X</button>
+            <button onclick="showTourCalendarModal(window.currentTourData)" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-semibold">X</button>
             <h3 class="text-2xl font-light text-primary mb-4" id="modal-tour-title">Tour Departures</h3>
             <p class="text-base-content-subtle mb-6" id="modal-tour-duration"></p>
 
@@ -257,15 +257,33 @@
             modal.classList.toggle('hidden');
             if (!modal.classList.contains('hidden')) {
                 document.body.style.overflow = 'hidden'; // Prevent scrolling background
-                // Pass data to the custom element inside the modal
-                const tourCalendarContent = document.getElementById('tour-calendar-content');
-                if (tourCalendarContent) {
-                    tourCalendarContent.referenceTourName = tourData.name; // Pass name to component
-                    tourCalendarContent.currentTourId = tourData.Id; // Pass current ID
+                // Check if tourData exists before accessing its properties
+                if (tourData) {
+                    // Pass data to the custom element inside the modal
+                    const tourCalendarContent = document.getElementById('tour-calendar-content');
+                    if (tourCalendarContent) {
+                        tourCalendarContent.referenceTourName = tourData.name; // Pass name to component
+                        tourCalendarContent.currentTourId = tourData.Id; // Pass current ID
+                    }
+                    // Also set general modal title/duration
+                    document.getElementById('modal-tour-title').textContent = `${tourData.name} Departures`;
+                    document.getElementById('modal-tour-duration').textContent = calculateDuration(tourData.start_date, tourData.end_date);
+                } else {
+                    // If tourData is null, use currentTourData from global scope
+                    if (window.currentTourData) {
+                        const tourCalendarContent = document.getElementById('tour-calendar-content');
+                        if (tourCalendarContent) {
+                            tourCalendarContent.referenceTourName = window.currentTourData.name;
+                            tourCalendarContent.currentTourId = window.currentTourData.Id;
+                        }
+                        document.getElementById('modal-tour-title').textContent = `${window.currentTourData.name} Departures`;
+                        document.getElementById('modal-tour-duration').textContent = calculateDuration(window.currentTourData.start_date, window.currentTourData.end_date);
+                    } else {
+                        console.warn('No tour data available for the calendar modal');
+                        document.getElementById('modal-tour-title').textContent = 'Tour Departures';
+                        document.getElementById('modal-tour-duration').textContent = '';
+                    }
                 }
-                // Also set general modal title/duration
-                document.getElementById('modal-tour-title').textContent = `${tourData.name} Departures`;
-                document.getElementById('modal-tour-duration').textContent = calculateDuration(tourData.start_date, tourData.end_date);
             } else {
                 document.body.style.overflow = ''; // Restore scrolling
             }
