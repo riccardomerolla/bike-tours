@@ -90,12 +90,18 @@
 
                 <div class="lg:col-span-1">
                     <div class="border border-base-background-secondary bg-white p-8 sticky top-32 rounded">
-                        <h3 id="sidebar-price" class="text-2xl lg:text-3xl font-light text-primary mb-6 tracking-wide"></h3>
+                        <div class="text-center mb-6">
+                            <p id="sidebar-start-top" class="text-3xl lg:text-4xl font-light text-primary mb-2 tracking-wide"></p>
+                            <p id="sidebar-duration-top" class="text-lg lg:text-xl font-light text-base-content-subtle"></p>
+                        </div>
+                        <div class="text-center mb-8">
+                            <span class="text-sm lg:text-base font-light text-gray-900">From</span>
+                            <span id="sidebar-old-price" class="text-lg lg:text-xl font-light text-gray-900 line-through mr-2"></span>
+                            <span id="sidebar-discount-label" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2"></span>
+                            <span id="sidebar-price" class="text-4xl lg:text-5xl font-light text-accent tracking-wide"></span>
+                        </div>
+                        
                         <div class="space-y-6 mb-8">
-                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
-                                <strong class="text-primary font-normal">📅 Duration:</strong>
-                                <span id="sidebar-duration" class="text-base-content-subtle font-light"></span>
-                            </div>
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🗓️ Next Departure:</strong>
                                 <span id="sidebar-next-departure" class="text-base-content-subtle font-light"></span>
@@ -113,24 +119,12 @@
                                 <span id="sidebar-rating" class="text-base-content-subtle font-light"></span>
                             </div>
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
-                                <strong class="text-primary font-normal">🚩 Start:</strong>
-                                <span id="sidebar-start" class="text-base-content-subtle font-light"></span>
-                            </div>
-                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
-                                <strong class="text-primary font-normal">🏁 End:</strong>
-                                <span id="sidebar-end" class="text-base-content-subtle font-light"></span>
-                            </div>
-                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
-                                <strong class="text-primary font-normal">🍽️ Meals:</strong>
-                                <span id="sidebar-meals" class="text-base-content-subtle font-light"></span>
-                            </div>
-                            <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🏨 Accommodation:</strong>
                                 <span id="sidebar-accommodation" class="text-base-content-subtle font-light"></span>
                             </div>
-                            <div class="flex justify-between items-center py-4">
-                                <strong class="text-primary font-normal">🚐 Transport:</strong>
-                                <span id="sidebar-transport" class="text-base-content-subtle font-light"></span>
+                             <div class="flex justify-between items-center py-4">
+                                <strong class="text-primary font-normal">🚌 Transport:</strong>
+                                <span id="sidebar-transport" class="text-base-content-subtle font-light text-accent"></span>
                             </div>
                         </div>
                         <a href="#" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
@@ -239,6 +233,13 @@
             return `${diffDays} days, ${diffNights} nights`;
         }
 
+        // Function to parse price string to a number
+        function parsePriceToNumber(priceStr) {
+            if (!priceStr) return null;
+            // Remove currency symbols, commas, and parse as float
+            return parseFloat(priceStr.replace(/[^0-9.,]/g, '').replace(',', '.'));
+        }
+
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const tourId = parseInt(urlParams.get('id'), 10);
@@ -261,17 +262,36 @@
                     <span>${tour.description || ''}</span>
                 `;
 
-                document.getElementById('sidebar-price').textContent = tour.price ? `From ${tour.price}`: '';
-                document.getElementById('sidebar-duration').textContent = calculateDuration(tour.start_date, tour.end_date);
+                // Set content for the new top sidebar section
+                document.getElementById('sidebar-start-top').textContent = tour.start_location || 'N/A';
+                document.getElementById('sidebar-duration-top').textContent = calculateDuration(tour.start_date, tour.end_date);
+                
+                const currentPrice = parsePriceToNumber(tour.price);
+                const oldPrice = parsePriceToNumber(tour.old_price);
+
+                if (tour.price) {
+                    document.getElementById('sidebar-price').textContent = tour.price;
+                } else {
+                     document.getElementById('sidebar-price').textContent = '';
+                }
+
+
+                if (oldPrice && currentPrice && oldPrice > currentPrice) {
+                    document.getElementById('sidebar-old-price').textContent = tour.old_price;
+                    const discountPercentage = ((oldPrice - currentPrice) / oldPrice) * 100;
+                    document.getElementById('sidebar-discount-label').textContent = `Save ${Math.round(discountPercentage)}%`;
+                } else {
+                    document.getElementById('sidebar-old-price').textContent = '';
+                    document.getElementById('sidebar-discount-label').textContent = '';
+                }
+
                 document.getElementById('sidebar-distance').textContent = tour.total_distance_km ? `${tour.total_distance_km} km` : '';
                 document.getElementById('sidebar-group-size').textContent = tour.group_size_max ? `Max ${tour.group_size_max}` : '';
                 document.getElementById('sidebar-rating').textContent = tour.physical_rating || '';
-                document.getElementById('sidebar-start').textContent = tour.start_location || '';
-                document.getElementById('sidebar-end').textContent = tour.end_location || '';
-                document.getElementById('sidebar-meals').textContent = tour.meals_summary || '';
+                // Accommodation re-added
                 document.getElementById('sidebar-accommodation').textContent = tour.accommodation || '';
-                document.getElementById('sidebar-transport').textContent = tour.transport || '';
-                
+                // Transport icon color is handled by Tailwind class on the element itself in HTML
+
                 const highlightsContainer = document.getElementById('trip-highlights');
                 if (highlightsContainer && tour.trip_highlights) {
                     highlightsContainer.innerHTML = markdownListToHtml(tour.trip_highlights);
