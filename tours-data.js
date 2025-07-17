@@ -18,6 +18,10 @@ async function fetchData(url, filterParams = '', sortParams = '') {
   if (filterParams) params.push(filterParams);
   if (sortParams) params.push(sortParams);
 
+  // --- ADD THIS LINE TO INCLUDE THE LIMIT PARAMETER ---
+  params.push('limit=10000'); // Request a large number of records, or use -1 if NocoDB supports it for no limit
+  // --- END ADDITION ---
+
   if (params.length > 0) {
     fullUrl += `?${params.join('&')}`;
   }
@@ -50,6 +54,11 @@ export async function fetchCombinedToursData() {
     fetchData(NOCODB_API_URL_ITINERARY)
   ]);
 
+    // --- ADD THESE NEW CONSOLE LOGS ---
+    console.log('Raw Tours Data:', tours);
+    console.log('Raw Itinerary Days Data:', itineraryDays);
+    // --- END NEW CONSOLE LOGS ---
+
   if (!tours || tours.length === 0) {
     console.error("No tours were fetched. Check your NocoDB URLs and Token.");
     return [];
@@ -58,6 +67,8 @@ export async function fetchCombinedToursData() {
   const routesMap = new Map(routes.map(route => [route.Id, route]));
   
   const combinedTours = tours.map(tour => {
+    // Add console.log to see the tour being processed
+    console.log(`Processing tour: ${tour.Id} - ${tour.name}`); 
     const tourItinerary = itineraryDays
       .filter(day => {
         // Robustly extract tour_id - handle both direct ID and object format
