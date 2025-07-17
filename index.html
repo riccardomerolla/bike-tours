@@ -211,58 +211,6 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Tour carousel functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('tour-carousel');
-            const prevBtn = document.getElementById('prev-tour');
-            const nextBtn = document.getElementById('next-tour');
-            
-            if (!carousel || !prevBtn || !nextBtn) return;
-            
-            const cards = document.querySelectorAll('#tour-carousel > div');
-            let currentIndex = 0;
-            const totalCards = cards.length;
-            
-            const getVisibleCards = () => {
-                if (window.innerWidth <= 768) return 1;
-                if (window.innerWidth <= 1024) return 2;
-                return 6; // Changed from 3 to 6 here
-            };
-            
-            const updateCarousel = () => {
-                const visibleCards = getVisibleCards();
-                const cardElement = carousel.querySelector('div');
-                if (!cardElement) return;
-                
-                const cardWidth = cardElement.offsetWidth;
-                const gap = 32; // 8 * 4 = 32px for lg:gap-8
-                const translateX = -currentIndex * (cardWidth + gap);
-                
-                carousel.style.transform = `translateX(${translateX}px)`;
-                
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex >= totalCards - visibleCards;
-            };
-            
-            nextBtn.addEventListener('click', () => {
-                const visibleCards = getVisibleCards();
-                if (currentIndex < totalCards - visibleCards) {
-                    currentIndex++;
-                    updateCarousel();
-                }
-            });
-            
-            prevBtn.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateCarousel();
-                }
-            });
-            
-            window.addEventListener('resize', updateCarousel);
-            updateCarousel();
-        });
-
         // AI Tour Suggestion
         const generateSuggestionBtn = document.getElementById("generate-suggestion-btn");
         const tourDescriptionInput = document.getElementById("tour-description");
