@@ -67,6 +67,7 @@
         </div>
     </section>
 
+
     <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
@@ -148,7 +149,7 @@
                                 <span id="sidebar-transport" class="text-base-content-subtle font-light text-accent"></span>
                             </div>
                         </div>
-                        <button onclick="showTourCalendarModal(currentTourData)" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
+                        <button onclick="showTourCalendarModal(currentTourData)" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-all duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
                             Show Tour Calendar
                         </button>
                     </div>
@@ -162,13 +163,12 @@
     <div id="footer-placeholder"></div>
 
     <div id="tour-calendar-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white rounded-lg p-6 lg:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+        <div class="bg-white rounded-lg p-6 lg:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
             <button onclick="showTourCalendarModal()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-semibold">X</button>
             <h3 class="text-2xl font-light text-primary mb-4" id="modal-tour-title">Tour Departures</h3>
             <p class="text-base-content-subtle mb-6" id="modal-tour-duration"></p>
 
-            <div id="modal-departure-list" class="space-y-4">
-                </div>
+            <tour-calendar-modal-content id="tour-calendar-content"></tour-calendar-modal-content>
         </div>
     </div>
 
@@ -179,16 +179,18 @@
     <script type="module" src="tour-itinerary.js"></script>
     <script type="module" src="tours-data.js"></script>
     <script type="module" src="similar-tours-section.js"></script>
+    <script type="module" src="tour-calendar-modal-content.js"></script>    <script>
+        // Declare these variables in global scope so they're accessible from onclick handlers
+        let currentTourData = null;
+        let nextAvailableTourData = null; // Store next available tour data for sticky header
+    </script>
 
     <script type="module">
         import { fetchCombinedToursData } from './tours-data.js';
 
-        // Variable to store tour data for modal, declared in module scope
-        let currentTourData = null; 
-        let nextAvailableTourData = null; // Store next available tour data for sticky header
-
-        // Reference to the main site header (outside DOMContentLoaded to be globally accessible)
+        // Reference to the main site header and info row section
         let mainSiteHeader;
+        let infoRowSection; 
         let originalHeaderContent = ''; // To store original content of the header
 
         function markdownListToHtml(text) {
@@ -223,80 +225,38 @@
             modal.classList.toggle('hidden');
             if (!modal.classList.contains('hidden')) {
                 document.body.style.overflow = 'hidden'; // Prevent scrolling background
-                populateTourCalendarModal(tourData);
+                // Pass data to the custom element inside the modal
+                const tourCalendarContent = document.getElementById('tour-calendar-content');
+                if (tourCalendarContent) {
+                    tourCalendarContent.referenceTourName = tourData.name; // Pass name to component
+                    tourCalendarContent.currentTourId = tourData.Id; // Pass current ID
+                }
+                // Also set general modal title/duration
+                document.getElementById('modal-tour-title').textContent = `${tourData.name} Departures`;
+                document.getElementById('modal-tour-duration').textContent = calculateDuration(tourData.start_date, tourData.end_date);
             } else {
                 document.body.style.overflow = ''; // Restore scrolling
             }
         }
-
-        // Function to populate the modal content - Now accepts tourData
-        async function populateTourCalendarModal(tourData) {
-            if (!tourData) {
-                console.error("Tour data not provided for modal.");
-                return;
-            }
-
-            const modalTitle = document.getElementById('modal-tour-title');
-            const modalDuration = document.getElementById('modal-tour-duration');
-            const modalDepartureList = document.getElementById('modal-departure-list');
-
-            modalTitle.textContent = `${tourData.name} Departures`;
-            modalDuration.textContent = calculateDuration(tourData.start_date, tourData.end_date);
-
-            const allToursInModal = await fetchCombinedToursData(); 
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            const relevantDepartures = allToursInModal.filter(t => 
-                t.name === tourData.name && 
-                new Date(t.start_date) >= today &&
-                !t.sold_out 
-            ).sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-
-            modalDepartureList.innerHTML = ''; 
-
-            if (relevantDepartures.length === 0) {
-                modalDepartureList.innerHTML = '<p class="text-base-content-subtle">No upcoming departures available for this tour.</p>';
-                return;
-            }
-
-            relevantDepartures.forEach(departure => {
-                const formattedDateRange = formatDateRange(departure.start_date, departure.end_date);
-                const bookingPrice = '€100'; 
-
-                const departureHtml = `
-                    <div class="border border-base-background-secondary p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-                        <div class="text-center sm:text-left">
-                            <p class="font-semibold text-primary">${formattedDateRange}</p>
-                            ${departure.eta_group ? `<p class="text-sm text-base-content-subtle">${departure.eta_group}</p>` : ''}
-                            ${departure.label && !departure.sold_out ? `<span class="bg-accent text-black text-xs font-medium px-2 py-1 uppercase tracking-wider">${departure.label}</span>` : ''}
-                        </div>
-                        <button class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 rounded uppercase text-sm">Book with ${bookingPrice}</button>
-                    </div>
-                `;
-                modalDepartureList.insertAdjacentHTML('beforeend', departureHtml);
-            });
-        }
+        // Expose function to global scope for inline onclick attributes
+        window.showTourCalendarModal = showTourCalendarModal; 
 
 
         // Sticky Header Logic: Now transforms the main site header
-        let infoRowSection; // The section that triggers the sticky header
-        // mainSiteHeader is already declared globally
+        // Variables infoRowSection, mainSiteHeader, originalHeaderContent already declared globally
 
         function updateStickyHeader() {
             if (!infoRowSection || !mainSiteHeader || !currentTourData || !nextAvailableTourData) return;
 
             const infoRowRect = infoRowSection.getBoundingClientRect();
-            const mainHeaderRect = mainSiteHeader.getBoundingClientRect(); // Get rect of the main header itself
+            const mainHeaderHeight = mainSiteHeader.offsetHeight; 
 
-            // Check if the infoRowSection has scrolled completely out of view (past the bottom of the main header)
-            if (infoRowRect.bottom <= mainHeaderRect.height) {
+            // Check if the infoRowSection has scrolled completely out of view (past the top of the main header)
+            if (infoRowRect.top <= mainHeaderHeight) { 
                 // If not already in sticky state
                 if (mainSiteHeader.dataset.stickyState !== 'active') {
                     // Store original header content if not already stored
-                    if (!originalHeaderContent) {
-                        originalHeaderContent = mainSiteHeader.innerHTML;
-                    }
+                    // This is done once in DOMContentLoaded now
                     
                     // Update header content to sticky version
                     mainSiteHeader.innerHTML = `
@@ -305,7 +265,7 @@
                                 <span class="text-primary font-medium text-lg truncate">${currentTourData.name}</span>
                                 <span class="text-base-content-subtle text-sm hidden md:inline">${calculateDuration(currentTourData.start_date, currentTourData.end_date)}</span>
                                 <span class="text-base-content-subtle text-sm hidden md:inline">|</span>
-                                <span class="text-accent font-medium text-base">Next Tour: ${new Date(nextAvailableTourData.start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                                <span class="text-accent font-medium text-base">Next: ${new Date(nextAvailableTourData.start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
                             </div>
                             <div class="flex items-center space-x-4">
                                 <span class="text-sm lg:text-base font-light text-gray-900">From</span>
@@ -333,7 +293,7 @@
             const tourId = parseInt(urlParams.get('id'), 10);
 
             infoRowSection = document.getElementById('info-row-section');
-            mainSiteHeader = document.getElementById('main-site-header'); // Get reference to the main header
+            mainSiteHeader = document.getElementById('main-site-header'); 
 
             // Store original header content immediately on DOMContentLoaded
             originalHeaderContent = mainSiteHeader.innerHTML;
