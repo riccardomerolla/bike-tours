@@ -10,7 +10,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-white text-primary">
-    <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
+    <!-- Global variable declarations and functions for inline onclick access -->
+    <script>
+        let currentTourData = null; 
+        let nextAvailableTourData = null;
+
+        // Moved toggleAccordion to global scope
+        function toggleAccordion(headerElement) {
+            const accordionContent = headerElement.nextElementSibling;
+            if (accordionContent.classList.contains('hidden')) {
+                accordionContent.classList.remove('hidden');
+                accordionContent.style.maxHeight = '9999px'; 
+
+                const gpxChartElement = accordionContent.querySelector('gpx-elevation-chart');
+                if (gpxChartElement && typeof gpxChartElement.redraw === 'function') {
+                    setTimeout(() => gpxChartElement.redraw(), 300); 
+                }
+
+            } else {
+                accordionContent.style.maxHeight = "0";
+                setTimeout(() => {
+                    accordionContent.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+
+    <header id="main-site-header" class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 lg:h-20">
                 <a href="index.html" class="flex items-center h-12"><img src="img/logo.png" alt="BikeTours.cc" class="h-6 w-auto object-contain"></a>
@@ -43,8 +69,32 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
             <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide"></h1>
             <div id="hero-subtitle" class="flex flex-col md:flex-row md:items-center md:gap-8 text-white text-lg font-light"></div>
+            <!-- Placeholder for multiple images / gallery -->
+            <div class="absolute bottom-6 right-6 z-20">
+                <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See other 10 photos</button>
+            </div>
         </div>
     </section>
+
+    <!-- New Info Row After Hero Image -->
+    <section id="info-row-section" class="bg-white py-8 border-b border-base-background-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0 text-primary">
+                <p class="text-xl font-light" id="info-row-start-location"></p>
+                <p class="text-base-content-subtle text-sm" id="info-row-duration"></p>
+            </div>
+            <div class="text-center md:text-right">
+                <span class="text-sm lg:text-base font-light text-gray-900">From</span>
+                <span id="info-row-old-price" class="text-lg lg:text-xl font-light text-gray-900 line-through mr-2"></span>
+                <span id="info-row-discount-label" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2"></span>
+                <span id="info-row-price" class="text-3xl lg:text-4xl font-light text-accent tracking-wide"></span>
+            </div>
+            <button onclick="showTourCalendarModal(currentTourData)" class="mt-6 md:mt-0 bg-accent hover:bg-accent-dark text-black font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">
+                Show Departure Calendar
+            </button>
+        </div>
+    </section>
+
 
     <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,6 +140,7 @@
 
                 <div class="lg:col-span-1">
                     <div class="border border-base-background-secondary bg-white p-8 sticky top-32 rounded">
+                        <!-- Redesigned Top Section -->
                         <div class="text-center mb-6">
                             <p id="sidebar-start-top" class="text-3xl lg:text-4xl font-light text-primary mb-2 tracking-wide"></p>
                             <p id="sidebar-duration-top" class="text-lg lg:text-xl font-light text-base-content-subtle"></p>
@@ -102,6 +153,7 @@
                         </div>
                         
                         <div class="space-y-6 mb-8">
+                            <!-- Next Departure and other existing fields below -->
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🗓️ Next Departure:</strong>
                                 <span id="sidebar-next-departure" class="text-base-content-subtle font-light"></span>
@@ -118,27 +170,44 @@
                                 <strong class="text-primary font-normal">💪 Physical Rating:</strong>
                                 <span id="sidebar-rating" class="text-base-content-subtle font-light"></span>
                             </div>
+                            <!-- Accommodation re-added -->
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🏨 Accommodation:</strong>
                                 <span id="sidebar-accommodation" class="text-base-content-subtle font-light"></span>
                             </div>
                              <div class="flex justify-between items-center py-4">
-                                <strong class="text-primary font-normal">🚌 Transport:</strong>
+                                <strong class="text-primary font-normal">🚐 Transport:</strong>
                                 <span id="sidebar-transport" class="text-base-content-subtle font-light text-accent"></span>
                             </div>
                         </div>
-                        <a href="#" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
-                            Book This Tour
-                        </a>
+                        <button onclick="showTourCalendarModal(currentTourData)" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
+                            Show Tour Calendar
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Similar Tours Section Added -->
     <similar-tours-section id="similar-tours-section"></similar-tours-section>
 
+    <!-- Footer -->
     <div id="footer-placeholder"></div>
+
+    <!-- Tour Calendar Modal Structure -->
+    <div id="tour-calendar-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <!-- MODAL WIDTH ADJUSTED HERE from max-w-2xl to max-w-6xl -->
+        <div class="bg-white rounded-lg p-6 lg:p-8 max-w-6xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button onclick="showTourCalendarModal()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-semibold">X</button>
+            <h3 class="text-2xl font-light text-primary mb-4" id="modal-tour-title">Tour Departures</h3>
+            <p class="text-base-content-subtle mb-6" id="modal-tour-duration"></p>
+
+            <!-- Custom element will load content here -->
+            <tour-calendar-modal-content id="tour-calendar-content"></tour-calendar-modal-content>
+        </div>
+    </div>
+
 
     <script src="main.js"></script>
 
@@ -146,73 +215,15 @@
     <script type="module" src="tour-itinerary.js"></script>
     <script type="module" src="tours-data.js"></script>
     <script type="module" src="similar-tours-section.js"></script>
-
-    <script>
-        // --- SCRIPT BLOCK ---
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Accordion Toggle Functionality (for Itinerary)
-        function toggleAccordion(headerElement) {
-            const accordionContent = headerElement.nextElementSibling;
-            if (accordionContent.classList.contains('hidden')) {
-                accordionContent.classList.remove('hidden');
-                accordionContent.style.maxHeight = '9999px'; 
-
-                const gpxChartElement = accordionContent.querySelector('gpx-elevation-chart');
-                if (gpxChartElement && typeof gpxChartElement.redraw === 'function') {
-                    setTimeout(() => gpxChartElement.redraw(), 300); 
-                }
-
-            } else {
-                accordionContent.style.maxHeight = "0";
-                setTimeout(() => {
-                    accordionContent.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        // Luxury Accordion Toggle
-        const luxuryAccordionToggle = document.getElementById('luxury-accordion-toggle');
-        const luxuryContent = document.getElementById('luxury-accordion-content');
-        const topContainer = document.getElementById('luxury-toggle-container-top');
-        const bottomContainer = document.getElementById('luxury-toggle-container-bottom');
-
-        if (luxuryAccordionToggle && luxuryContent && topContainer && bottomContainer) {
-            luxuryAccordionToggle.addEventListener('click', () => {
-                const text = luxuryAccordionToggle.querySelector('.toggle-text');
-                const arrow = luxuryAccordionToggle.querySelector('.toggle-arrow');
-                
-                const isCurrentlyHidden = luxuryContent.classList.contains('hidden');
-                
-                if (isCurrentlyHidden) {
-                    // Content is hidden, so EXPAND it.
-                    luxuryContent.classList.remove('hidden');
-                    // Move button to the bottom container.
-                    bottomContainer.appendChild(luxuryAccordionToggle);
-                    // Update text to "Less Details".
-                    text.textContent = 'Less Details';
-                    arrow.textContent = '↑';
-                } else {
-                    // Content is visible, so COLLAPSE it.
-                    luxuryContent.classList.add('hidden');
-                    // Move button back to the top container.
-                    topContainer.appendChild(luxuryAccordionToggle);
-                    // Update text to "More Details".
-                    text.textContent = 'More Details';
-                    arrow.textContent = '↓';
-                }
-            });
-        }
-    </script>
+    <script type="module" src="tour-calendar-modal-content.js"></script> <!-- New component import -->
 
     <script type="module">
         import { fetchCombinedToursData } from './tours-data.js';
+
+        // Reference to the main site header and info row section
+        let mainSiteHeader;
+        let infoRowSection; 
+        let originalHeaderContent = ''; // To store original content of the header
 
         function markdownListToHtml(text) {
             if (!text) return '';
@@ -240,9 +251,85 @@
             return parseFloat(priceStr.replace(/[^0-9.,]/g, '').replace(',', '.'));
         }
 
+        // Tour Calendar Modal Toggle Function - Now accepts tourData
+        function showTourCalendarModal(tourData) {
+            const modal = document.getElementById('tour-calendar-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+                // Pass data to the custom element inside the modal
+                const tourCalendarContent = document.getElementById('tour-calendar-content');
+                if (tourCalendarContent) {
+                    tourCalendarContent.referenceTourName = tourData.name; // Pass name to component
+                    tourCalendarContent.currentTourId = tourData.Id; // Pass current ID
+                }
+                // Also set general modal title/duration
+                document.getElementById('modal-tour-title').textContent = `${tourData.name} Departures`;
+                document.getElementById('modal-tour-duration').textContent = calculateDuration(tourData.start_date, tourData.end_date);
+            } else {
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+        // Expose functions to global scope for inline onclick attributes
+        window.showTourCalendarModal = showTourCalendarModal; 
+        // window.toggleAccordion = toggleAccordion; // This line is no longer needed here as toggleAccordion is global now
+
+
+        // Sticky Header Logic: Now transforms the main site header
+        // Variables infoRowSection, mainSiteHeader, originalHeaderContent already declared globally
+
+        function updateStickyHeader() {
+            if (!infoRowSection || !mainSiteHeader || !window.currentTourData || !window.nextAvailableTourData) return; // Use window.currentTourData
+
+            const infoRowRect = infoRowSection.getBoundingClientRect();
+            const mainHeaderHeight = mainSiteHeader.offsetHeight; 
+
+            // Check if the infoRowSection has scrolled completely out of view (past the top of the main header)
+            if (infoRowRect.top <= mainHeaderHeight) { 
+                // If not already in sticky state
+                if (mainSiteHeader.dataset.stickyState !== 'active') {
+                    // Store original header content if not already stored
+                    // This is done once in DOMContentLoaded now
+                    
+                    // Update header content to sticky version
+                    mainSiteHeader.innerHTML = `
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                            <div class="flex-grow flex items-center space-x-4">
+                                <span class="text-primary font-medium text-lg truncate">${window.currentTourData.name}</span>
+                                <span class="text-base-content-subtle text-sm hidden md:inline">${calculateDuration(window.currentTourData.start_date, window.currentTourData.end_date)}</span>
+                                <span class="text-base-content-subtle text-sm hidden md:inline">|</span>
+                                <span class="text-accent font-medium text-base">Next: ${new Date(window.nextAvailableTourData.start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm lg:text-base font-light text-gray-900">From</span>
+                                <span class="text-xl lg:text-2xl font-light text-accent tracking-wide">${window.currentTourData.price || ''}</span>
+                                <button onclick="showTourCalendarModal(window.currentTourData)" class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 transition-colors duration-300 uppercase tracking-wider text-sm rounded">
+                                    Show Calendar
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    mainSiteHeader.dataset.stickyState = 'active'; // Set a custom data attribute to track state
+                }
+            } else {
+                // If currently in sticky state and scrolled back up
+                if (mainSiteHeader.dataset.stickyState === 'active') {
+                    mainSiteHeader.innerHTML = originalHeaderContent; // Restore original content
+                    delete mainSiteHeader.dataset.stickyState; // Remove sticky state
+                }
+            }
+        }
+
+
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const tourId = parseInt(urlParams.get('id'), 10);
+
+            infoRowSection = document.getElementById('info-row-section');
+            mainSiteHeader = document.getElementById('main-site-header'); 
+
+            // Store original header content immediately on DOMContentLoaded
+            originalHeaderContent = mainSiteHeader.innerHTML;
 
             if (!tourId) {
                 document.getElementById('hero-title').textContent = "Tour not found";
@@ -250,9 +337,14 @@
             }
 
             const allTours = await fetchCombinedToursData();
+            console.log('All Tours fetched by tour-detail:', allTours); 
+            
             const tour = allTours.find(t => t.Id === tourId);
+            console.log('Current Tour Object for Tour Detail Page:', tour); 
 
             if (tour) {
+                window.currentTourData = tour; // Assign to global variable
+
                 document.title = `Tour Details - ${tour.name}`;
                 document.getElementById('hero-title').textContent = tour.name;
                 document.getElementById('hero-image').src = tour.image || '';
@@ -262,19 +354,38 @@
                     <span>${tour.description || ''}</span>
                 `;
 
-                // Set content for the new top sidebar section
-                document.getElementById('sidebar-start-top').textContent = tour.start_location || 'N/A';
-                document.getElementById('sidebar-duration-top').textContent = calculateDuration(tour.start_date, tour.end_date);
+                // Set content for the new top info row
+                document.getElementById('info-row-start-location').textContent = tour.start_location || 'N/A';
+                document.getElementById('info-row-duration').textContent = calculateDuration(tour.start_date, tour.end_date);
                 
                 const currentPrice = parsePriceToNumber(tour.price);
                 const oldPrice = parsePriceToNumber(tour.old_price);
 
                 if (tour.price) {
+                    document.getElementById('info-row-price').textContent = tour.price;
+                } else {
+                     document.getElementById('info-row-price').textContent = '';
+                }
+
+                if (oldPrice && currentPrice && oldPrice > currentPrice) {
+                    document.getElementById('info-row-old-price').textContent = tour.old_price;
+                    const discountPercentage = ((oldPrice - currentPrice) / oldPrice) * 100;
+                    document.getElementById('info-row-discount-label').textContent = `Save ${Math.round(discountPercentage)}%`;
+                } else {
+                    document.getElementById('info-row-old-price').textContent = '';
+                    document.getElementById('info-row-discount-label').textContent = '';
+                }
+
+
+                // Set content for the sidebar
+                document.getElementById('sidebar-start-top').textContent = tour.start_location || 'N/A';
+                document.getElementById('sidebar-duration-top').textContent = calculateDuration(tour.start_date, tour.end_date);
+                
+                if (tour.price) {
                     document.getElementById('sidebar-price').textContent = tour.price;
                 } else {
                      document.getElementById('sidebar-price').textContent = '';
                 }
-
 
                 if (oldPrice && currentPrice && oldPrice > currentPrice) {
                     document.getElementById('sidebar-old-price').textContent = tour.old_price;
@@ -314,15 +425,15 @@
                 const today = new Date();
                 today.setHours(0, 0, 0, 0); // Normalize to start of day for comparison
                 
-                const nextAvailableTour = allTours.filter(t => 
+                window.nextAvailableTourData = allTours.filter(t => // Assign to global variable
                     t.name === tour.name && 
-                    new Date(t.start_date) >= today // Check from today onwards
-                ).sort((a, b) => new Date(a.start_date) - new Date(b.start_date))[0]; // Get the earliest one
+                    new Date(t.start_date) >= today 
+                ).sort((a, b) => new Date(a.start_date) - new Date(b.start_date))[0]; 
 
                 const nextDepartureElement = document.getElementById('sidebar-next-departure');
                 if (nextDepartureElement) {
-                    if (nextAvailableTour) {
-                        const nextStartDate = new Date(nextAvailableTour.start_date);
+                    if (window.nextAvailableTourData) { // Use global variable
+                        const nextStartDate = new Date(window.nextAvailableTourData.start_date);
                         const options = { year: 'numeric', month: 'long', day: 'numeric' };
                         nextDepartureElement.textContent = nextStartDate.toLocaleDateString('en-US', options);
                     } else {
@@ -337,6 +448,11 @@
                     similarToursSection.referenceTourName = tour.name;
                     similarToursSection.currentTourId = tour.Id;
                 }
+
+                // Initialize sticky header listener after data is loaded
+                window.addEventListener('scroll', updateStickyHeader);
+                window.addEventListener('resize', updateStickyHeader); 
+                updateStickyHeader(); // Call once to set initial state
 
             } else {
                 document.getElementById('hero-title').textContent = "Tour not found";
