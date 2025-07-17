@@ -196,6 +196,8 @@
         </div>
     </div>
 
+    <tour-image-gallery-modal id="tour-gallery-modal"></tour-image-gallery-modal>
+
 
     <script src="main.js"></script>
 
@@ -203,7 +205,9 @@
     <script type="module" src="tour-itinerary.js"></script>
     <script type="module" src="tours-data.js"></script>
     <script type="module" src="similar-tours-section.js"></script>
-    <script type="module" src="tour-calendar-modal-content.js"></script> <script type="module">
+    <script type="module" src="tour-calendar-modal-content.js"></script>
+    <script type="module" src="tour-image-gallery-modal.js"></script>
+    <script type="module">
         import { fetchCombinedToursData } from './tours-data.js';
 
         // Reference to the main site header and info row section
@@ -276,7 +280,6 @@
         }
         // Expose functions to global scope for inline onclick attributes
         window.showTourCalendarModal = showTourCalendarModal; 
-        // window.toggleAccordion = toggleAccordion; // This line is no longer needed here as toggleAccordion is global now
 
 
         // Sticky Header Logic: Now transforms the main site header
@@ -293,7 +296,6 @@
                 // If not already in sticky state
                 if (mainSiteHeader.dataset.stickyState !== 'active') {
                     // Store original header content if not already stored
-                    // This is done once in DOMContentLoaded now
                     
                     // Update header content to sticky version
                     mainSiteHeader.innerHTML = `
@@ -352,50 +354,82 @@
                 document.title = `Tour Details - ${tour.name}`;
                 document.getElementById('hero-title').textContent = tour.name;
                 const heroImageContainer = document.getElementById('hero-image-container');
-            const galleryButtonContainer = document.getElementById('gallery-button-container');
+                const galleryButtonContainer = document.getElementById('gallery-button-container');
 
-            let galleryImages = [];
-            try {
-                // Safely parse gallery_images, ensuring it's an array and not null/empty
-                if (tour.gallery_images && typeof tour.gallery_images === 'string') {
-                    const parsed = JSON.parse(tour.gallery_images);
-                    if (Array.isArray(parsed)) {
-                        galleryImages = parsed;
+                let galleryImages = [];
+                try {
+                    // Safely parse gallery_images, ensuring it's an array and not null/empty
+                    if (tour.gallery_images && typeof tour.gallery_images === 'string') {
+                        const parsed = JSON.parse(tour.gallery_images);
+                        if (Array.isArray(parsed)) {
+                            galleryImages = parsed;
+                        }
+                    } else if (Array.isArray(tour.gallery_images)) {
+                        // If it's already an array (e.g., from NocoDB's internal handling)
+                        galleryImages = tour.gallery_images;
                     }
-                } else if (Array.isArray(tour.gallery_images)) {
-                    // If it's already an array (e.g., from NocoDB's internal handling)
-                    galleryImages = tour.gallery_images;
+                } catch (e) {
+                    console.error("Error parsing gallery_images:", e);
+                    galleryImages = []; // Fallback to empty array if parsing fails
                 }
-            } catch (e) {
-                console.error("Error parsing gallery_images:", e);
-                galleryImages = []; // Fallback to empty array if parsing fails
-            }
 
-            // If gallery_images is empty or doesn't have enough images for the mosaic, show only the main image.
-            if (!galleryImages || galleryImages.length < 3) { // Need at least 3 for the smaller grid
-                heroImageContainer.innerHTML = `
-                    <img id="hero-image" src="${tour.image || ''}" class="w-full h-full object-cover" alt="Tour hero image">
-                `;
-                // Optionally re-add a simple "See other photos" button if you want one even for single image
-                galleryButtonContainer.innerHTML = `
-                    <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See other photos</button>
-                `;
-            } else {
-                // Construct the mosaic layout
-                heroImageContainer.innerHTML = `
-                    <div class="grid grid-cols-3 grid-rows-2 h-full gap-2 md:gap-3">
-                        <img src="${tour.image || ''}" alt="Main tour image" class="col-span-2 row-span-2 w-full h-full object-cover rounded-md">
-                        <img src="${galleryImages[0] || ''}" alt="Gallery image 1" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
-                        <img src="${galleryImages[1] || ''}" alt="Gallery image 2" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
-                    </div>
-                `;
-                // Add a button that might open a full gallery modal (optional, beyond current scope)
-                galleryButtonContainer.innerHTML = `
-                    <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See all ${galleryImages.length + 1} photos</button>
-                `;
-            }
+                // --- Original mosaic/single image layout logic restored ---
+                if (!galleryImages || galleryImages.length < 3) { // Need at least 3 for the smaller grid
+                    heroImageContainer.innerHTML = `
+                        <img id="hero-image" src="${tour.image || ''}" class="w-full h-full object-cover" alt="Tour hero image">
+                    `;
+                } else {
+                    // Construct the mosaic layout
+                    heroImageContainer.innerHTML = `
+                        <div class="grid grid-cols-3 grid-rows-2 h-full gap-2 md:gap-3">
+                            <img src="${tour.image || ''}" alt="Main tour image" class="col-span-2 row-span-2 w-full h-full object-cover rounded-md">
+                            <img src="${galleryImages[0] || ''}" alt="Gallery image 1" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
+                            <img src="${galleryImages[1] || ''}" alt="Gallery image 2" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
+                        </div>
+                    `;
+                }
+                // --- End of original layout logic ---
 
-                // Existing code continues below for hero-title, hero-subtitle etc.
+
+                // Always add a button to open the full gallery modal
+                const totalImagesCount = (tour.image ? 1 : 0) + galleryImages.length;
+                galleryButtonContainer.innerHTML = `
+                    <button id="open-gallery-btn" class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">
+                        See all ${totalImagesCount} photos
+                    </button>
+                `;
+
+                // Get reference to the modal and set up click listener for the new button
+                const tourGalleryModal = document.getElementById('tour-gallery-modal');
+                const openGalleryBtn = document.getElementById('open-gallery-btn');
+                if (openGalleryBtn && tourGalleryModal) {
+                    openGalleryBtn.addEventListener('click', () => {
+                        tourGalleryModal.tourId = tour.Id;
+                        tourGalleryModal.allToursData = allTours; // Pass the entire dataset
+                        tourGalleryModal.isOpen = true;
+                        console.log('Open Gallery Button clicked. tourGalleryModal.isOpen:', tourGalleryModal.isOpen);
+                        console.log('tourGalleryModal.tourId:', tourGalleryModal.tourId);
+                        console.log('tourGalleryModal.allToursData assigned.');
+                    });
+                }
+
+                // --- Add event listener to heroImageContainer to open gallery modal on image click ---
+                if (heroImageContainer && tourGalleryModal) {
+                    heroImageContainer.addEventListener('click', (event) => {
+                        // Check if the click was directly on an image within the container
+                        if (event.target.tagName === 'IMG') {
+                            tourGalleryModal.tourId = tour.Id;
+                            tourGalleryModal.allToursData = allTours; // Pass the entire dataset
+                            tourGalleryModal.isOpen = true;
+                            console.log('Hero Image clicked. tourGalleryModal.isOpen:', tourGalleryModal.isOpen);
+                            console.log('tourGalleryModal.tourId:', tourGalleryModal.tourId);
+                            console.log('tourGalleryModal.allToursData assigned.');
+                        }
+                    });
+                }
+                // --- End of new image click listener ---
+
+
                 document.getElementById('hero-title').textContent = tour.name;
                 document.getElementById('hero-subtitle').innerHTML = `
                     <span>${calculateDuration(tour.start_date, tour.end_date)}</span>
@@ -448,6 +482,7 @@
                 document.getElementById('sidebar-distance').textContent = tour.total_distance_km ? `${tour.total_distance_km} km` : '';
                 document.getElementById('sidebar-group-size').textContent = tour.group_size_max ? `Max ${tour.group_size_max}` : '';
                 document.getElementById('sidebar-rating').textContent = tour.physical_rating || '';
+                document.getElementById('sidebar-transport').textContent = tour.transport || '';
                 // Accommodation re-added
                 document.getElementById('sidebar-accommodation').textContent = tour.accommodation || '';
                 // Transport icon color is handled by Tailwind class on the element itself in HTML
