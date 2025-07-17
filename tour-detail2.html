@@ -10,6 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-white text-primary">
+    <!-- Global variable declarations and functions for inline onclick access -->
+    <script>
+        let currentTourData = null; 
+        let nextAvailableTourData = null;
+
+        // Moved toggleAccordion to global scope
+        function toggleAccordion(headerElement) {
+            const accordionContent = headerElement.nextElementSibling;
+            if (accordionContent.classList.contains('hidden')) {
+                accordionContent.classList.remove('hidden');
+                accordionContent.style.maxHeight = '9999px'; 
+
+                const gpxChartElement = accordionContent.querySelector('gpx-elevation-chart');
+                if (gpxChartElement && typeof gpxChartElement.redraw === 'function') {
+                    setTimeout(() => gpxChartElement.redraw(), 300); 
+                }
+
+            } else {
+                accordionContent.style.maxHeight = "0";
+                setTimeout(() => {
+                    accordionContent.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+
     <header id="main-site-header" class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 lg:h-20">
@@ -43,12 +69,14 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
             <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide"></h1>
             <div id="hero-subtitle" class="flex flex-col md:flex-row md:items-center md:gap-8 text-white text-lg font-light"></div>
+            <!-- Placeholder for multiple images / gallery -->
             <div class="absolute bottom-6 right-6 z-20">
                 <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See other 10 photos</button>
             </div>
         </div>
     </section>
 
+    <!-- New Info Row After Hero Image -->
     <section id="info-row-section" class="bg-white py-8 border-b border-base-background-secondary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <div class="mb-4 md:mb-0 text-primary">
@@ -112,6 +140,7 @@
 
                 <div class="lg:col-span-1">
                     <div class="border border-base-background-secondary bg-white p-8 sticky top-32 rounded">
+                        <!-- Redesigned Top Section -->
                         <div class="text-center mb-6">
                             <p id="sidebar-start-top" class="text-3xl lg:text-4xl font-light text-primary mb-2 tracking-wide"></p>
                             <p id="sidebar-duration-top" class="text-lg lg:text-xl font-light text-base-content-subtle"></p>
@@ -124,6 +153,7 @@
                         </div>
                         
                         <div class="space-y-6 mb-8">
+                            <!-- Next Departure and other existing fields below -->
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🗓️ Next Departure:</strong>
                                 <span id="sidebar-next-departure" class="text-base-content-subtle font-light"></span>
@@ -140,6 +170,7 @@
                                 <strong class="text-primary font-normal">💪 Physical Rating:</strong>
                                 <span id="sidebar-rating" class="text-base-content-subtle font-light"></span>
                             </div>
+                            <!-- Accommodation re-added -->
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🏨 Accommodation:</strong>
                                 <span id="sidebar-accommodation" class="text-base-content-subtle font-light"></span>
@@ -149,7 +180,7 @@
                                 <span id="sidebar-transport" class="text-base-content-subtle font-light text-accent"></span>
                             </div>
                         </div>
-                        <button onclick="showTourCalendarModal(currentTourData)" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-all duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
+                        <button onclick="showTourCalendarModal(currentTourData)" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-4 px-6 transition-colors duration-300 text-center block mb-4 uppercase tracking-wider text-sm rounded">
                             Show Tour Calendar
                         </button>
                     </div>
@@ -158,16 +189,21 @@
         </div>
     </section>
 
+    <!-- Similar Tours Section Added -->
     <similar-tours-section id="similar-tours-section"></similar-tours-section>
 
+    <!-- Footer -->
     <div id="footer-placeholder"></div>
 
+    <!-- Tour Calendar Modal Structure -->
     <div id="tour-calendar-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white rounded-lg p-6 lg:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
+        <!-- MODAL WIDTH ADJUSTED HERE from max-w-2xl to max-w-6xl -->
+        <div class="bg-white rounded-lg p-6 lg:p-8 max-w-6xl w-full max-h-[90vh] overflow-y-auto relative">
             <button onclick="showTourCalendarModal()" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-semibold">X</button>
             <h3 class="text-2xl font-light text-primary mb-4" id="modal-tour-title">Tour Departures</h3>
             <p class="text-base-content-subtle mb-6" id="modal-tour-duration"></p>
 
+            <!-- Custom element will load content here -->
             <tour-calendar-modal-content id="tour-calendar-content"></tour-calendar-modal-content>
         </div>
     </div>
@@ -179,11 +215,7 @@
     <script type="module" src="tour-itinerary.js"></script>
     <script type="module" src="tours-data.js"></script>
     <script type="module" src="similar-tours-section.js"></script>
-    <script type="module" src="tour-calendar-modal-content.js"></script>    <script>
-        // Declare these variables in global scope so they're accessible from onclick handlers
-        let currentTourData = null;
-        let nextAvailableTourData = null; // Store next available tour data for sticky header
-    </script>
+    <script type="module" src="tour-calendar-modal-content.js"></script> <!-- New component import -->
 
     <script type="module">
         import { fetchCombinedToursData } from './tours-data.js';
@@ -238,15 +270,16 @@
                 document.body.style.overflow = ''; // Restore scrolling
             }
         }
-        // Expose function to global scope for inline onclick attributes
+        // Expose functions to global scope for inline onclick attributes
         window.showTourCalendarModal = showTourCalendarModal; 
+        // window.toggleAccordion = toggleAccordion; // This line is no longer needed here as toggleAccordion is global now
 
 
         // Sticky Header Logic: Now transforms the main site header
         // Variables infoRowSection, mainSiteHeader, originalHeaderContent already declared globally
 
         function updateStickyHeader() {
-            if (!infoRowSection || !mainSiteHeader || !currentTourData || !nextAvailableTourData) return;
+            if (!infoRowSection || !mainSiteHeader || !window.currentTourData || !window.nextAvailableTourData) return; // Use window.currentTourData
 
             const infoRowRect = infoRowSection.getBoundingClientRect();
             const mainHeaderHeight = mainSiteHeader.offsetHeight; 
@@ -262,15 +295,15 @@
                     mainSiteHeader.innerHTML = `
                         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                             <div class="flex-grow flex items-center space-x-4">
-                                <span class="text-primary font-medium text-lg truncate">${currentTourData.name}</span>
-                                <span class="text-base-content-subtle text-sm hidden md:inline">${calculateDuration(currentTourData.start_date, currentTourData.end_date)}</span>
+                                <span class="text-primary font-medium text-lg truncate">${window.currentTourData.name}</span>
+                                <span class="text-base-content-subtle text-sm hidden md:inline">${calculateDuration(window.currentTourData.start_date, window.currentTourData.end_date)}</span>
                                 <span class="text-base-content-subtle text-sm hidden md:inline">|</span>
-                                <span class="text-accent font-medium text-base">Next: ${new Date(nextAvailableTourData.start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                                <span class="text-accent font-medium text-base">Next: ${new Date(window.nextAvailableTourData.start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
                             </div>
                             <div class="flex items-center space-x-4">
                                 <span class="text-sm lg:text-base font-light text-gray-900">From</span>
-                                <span class="text-xl lg:text-2xl font-light text-accent tracking-wide">${currentTourData.price || ''}</span>
-                                <button onclick="showTourCalendarModal(currentTourData)" class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 transition-colors duration-300 uppercase tracking-wider text-sm rounded">
+                                <span class="text-xl lg:text-2xl font-light text-accent tracking-wide">${window.currentTourData.price || ''}</span>
+                                <button onclick="showTourCalendarModal(window.currentTourData)" class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 transition-colors duration-300 uppercase tracking-wider text-sm rounded">
                                     Show Calendar
                                 </button>
                             </div>
@@ -310,7 +343,7 @@
             console.log('Current Tour Object for Tour Detail Page:', tour); 
 
             if (tour) {
-                currentTourData = tour; 
+                window.currentTourData = tour; // Assign to global variable
 
                 document.title = `Tour Details - ${tour.name}`;
                 document.getElementById('hero-title').textContent = tour.name;
@@ -392,15 +425,15 @@
                 const today = new Date();
                 today.setHours(0, 0, 0, 0); // Normalize to start of day for comparison
                 
-                nextAvailableTourData = allTours.filter(t => 
+                window.nextAvailableTourData = allTours.filter(t => // Assign to global variable
                     t.name === tour.name && 
                     new Date(t.start_date) >= today 
                 ).sort((a, b) => new Date(a.start_date) - new Date(b.start_date))[0]; 
 
                 const nextDepartureElement = document.getElementById('sidebar-next-departure');
                 if (nextDepartureElement) {
-                    if (nextAvailableTourData) { 
-                        const nextStartDate = new Date(nextAvailableTourData.start_date);
+                    if (window.nextAvailableTourData) { // Use global variable
+                        const nextStartDate = new Date(window.nextAvailableTourData.start_date);
                         const options = { year: 'numeric', month: 'long', day: 'numeric' };
                         nextDepartureElement.textContent = nextStartDate.toLocaleDateString('en-US', options);
                     } else {
