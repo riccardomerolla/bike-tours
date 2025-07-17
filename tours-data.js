@@ -4,25 +4,40 @@ const NOCODB_API_URL_TOURS = 'https://app.nocodb.com/api/v2/tables/mmpfmse8st37z
 const NOCODB_API_URL_ROUTES = 'https://app.nocodb.com/api/v2/tables/mcj0kkzfqpu587s/records';
 const NOCODB_API_URL_ITINERARY = 'https://app.nocodb.com/api/v2/tables/mcpl1o0aaakplnv/records';
 
-// Your NocoDB Token
+// Your NocoDB Token - Corrected to original full value
 const NOCODB_TOKEN = 'azGmScTi6oyPy2t_Luo6h-MxUflLp57n-r0UOD-V';
 
 // Helper function to fetch data from a single NocoDB endpoint
-async function fetchData(url) {
+// Added filterParams and sortParams to allow dynamic filtering and sorting
+async function fetchData(url, filterParams = '', sortParams = '') {
+  let fullUrl = url;
+  const params = [];
+  if (filterParams) params.push(filterParams);
+  if (sortParams) params.push(sortParams);
+
+  if (params.length > 0) {
+    fullUrl += `?${params.join('&')}`;
+  }
+
   try {
-    const res = await fetch(url, {
+    const res = await fetch(fullUrl, {
       headers: {
         'xc-token': NOCODB_TOKEN,
         'Content-Type': 'application/json'
       }
     });
-    if (!res.ok) throw new Error(`NocoDB fetch failed for ${url} with status: ${res.status}`);
+    if (!res.ok) throw new Error(`NocoDB fetch failed for ${fullUrl} with status: ${res.status}`);
     const data = await res.json();
     return data.list || [];
   } catch (e) {
     console.error(`Error fetching data from NocoDB: ${e.message}`);
     return [];
   }
+}
+
+// Modified fetchToursData to accept filter and sort parameters
+export async function fetchToursData(filterParams = '', sortParams = '') {
+    return await fetchData(NOCODB_API_URL_TOURS, filterParams, sortParams);
 }
 
 export async function fetchCombinedToursData() {
@@ -42,13 +57,15 @@ export async function fetchCombinedToursData() {
   const combinedTours = tours.map(tour => {
     const tourItinerary = itineraryDays
       .filter(day => {
-        const tourIdFromDay = (typeof day.tour_id === 'object' && day.tour_id !== null) ? day.tour_id.Id : day.tour_id;
+        // Robustly extract tour_id - handle both direct ID and object format
+        const tourIdFromDay = (day.tour_id && typeof day.tour_id === 'object' && 'Id' in day.tour_id) ? day.tour_id.Id : day.tour_id;
         return tourIdFromDay == tour.Id;
       })
       .map(day => {
-        let routeIdFromDay = (typeof day.route_id === 'object' && day.route_id !== null) ? day.route_id.Id : day.route_id;
+        // Robustly extract route_id - handle both direct ID and object format
+        let routeIdFromDay = (day.route_id && typeof day.route_id === 'object' && 'Id' in day.route_id) ? day.route_id.Id : day.route_id;
         
-        // FINAL FIX: Convert the route ID to a number before lookup.
+        // Ensure route ID is parsed as integer for map lookup
         const routeDetails = routesMap.get(parseInt(routeIdFromDay, 10));
 
         return {
@@ -67,8 +84,4 @@ export async function fetchCombinedToursData() {
   });
 
   return combinedTours;
-}
-
-export async function fetchToursData() {
-    return await fetchData(NOCODB_API_URL_TOURS);
 }

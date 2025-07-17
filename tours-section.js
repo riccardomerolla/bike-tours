@@ -68,7 +68,7 @@ class ToursSection extends LitElement {
   getVisibleCards() {
     if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 1024) return 2;
-    return 3;
+    return 6;
   }
 
   next() {
@@ -84,7 +84,54 @@ class ToursSection extends LitElement {
   }
 
   async fetchTours() {
-    this.tours = await fetchToursData();
+    try {
+      // Get today's date in YYYY-MM-DD format for NocoDB filtering
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+      const day = String(today.getDate()).padStart(2, '0');
+      const todayFormatted = `${year}-${month}-${day}`;
+      console.log('Today formatted:', todayFormatted);
+
+      // Try a simpler approach - fetch all tours first
+      // We'll filter them client-side instead of using complex NocoDB filtering
+      const sortParams = 'sort=start_date';
+      
+      // Fetch all tours and filter them in JavaScript
+      const allTours = await fetchToursData('', sortParams);
+      console.log('All tours fetched:', allTours);
+      
+      if (!allTours || allTours.length === 0) {
+        console.warn('No tours were returned from the API');
+        this.tours = [];
+        this.requestUpdate();
+        return;
+      }
+      
+      // Check data structure of a tour to understand properties
+      console.log('Sample tour structure:', allTours[0]);
+      
+      // Filter the tours client-side - with more flexible comparison
+      this.tours = allTours.filter(tour => {
+        // Check if is_featured exists and convert to string for comparison
+        const isFeatured = String(tour.is_featured).toLowerCase() === 'true';
+        
+        // Parse the date and compare
+        const tourStartDate = new Date(tour.start_date);
+        const isAfterToday = !isNaN(tourStartDate) && tourStartDate > today;
+        
+        console.log(`Tour ${tour.name}: featured=${isFeatured}, start_date=${tour.start_date}, isAfterToday=${isAfterToday}`);
+        
+        return isFeatured && isAfterToday;
+      });
+      
+      console.log('Filtered tours:', this.tours);
+
+      this.requestUpdate();
+      // No need to call updateCarousel() as requestUpdate() triggers render
+    } catch (error) {
+      console.error("Failed to load tours:", error);
+    }
   }
 
   render() {
