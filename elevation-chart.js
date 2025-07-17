@@ -112,7 +112,8 @@ async function renderElevationChart(canvasId, gpxUrl) {
           },
           ticks: {
             maxTicksLimit: 5 // Reduces the number of y-axis labels
-          }
+          },
+          min: 0 // <--- ADD THIS LINE to set the minimum y-axis value to 0
         }
       }
     }
