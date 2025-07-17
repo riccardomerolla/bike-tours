@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-white text-primary">
-    <!-- Global variable declarations and functions for inline onclick access -->
     <script>
         let currentTourData = null; 
         let nextAvailableTourData = null;
@@ -61,22 +60,19 @@
         </div>
     </header>
 
-    <section class="relative h-[60vh] flex items-end overflow-hidden">
-        <div class="absolute inset-0">
-             <img id="hero-image" src="" class="w-full h-full object-cover" alt="Tour hero image">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60"></div>
-        </div>
+    <section class="relative h-[60vh] md:h-[80vh] flex items-end overflow-hidden bg-base-background-secondary">
+        <div id="hero-image-container" class="absolute inset-0 w-full h-full">
+            </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
             <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide"></h1>
             <div id="hero-subtitle" class="flex flex-col md:flex-row md:items-center md:gap-8 text-white text-lg font-light"></div>
-            <!-- Placeholder for multiple images / gallery -->
-            <div class="absolute bottom-6 right-6 z-20">
-                <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See other 10 photos</button>
-            </div>
+            <div id="gallery-button-container" class="absolute bottom-6 right-6 z-20">
+                </div>
         </div>
     </section>
 
-    <!-- New Info Row After Hero Image -->
+
     <section id="info-row-section" class="bg-white py-8 border-b border-base-background-secondary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <div class="mb-4 md:mb-0 text-primary">
@@ -140,7 +136,6 @@
 
                 <div class="lg:col-span-1">
                     <div class="border border-base-background-secondary bg-white p-8 sticky top-32 rounded">
-                        <!-- Redesigned Top Section -->
                         <div class="text-center mb-6">
                             <p id="sidebar-start-top" class="text-3xl lg:text-4xl font-light text-primary mb-2 tracking-wide"></p>
                             <p id="sidebar-duration-top" class="text-lg lg:text-xl font-light text-base-content-subtle"></p>
@@ -153,7 +148,6 @@
                         </div>
                         
                         <div class="space-y-6 mb-8">
-                            <!-- Next Departure and other existing fields below -->
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🗓️ Next Departure:</strong>
                                 <span id="sidebar-next-departure" class="text-base-content-subtle font-light"></span>
@@ -170,7 +164,6 @@
                                 <strong class="text-primary font-normal">💪 Physical Rating:</strong>
                                 <span id="sidebar-rating" class="text-base-content-subtle font-light"></span>
                             </div>
-                            <!-- Accommodation re-added -->
                             <div class="flex justify-between items-center py-4 border-b border-base-background-secondary">
                                 <strong class="text-primary font-normal">🏨 Accommodation:</strong>
                                 <span id="sidebar-accommodation" class="text-base-content-subtle font-light"></span>
@@ -189,21 +182,16 @@
         </div>
     </section>
 
-    <!-- Similar Tours Section Added -->
     <similar-tours-section id="similar-tours-section"></similar-tours-section>
 
-    <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-    <!-- Tour Calendar Modal Structure -->
     <div id="tour-calendar-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
-        <!-- MODAL WIDTH ADJUSTED HERE from max-w-2xl to max-w-6xl -->
         <div class="bg-white rounded-lg p-6 lg:p-8 max-w-6xl w-full max-h-[90vh] overflow-y-auto relative">
             <button onclick="showTourCalendarModal(window.currentTourData)" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-semibold">X</button>
             <h3 class="text-2xl font-light text-primary mb-4" id="modal-tour-title">Tour Departures</h3>
             <p class="text-base-content-subtle mb-6" id="modal-tour-duration"></p>
 
-            <!-- Custom element will load content here -->
             <tour-calendar-modal-content id="tour-calendar-content"></tour-calendar-modal-content>
         </div>
     </div>
@@ -215,9 +203,7 @@
     <script type="module" src="tour-itinerary.js"></script>
     <script type="module" src="tours-data.js"></script>
     <script type="module" src="similar-tours-section.js"></script>
-    <script type="module" src="tour-calendar-modal-content.js"></script> <!-- New component import -->
-
-    <script type="module">
+    <script type="module" src="tour-calendar-modal-content.js"></script> <script type="module">
         import { fetchCombinedToursData } from './tours-data.js';
 
         // Reference to the main site header and info row section
@@ -365,7 +351,52 @@
 
                 document.title = `Tour Details - ${tour.name}`;
                 document.getElementById('hero-title').textContent = tour.name;
-                document.getElementById('hero-image').src = tour.image || '';
+                const heroImageContainer = document.getElementById('hero-image-container');
+            const galleryButtonContainer = document.getElementById('gallery-button-container');
+
+            let galleryImages = [];
+            try {
+                // Safely parse gallery_images, ensuring it's an array and not null/empty
+                if (tour.gallery_images && typeof tour.gallery_images === 'string') {
+                    const parsed = JSON.parse(tour.gallery_images);
+                    if (Array.isArray(parsed)) {
+                        galleryImages = parsed;
+                    }
+                } else if (Array.isArray(tour.gallery_images)) {
+                    // If it's already an array (e.g., from NocoDB's internal handling)
+                    galleryImages = tour.gallery_images;
+                }
+            } catch (e) {
+                console.error("Error parsing gallery_images:", e);
+                galleryImages = []; // Fallback to empty array if parsing fails
+            }
+
+            // If gallery_images is empty or doesn't have enough images for the mosaic, show only the main image.
+            if (!galleryImages || galleryImages.length < 3) { // Need at least 3 for the smaller grid
+                heroImageContainer.innerHTML = `
+                    <img id="hero-image" src="${tour.image || ''}" class="w-full h-full object-cover" alt="Tour hero image">
+                `;
+                // Optionally re-add a simple "See other photos" button if you want one even for single image
+                galleryButtonContainer.innerHTML = `
+                    <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See other photos</button>
+                `;
+            } else {
+                // Construct the mosaic layout
+                heroImageContainer.innerHTML = `
+                    <div class="grid grid-cols-3 grid-rows-2 h-full gap-2 md:gap-3">
+                        <img src="${tour.image || ''}" alt="Main tour image" class="col-span-2 row-span-2 w-full h-full object-cover rounded-md">
+                        <img src="${galleryImages[0] || ''}" alt="Gallery image 1" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
+                        <img src="${galleryImages[1] || ''}" alt="Gallery image 2" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
+                    </div>
+                `;
+                // Add a button that might open a full gallery modal (optional, beyond current scope)
+                galleryButtonContainer.innerHTML = `
+                    <button class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">See all ${galleryImages.length + 1} photos</button>
+                `;
+            }
+
+                // Existing code continues below for hero-title, hero-subtitle etc.
+                document.getElementById('hero-title').textContent = tour.name;
                 document.getElementById('hero-subtitle').innerHTML = `
                     <span>${calculateDuration(tour.start_date, tour.end_date)}</span>
                     <span class="hidden md:inline">•</span>
@@ -471,6 +502,40 @@
                 window.addEventListener('scroll', updateStickyHeader);
                 window.addEventListener('resize', updateStickyHeader); 
                 updateStickyHeader(); // Call once to set initial state
+
+                // Luxury Accordion Toggle - Re-added and fixed logic
+                const luxuryAccordionToggle = document.getElementById('luxury-accordion-toggle');
+                const luxuryContent = document.getElementById('luxury-accordion-content');
+                const topContainer = document.getElementById('luxury-toggle-container-top');
+                const bottomContainer = document.getElementById('luxury-toggle-container-bottom');
+
+                if (luxuryAccordionToggle && luxuryContent && topContainer && bottomContainer) {
+                    // Remove the problematic onclick attribute
+                    luxuryAccordionToggle.removeAttribute('onclick');
+
+                    luxuryAccordionToggle.addEventListener('click', () => {
+                        const text = luxuryAccordionToggle.querySelector('.toggle-text');
+                        const arrow = luxuryAccordionToggle.querySelector('.toggle-arrow');
+                        
+                        const isCurrentlyHidden = luxuryContent.classList.contains('hidden');
+                        
+                        if (isCurrentlyHidden) {
+                            luxuryContent.classList.remove('hidden');
+                            luxuryContent.style.maxHeight = '9999px'; // For smooth transition
+                            bottomContainer.appendChild(luxuryAccordionToggle);
+                            text.textContent = 'Less Details';
+                            arrow.textContent = '↑';
+                        } else {
+                            luxuryContent.style.maxHeight = '0'; // For smooth transition
+                            setTimeout(() => { // Add hidden after transition
+                                luxuryContent.classList.add('hidden');
+                            }, 300); // Should match CSS transition duration
+                            topContainer.appendChild(luxuryAccordionToggle);
+                            text.textContent = 'More Details';
+                            arrow.textContent = '↓';
+                        }
+                    });
+                }
 
             } else {
                 document.getElementById('hero-title').textContent = "Tour not found";
