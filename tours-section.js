@@ -68,7 +68,7 @@ class ToursSection extends LitElement {
   getVisibleCards() {
     if (window.innerWidth <= 768) return 1;
     if (window.innerWidth <= 1024) return 2;
-    return 6;
+    return 3;
   }
 
   next() {
@@ -123,7 +123,7 @@ class ToursSection extends LitElement {
         console.log(`Tour ${tour.name}: featured=${isFeatured}, start_date=${tour.start_date}, isAfterToday=${isAfterToday}`);
         
         return isFeatured && isAfterToday;
-      });
+      }).slice(0, 6); // Limit to 6 tours maximum
       
       console.log('Filtered tours:', this.tours);
 
@@ -148,7 +148,7 @@ class ToursSection extends LitElement {
           <div class="relative">
             <div class="overflow-hidden">
               <div class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3"
-                   style="transform: translateX(-${this.currentIndex * (100 / this.visibleCards)}%);">
+                   style="transform: translateX(-${this.currentIndex * (100 / 3)}%);">
                 ${visibleTours.length === 0
                   ? html`<p>Loading tours...</p>`
                   : visibleTours.map(tour => html`
@@ -200,13 +200,13 @@ class ToursSection extends LitElement {
                 }
               </div>
               <button @click="${() => this.prev()}" ?disabled="${this.currentIndex === 0}"
-                class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hidden lg:block">
+                class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
               </button>
               <button @click="${() => this.next()}" ?disabled="${this.currentIndex >= this.tours.length - this.visibleCards}"
-                class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hidden lg:block">
+                class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed z-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
