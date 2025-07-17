@@ -54,6 +54,22 @@ tailwind.config = {
           'base-background': {
             DEFAULT: '#FFFFFF', // Default page background. Usage: bg-base-background
             secondary: '#F5F5F5', // Light gray for alternating sections. Usage: bg-base-background-secondary
+            // Adding the new light gray from your palette
+            'extra-light': '#E5E7EB', // Usage: bg-base-background-extra-light
+          },
+
+          // Red shades for errors, warnings, or negative indicators
+          red: {
+            DEFAULT: '#F44336', // A vibrant red for primary alerts
+            light: '#EF9A9A',   // Your specified light red for backgrounds of error messages
+            dark: '#C62828',    // A darker red for text on light red backgrounds or stronger error states
+          },
+
+          // Green shades for success, positive indicators, or confirmations
+          green: {
+            DEFAULT: '#4CAF50', // A vibrant green for primary success messages
+            light: '#A5D6A7',   // Your specified light green for backgrounds of success alerts
+            dark: '#2E7D32',    // A darker green for text on light green backgrounds or deeper accents
           },
         }
       }

@@ -116,21 +116,18 @@ class TourCalendarModalContent extends LitElement {
             <h4 class="text-xl font-medium text-primary mt-6 mb-4">${monthData.monthName.toUpperCase()}</h4>
             <div class="space-y-4">
               ${monthData.departures.map(departure => html`
-                <div class="flex items-start gap-4 p-4 border border-base-background-secondary rounded-lg">
-                    <div class="flex-shrink-0 text-center pt-1">
+                <div class="grid grid-cols-12 items-start gap-4 p-4 border border-base-background-secondary rounded-lg">
+                    <div class="col-span-1 text-center pt-1">
                         <div class="text-primary font-bold">
                             ${formatShortDate(departure.start_date)}
                         </div>
                     </div>
                     
-                    <div class="flex-grow">
+                    <div class="col-span-5">
                         <p class="font-semibold text-primary mb-1">${formatDateRange(departure.start_date, departure.end_date)}</p>
                         <div class="flex flex-wrap items-center gap-2 mb-2">
                             ${departure.label && !departure.sold_out ? html`
                                 <span class="bg-accent text-black text-xs font-medium px-2 py-1 uppercase tracking-wider rounded">${departure.label}</span>
-                            ` : ''}
-                            ${departure.eta_group ? html`
-                                <span class="bg-gray-200 text-gray-800 text-xs font-medium px-2 py-1 rounded">ETA ${departure.eta_group}</span>
                             ` : ''}
                             ${departure.type === 'luxury' ? html`
                                 <span class="bg-white text-accent font-script text-lg px-2 py-0.5 rounded border border-gray-200">Luxury</span>
@@ -141,25 +138,25 @@ class TourCalendarModalContent extends LitElement {
                                 </span>
                             ` : ''}
                         </div>
-                        ${departure.coordinator ? html`<p class="text-sm text-base-content-subtle">Coordinator: ${departure.coordinator}</p>` : ''}
-                        ${departure.group_info ? html`<p class="text-sm text-base-content-subtle">Group: ${departure.group_info}</p>` : ''}
                     </div>
 
-                    <div class="flex-shrink-0 flex flex-col items-end gap-2">
-                        <div class="text-right">
-                            <span class="text-sm lg:text-base font-light text-gray-900">Total</span>
-                            ${departure.old_price && departure.price && parseFloat(departure.old_price.replace(/[^0-9.]/g, '')) > parseFloat(departure.price.replace(/[^0-9.]/g, '')) ? html`
-                                <span class="block text-lg lg:text-xl font-light text-gray-900 line-through">${departure.old_price}</span>
-                                <span class="block text-sm font-medium text-red-600">- ${Math.round(((parseFloat(departure.old_price.replace(/[^0-9.]/g, '')) - parseFloat(departure.price.replace(/[^0-9.]/g, ''))) / parseFloat(departure.old_price.replace(/[^0-9.]/g, ''))) * 100)}%</span>
-                            ` : ''}
-                            <span class="block text-xl lg:text-2xl font-light text-accent">${departure.price || ''}</span>
-                        </div>
+                    <div class="col-span-3 text-right">
+                        <span class="text-sm lg:text-base font-medium text-base-content-subtle">TOTAL</span>
+                        <span class="block text-xl lg:text-2xl font-bold text-accent">${departure.price || ''}</span>
+                        ${departure.old_price && departure.price && parseFloat(departure.old_price.replace(/[^0-9.]/g, '')) > parseFloat(departure.price.replace(/[^0-9.]/g, '')) ? html`
+                            <div class="flex justify-end items-center gap-2">
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">- ${Math.round(((parseFloat(departure.old_price.replace(/[^0-9.]/g, '')) - parseFloat(departure.price.replace(/[^0-9.]/g, ''))) / parseFloat(departure.old_price.replace(/[^0-9.]/g, ''))) * 100)}%</span>
+                                <span class="text-sm font-light text-base-content-subtle line-through">${departure.old_price}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="col-span-3 flex flex-col items-end">
                         ${departure.sold_out ? html`
-                            <button class="bg-gray-300 text-gray-600 font-medium py-2 px-4 rounded text-sm uppercase" disabled>Sold Out</button>
+                            <button class="bg-gray-300 text-gray-600 font-medium py-2 px-4 rounded text-sm uppercase w-full text-center" disabled>Sold Out</button>
                         ` : html`
-                            <button class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 rounded text-sm uppercase">Book with ${departure.deposit_amount || '€100'}</button>
+                            <button class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 rounded text-sm uppercase w-full text-center">Book with ${departure.deposit_amount || '€100'}</button>
                         `}
-                         <button class="text-primary hover:text-accent text-xs mt-2 underline">Ask the coordinator</button>
                     </div>
                 </div>
               `)}
