@@ -381,10 +381,10 @@
                 } else {
                     // Construct the mosaic layout
                     heroImageContainer.innerHTML = `
-                        <div class="grid grid-cols-3 grid-rows-2 h-full gap-2 md:gap-3">
-                            <img src="${tour.image || ''}" alt="Main tour image" class="col-span-2 row-span-2 w-full h-full object-cover rounded-md">
-                            <img src="${galleryImages[0] || ''}" alt="Gallery image 1" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
-                            <img src="${galleryImages[1] || ''}" alt="Gallery image 2" class="col-span-1 row-span-1 w-full h-full object-cover rounded-md">
+                        <div class="grid grid-cols-3 grid-rows-2 h-full gap-0.5">
+                            <img src="${tour.image || ''}" alt="Main tour image" class="col-span-2 row-span-2 w-full h-full object-cover">
+                            <img src="${galleryImages[0] || ''}" alt="Gallery image 1" class="col-span-1 row-span-1 w-full h-full object-cover">
+                            <img src="${galleryImages[1] || ''}" alt="Gallery image 2" class="col-span-1 row-span-1 w-full h-full object-cover">
                         </div>
                     `;
                 }
