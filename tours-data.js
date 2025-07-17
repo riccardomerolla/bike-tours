@@ -7,6 +7,9 @@ const NOCODB_API_URL_ITINERARY = 'https://app.nocodb.com/api/v2/tables/mcpl1o0aa
 // Your NocoDB Token - Corrected to original full value
 const NOCODB_TOKEN = 'azGmScTi6oyPy2t_Luo6h-MxUflLp57n-r0UOD-V';
 
+// tours-data.js
+console.log('tours-data.js loaded'); // Add this line at the very top
+
 // Helper function to fetch data from a single NocoDB endpoint
 // Added filterParams and sortParams to allow dynamic filtering and sorting
 async function fetchData(url, filterParams = '', sortParams = '') {
