@@ -25,7 +25,7 @@ class SiteFooter extends LitElement {
               </a>
             </div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
             <div>
               <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-white">Destinations</h3>
               <ul class="space-y-4">
@@ -35,9 +35,16 @@ class SiteFooter extends LitElement {
               </ul>
             </div>
             <div>
+              <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-white">BikeTours.cc Experience</h3>
+              <ul class="space-y-4">
+                  <li><a href="our-bikes.html" class="text-gray-400 hover:text-white transition-colors font-light">Our Bikes</a></li>
+                  <li><a href="bike-fitting.html" class="text-gray-400 hover:text-white transition-colors font-light">Professional Bike Fitting</a></li>
+              </ul>
+            </div>
+            <div>
               <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-white">Useful Info</h3>
               <ul class="space-y-4">
-                <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">Contacts</a></li>
+                <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors font-light">Contacts</a></li>
                 <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">FAQ</a></li>
                 <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">Terms & Conditions</a></li>
                 <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">General Conditions</a></li>
