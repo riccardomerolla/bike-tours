@@ -7,14 +7,17 @@ async function parseGpxElevation(url) {
   const parser = new DOMParser();
   const xml = parser.parseFromString(text, 'application/xml');
   const trkpts = Array.from(xml.getElementsByTagName('trkpt'));
+  const samplingFactor = 10; // Use 1 point for every 10. Adjust as needed.
+  const sampledTrkpts = trkpts.filter((_, index) => index % samplingFactor === 0);
   let distance = 0;
   let lastLat = null, lastLon = null;
   let totalElevationGain = 0;
   let lastEle = null;
   let maxElevation = 0;
   let minElevation = Infinity;
+  
 
-  const data = trkpts.map(pt => {
+  const data = sampledTrkpts.map(pt => {
     const lat = parseFloat(pt.getAttribute('lat'));
     const lon = parseFloat(pt.getAttribute('lon'));
     
@@ -85,7 +88,7 @@ async function renderElevationChart(canvasId, gpxUrl) {
         backgroundColor: 'rgba(229,193,0,0.1)',
         pointRadius: 0,
         fill: true,
-        tension: 0.2
+        tension: 0.8
       }]
     },
     options: {
