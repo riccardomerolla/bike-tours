@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - BikeTours</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-white text-primary">
+
+    <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <a href="index.html" class="flex items-center h-12"><img src="img/logo.png" alt="BikeTours.cc" class="h-6 w-auto object-contain"></a>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <nav class="hidden md:flex space-x-10">
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+                    <a href="about.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
+                </nav>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
+                    <a href="about.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">About</a>
+                    <a href="#" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-6xl lg:text-7xl mb-6 text-accent">✓</div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-light text-primary mb-6 tracking-wide">Booking Confirmed!</h1>
+            <div class="w-24 h-0.5 bg-accent mx-auto mb-8"></div>
+            <p class="text-lg lg:text-xl text-base-content-subtle max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                Thank you for your booking! Your cycling adventure is just around the corner. We've sent a confirmation email to you with all the details of your trip.
+            </p>
+            <a href="tours.html" class="inline-block bg-accent hover:bg-accent-dark text-black font-medium py-4 px-8 uppercase tracking-wider text-sm transition-all duration-300">
+                Explore More Tours
+            </a>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="main.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
