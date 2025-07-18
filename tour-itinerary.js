@@ -51,11 +51,11 @@ class TourItinerary extends LitElement {
                 </div>
             </div>
             <div class="accordion-content hidden p-6 pt-0 transition-all duration-300 ease-out" style="max-height: 0;">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
-                    <div class="order-2 lg:order-1">
+                <div class="flex flex-col gap-8 mt-6">
+                    <div>
                         <p class="text-base-content-subtle font-light">${day.description}</p>
                     </div>
-                    <div class="mb-8 lg:mb-0 order-1 lg:order-2">
+                    <div class="mx-auto w-full lg:w-4/5 xl:w-3/4">
                         ${day.gpx_url ? html`
                           <gpx-elevation-chart 
                             gpx-url="${day.gpx_url}"
