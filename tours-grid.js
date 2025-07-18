@@ -1,7 +1,7 @@
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { fetchToursData } from './tours-data.js';
 
-// Date formatting helper function (copied for self-containment, could be a shared utility)
+// Date formatting helper function
 function formatDateRange(startDateStr, endDateStr) {
     const startDate = new Date(startDateStr);
     const endDate = new Date(endDateStr);
@@ -26,12 +26,14 @@ function formatDateRange(startDateStr, endDateStr) {
 
 class ToursGrid extends LitElement {
   static properties = {
-    tours: { state: true }
+    tours: { state: true },
+    destination: { state: true }
   };
 
   constructor() {
     super();
     this.tours = [];
+    this.destination = '';
   }
 
   createRenderRoot() {
@@ -41,8 +43,8 @@ class ToursGrid extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     const urlParams = new URLSearchParams(window.location.search);
-    const destination = urlParams.get('destination');
-    this.loadTours(destination);
+    this.destination = urlParams.get('destination');
+    this.loadTours(this.destination);
   }
 
   async loadTours(destination) {
@@ -55,6 +57,24 @@ class ToursGrid extends LitElement {
   }
 
   render() {
+    // **MODIFIED RENDER LOGIC**
+    if (this.tours.length === 0 && this.destination) {
+      const destinationName = this.destination.charAt(0).toUpperCase() + this.destination.slice(1);
+      return html`
+        <section class="py-20 lg:py-32 bg-gray-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl lg:text-3xl font-light text-gray-800 mb-6">Get Ready to Ride in ${destinationName}</h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+              New tours for <strong>${destinationName}</strong> are on the way! We're finalizing the details to ensure an amazing experience. Sign up for our newsletter, and we'll email you as soon as they're available.
+            </p>
+            <div class="max-w-md mx-auto">
+                <mailing-list-subscribe></mailing-list-subscribe>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
     return html`
       <section class="py-20 lg:py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
