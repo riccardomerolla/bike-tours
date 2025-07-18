@@ -72,14 +72,18 @@ class ToursSection extends LitElement {
   }
 
   next() {
-    if (this.currentIndex < this.tours.length - this.visibleCards) {
+    // Calculate the maximum index based on the number of tours and visible cards
+    const maxIndex = Math.max(0, this.tours.length - this.visibleCards);
+    if (this.currentIndex < maxIndex) {
       this.currentIndex++;
+      console.log(`Next clicked: currentIndex = ${this.currentIndex}, maxIndex = ${maxIndex}`);
     }
   }
 
   prev() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
+      console.log(`Prev clicked: currentIndex = ${this.currentIndex}`);
     }
   }
 
@@ -111,19 +115,20 @@ class ToursSection extends LitElement {
       // Check data structure of a tour to understand properties
       console.log('Sample tour structure:', allTours[0]);
       
-      // Filter the tours client-side - with more flexible comparison
-      this.tours = allTours.filter(tour => {
-        // Check if is_featured exists and convert to string for comparison
-        const isFeatured = String(tour.is_featured).toLowerCase() === 'true';
-        
-        // Parse the date and compare
+      // Count how many featured tours we have
+      const featuredTours = allTours.filter(tour => String(tour.is_featured).toLowerCase() === 'true');
+      console.log(`Total featured tours: ${featuredTours.length}`);
+      
+      // Count how many featured tours have future dates
+      const featuredFutureTours = featuredTours.filter(tour => {
         const tourStartDate = new Date(tour.start_date);
-        const isAfterToday = !isNaN(tourStartDate) && tourStartDate > today;
-        
-        console.log(`Tour ${tour.name}: featured=${isFeatured}, start_date=${tour.start_date}, isAfterToday=${isAfterToday}`);
-        
-        return isFeatured && isAfterToday;
-      }).slice(0, 6); // Limit to 6 tours maximum
+        return !isNaN(tourStartDate) && tourStartDate > today;
+      });
+      console.log(`Featured tours with future dates: ${featuredFutureTours.length}`);
+      
+      // Show all featured tours regardless of date
+      console.log('Showing all featured tours regardless of date');
+      this.tours = featuredTours.slice(0, 6); // Limit to 6 tours maximum
       
       console.log('Filtered tours:', this.tours);
 
@@ -135,9 +140,8 @@ class ToursSection extends LitElement {
   }
 
   render() {
-    const start = this.currentIndex;
-    const end = start + this.visibleCards;
-    const visibleTours = this.tours.slice(start, end);
+    // Don't slice the tours array for rendering - show all tours in the carousel
+    // Just use this.currentIndex for the transform calculation
     return html`
       <section id="tours" class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,10 +152,10 @@ class ToursSection extends LitElement {
           <div class="relative">
             <div class="overflow-hidden">
               <div class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3"
-                   style="transform: translateX(-${this.currentIndex * (100 / 3)}%);">
-                ${visibleTours.length === 0
+                   style="transform: translateX(-${this.currentIndex * (100 / this.visibleCards)}%);">
+                ${this.tours.length === 0
                   ? html`<p>Loading tours...</p>`
-                  : visibleTours.map(tour => html`
+                  : this.tours.map(tour => html`
                     <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-2">
                       <div class="bg-white border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-500 group">
                         <div class="relative h-80 lg:h-96 overflow-hidden">
