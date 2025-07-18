@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BikeTours</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="font-sans bg-white text-primary">
+    <header class="bg-white border-b border-base-background-secondary sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <a href="index.html" class="flex items-center h-12"><img src="img/logo.png" alt="BikeTours.cc" class="h-6 w-auto object-contain"></a>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <nav class="hidden md:flex space-x-10">
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+                    <a href="about.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
+                    <a href="contact.html" class="text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
+                </nav>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
+                    <a href="about.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">About</a>
+                    <a href="contact.html" class="text-accent font-normal uppercase tracking-wider text-sm">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl lg:text-5xl font-light text-primary mb-4 tracking-wide">Contact Us</h1>
+            <p class="text-lg text-base-content-subtle mb-12 max-w-2xl mx-auto">
+                Have a question or need help with a booking? We're here to help. Reach out to us through any of the methods below.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-base-background-secondary p-8 rounded-lg">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-envelope text-accent text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-light text-primary mb-2">General Inquiries</h2>
+                    <p class="text-base-content-subtle mb-4">For any general questions about our tours or services.</p>
+                    <a href="mailto:hello@biketours.cc" class="text-accent font-medium hover:underline">hello@biketours.cc</a>
+                </div>
+
+                <div class="bg-base-background-secondary p-8 rounded-lg">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-check text-accent text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-light text-primary mb-2">Bookings</h2>
+                    <p class="text-base-content-subtle mb-4">For questions related to new or existing bookings.</p>
+                    <a href="mailto:booking@biketours.cc" class="text-accent font-medium hover:underline">booking@biketours.cc</a>
+                </div>
+
+                <div class="bg-base-background-secondary p-8 rounded-lg">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fab fa-whatsapp text-accent text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-light text-primary mb-2">WhatsApp</h2>
+                    <p class="text-base-content-subtle mb-4">Send us a direct message for a quick response.</p>
+                    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank" class="text-accent font-medium hover:underline">Chat with us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <site-footer></site-footer>
+    
+    <script type="module" src="site-footer.js"></script>
+    <script type="module" src="mailing-list-subscribe.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
