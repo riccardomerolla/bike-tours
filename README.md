@@ -37,3 +37,9 @@ The website now provides a modern, professional experience that rivals top cycli
 run the cmd
 
 echo -n "const bikeImages = [" && find img -type f -name 'bike-*' -printf "'%p', " | sed 's/, $/\];/'
+
+## Image resize
+
+convert doozydoom-_v5HCKSZOkA-unsplash.jpg -resize 1920 -quality 88 doozydoom-_v5HCKSZOkA-unsplash.webp
+
+for file in *.jpg; do convert "$file" -quality 85 "${file%.jpg}.webp"; done
