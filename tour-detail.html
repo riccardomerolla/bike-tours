@@ -217,8 +217,29 @@
 
         function markdownListToHtml(text) {
             if (!text) return '';
-            const listItems = text.split('*').map(item => item.trim()).filter(item => item);
-            return '<ul>' + listItems.map(item => `<li class="list-disc list-inside text-lg text-base-content-subtle mb-3 font-light">${item}</li>`).join('') + '</ul>';
+            
+            // Check if the content is already in HTML format
+            if (text.includes('<') && text.includes('>')) {
+                // It's already HTML, just add some styling to list items if needed
+                return text.replace(/<li/g, '<li class="list-disc list-inside text-lg text-base-content-subtle mb-3 font-light"');
+            } else {
+                // Process markdown list with dash/hyphen prefixes and bold formatting
+                // Split by newlines to get each list item
+                const lines = text.split('\n').filter(line => line.trim());
+                
+                // Process each line to handle markdown formatting
+                const processedItems = lines.map(line => {
+                    // Remove the leading dash/hyphen and trim
+                    let content = line.replace(/^\s*-\s*/, '').trim();
+                    
+                    // Convert bold markdown (**text**) to HTML <strong> tags
+                    content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    
+                    return `<li class="list-disc list-inside text-lg text-base-content-subtle mb-3 font-light">${content}</li>`;
+                });
+                
+                return '<ul>' + processedItems.join('') + '</ul>';
+            }
         }
 
         // Function to calculate duration in days and nights
