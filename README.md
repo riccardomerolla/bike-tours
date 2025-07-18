@@ -32,3 +32,8 @@ This website has been refactored to use Tailwind CSS for modern, responsive desi
 - Proper spacing and typography for small screens
 
 The website now provides a modern, professional experience that rivals top cycling brands while maintaining all original functionality.
+
+## Generate list of images for Our Bikes
+run the cmd
+
+echo -n "const bikeImages = [" && find img -type f -name 'bike-*' -printf "'%p', " | sed 's/, $/\];/'
