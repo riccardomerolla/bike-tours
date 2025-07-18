@@ -155,7 +155,9 @@ class TourCalendarModalContent extends LitElement {
                         ${departure.sold_out ? html`
                             <button class="bg-gray-300 text-gray-600 font-medium py-2 px-4 rounded text-sm uppercase w-full text-center" disabled>Sold Out</button>
                         ` : html`
-                            <button class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 rounded text-sm uppercase w-full text-center">Book with ${departure.deposit_amount || '€100'}</button>
+                            <a href="${departure.deposit_payment_link || '#'}" class="block">
+                                <button class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 rounded text-sm uppercase w-full text-center">Book with ${departure.deposit_amount || '€100'}</button>
+                            </a>
                         `}
                     </div>
                 </div>
