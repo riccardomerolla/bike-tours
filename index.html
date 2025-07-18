@@ -184,89 +184,13 @@
                 </p>
             </div>
             <div class="bg-white border border-base-background-secondary p-12 lg:p-16">
-                <div class="mb-8">
-                    <label for="tour-description" class="block text-sm font-light text-primary mb-4 uppercase tracking-widest">
-                        Describe your ideal cycling experience
-                    </label>
-                    <textarea id="tour-description" name="tour-description" rows="6" 
-                              class="w-full px-0 py-4 border-0 border-b border-gray-200 focus:ring-0 focus:border-accent transition-all duration-300 resize-none bg-transparent placeholder-gray-400 font-light"
-                              placeholder="e.g., A challenging week in the Swiss Alps, climbing legendary passes..."></textarea>
-                </div>
-                <button id="generate-suggestion-btn" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-5 px-8 transition-all duration-300 uppercase tracking-wider text-sm">
-                    ✨ Create Custom Tour
-                </button>
-                <div id="suggestion-result" class="hidden mt-12 p-8 bg-base-background-secondary border border-base-background-secondary"></div>
+                <custom-tour-suggestion></custom-tour-suggestion>
             </div>
         </div>
     </section>
 
     <site-footer></site-footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // AI Tour Suggestion
-        const generateSuggestionBtn = document.getElementById("generate-suggestion-btn");
-        const tourDescriptionInput = document.getElementById("tour-description");
-        const suggestionResultDiv = document.getElementById("suggestion-result");
-
-        generateSuggestionBtn.addEventListener("click", async () => {
-            const description = tourDescriptionInput.value;
-            if (!description) {
-                alert("Please describe your ideal trip first!");
-                return;
-            }
-
-            suggestionResultDiv.classList.remove('hidden');
-            suggestionResultDiv.innerHTML = "<p class='text-base-content-subtle'>✨ Thinking up your dream tour...</p>";
-
-            const prompt = `Based on the following user description for a dream cycling trip, generate a creative and appealing tour concept. The concept should have a catchy title, a short, exciting description, and a list of 3-4 highlight activities. The tone should be inspiring and adventurous. User description: "${description}"`;
-
-            try {
-                let messages = [{
-                    role: "user",
-                    parts: [{text: prompt}]
-                }];
-
-                const requestBody = { contents: messages };
-                const apiKey = ""; // Add your API key here if needed
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(requestBody)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates.length > 0 && data.candidates[0].content.parts.length > 0) {
-                    const content = data.candidates[0].content.parts[0].text
-                        .replace(/\*\*Title:\*\*/g, "<h3 class='text-xl font-bold text-primary mb-3'>")
-                        .replace(/\*\*Description:\*\*/g, "</h3><p class='text-base-content-subtle mb-4'>")
-                        .replace(/\*\*Highlights:\*\*/g, "</p><h4 class='text-lg font-semibold text-primary mb-2'>Highlights:</h4><ul class='list-disc list-inside space-y-1 text-base-content-subtle'>")
-                        .replace(/\* /g, "<li>")
-                        .replace(/(\n|\r)/g, "</li>") + "</li></ul>";
-                    
-                    suggestionResultDiv.innerHTML = content;
-                } else {
-                    suggestionResultDiv.innerHTML = '<p class="text-red-600">Sorry, we couldn\'t generate a suggestion at this time. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                suggestionResultDiv.innerHTML = `<p class="text-red-600">An error occurred: ${error.message}. Please check the console for details.</p>`;
-            }
-        });
-    </script>
+    <script type="module" src="custom-tour-suggestion.js"></script>
 </body>
 </html>
