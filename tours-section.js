@@ -158,7 +158,7 @@ class ToursSection extends LitElement {
           </div>
           <div class="relative">
             <div class="overflow-hidden">
-              <div class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3"
+              <div class="flex gap-2 transition-transform duration-500 ease-in-out mb-3"
                    style="transform: ${transformStyle};">
                 ${this.tours.length === 0
                   ? html`<p>Loading tours...</p>`
