@@ -1,12 +1,22 @@
-import { LitElement, html, css } from "https://cdn.jsdelivr.net/npm/lit@3.1.2/+esm";
+import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
 class SiteHeader extends LitElement {
-  static styles = css`
-    :host { display: block; }
-  `;
 
   // Use light DOM for Tailwind compatibility
   createRenderRoot() { return this; }
+
+  static properties = {
+    menuOpen: { type: Boolean }
+  };
+
+  constructor() {
+    super();
+    this.menuOpen = false;
+  }
+
+  _toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 
   render() {
     return html`
@@ -16,7 +26,7 @@ class SiteHeader extends LitElement {
             <a href="index.html" class="flex items-center h-12">
               <img src="img/logo.png" alt="BikeTours.cc" class="h-6 w-auto object-contain">
             </a>
-            <button id="mobile-menu-btn" class="md:hidden p-2">
+            <button class="md:hidden p-2" @click=${() => this._toggleMenu()}>
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
@@ -27,7 +37,7 @@ class SiteHeader extends LitElement {
               <a href="contact.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
             </nav>
           </div>
-          <div id="mobile-menu" class="hidden md:hidden pb-4">
+          <div class="${this.menuOpen ? '' : 'hidden'} md:hidden pb-4">
             <div class="flex flex-col space-y-4">
               <a href="tours.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">Tours</a>
               <a href="about.html" class="text-primary hover:text-accent font-normal uppercase tracking-wider text-sm">About</a>
@@ -37,21 +47,7 @@ class SiteHeader extends LitElement {
         </div>
       </header>
     `;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    // Mobile menu toggle
-    setTimeout(() => {
-      const mobileMenuBtn = this.querySelector('#mobile-menu-btn');
-      const mobileMenu = this.querySelector('#mobile-menu');
-      if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-    }, 0);
-  }
+  } 
 }
 
 customElements.define('site-header', SiteHeader);
