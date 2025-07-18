@@ -140,8 +140,15 @@ class ToursSection extends LitElement {
   }
 
   render() {
-    // Don't slice the tours array for rendering - show all tours in the carousel
-    // Just use this.currentIndex for the transform calculation
+    // Calculate how many cards to display at once based on screen size
+    const cardsPerView = this.visibleCards;
+    
+    // Create a transform style based on the current index
+    const transformStyle = `translateX(-${this.currentIndex * (100 / cardsPerView)}%)`;
+    
+    // Debug information
+    console.log(`Rendering carousel: ${this.tours.length} tours, ${cardsPerView} cards per view, currentIndex: ${this.currentIndex}`);
+    
     return html`
       <section id="tours" class="py-20 lg:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,7 +159,7 @@ class ToursSection extends LitElement {
           <div class="relative">
             <div class="overflow-hidden">
               <div class="flex gap-6 lg:gap-8 transition-transform duration-500 ease-in-out mb-3"
-                   style="transform: translateX(-${this.currentIndex * (100 / this.visibleCards)}%);">
+                   style="transform: ${transformStyle};">
                 ${this.tours.length === 0
                   ? html`<p>Loading tours...</p>`
                   : this.tours.map(tour => html`
