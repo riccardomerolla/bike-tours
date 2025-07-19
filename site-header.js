@@ -24,7 +24,7 @@ class SiteHeader extends LitElement {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between items-center h-16 lg:h-20">
             <a href="index.html" class="flex items-center h-12">
-              <img src="img/logo.png" alt="BikeTours.cc" class="h-6 w-auto object-contain">
+              <img src="img/logo.webp" alt="BikeTours.cc" class="h-6 w-auto object-contain">
             </a>
             <button class="md:hidden p-2" @click=${() => this._toggleMenu()}>
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

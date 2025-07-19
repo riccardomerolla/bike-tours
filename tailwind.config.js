@@ -37,9 +37,10 @@ tailwind.config = {
           // Default yellow #E5C100
           // Alternative orange #FF6B00
           // Alternative electric blue #007BFF
+          // Deep Royal Purple #6A0DAD
           // Alternative celeste celeste: '#40E0D0', 'celeste-dark': '#359A9A', 'celeste-light': '#B8F3F0',
           accent: {
-            DEFAULT: '#E5C100', // Usage: bg-accent, text-accent
+            DEFAULT: '#6A0DAD', // Usage: bg-accent, text-accent
             dark: '#C7A800',    // Darker shade for hover/active states. Usage: hover:bg-accent-dark
             light: '#FAE588',   // Lighter shade for subtle highlights. Usage: bg-accent-light
           },
