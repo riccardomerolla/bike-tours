@@ -11,7 +11,7 @@ class SiteFooter extends LitElement {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-8 mb-16">
             <a href="index.html" class="flex items-center justify-center md:justify-start md:col-span-1">
-              <img src="img/logo-white.png" alt="BikeTours.cc Logo" class="h-6 w-auto object-contain">
+              <img src="img/logo-white.webp" alt="BikeTours.cc Logo" class="h-6 w-auto object-contain">
             </a>
             <div class="w-full mx-auto text-center md:col-span-3">
               <mailing-list-subscribe></mailing-list-subscribe>
