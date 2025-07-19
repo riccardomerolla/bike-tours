@@ -36,12 +36,14 @@ function formatLeftDate(dateStr) {
 
 class DeparturesSection extends LitElement {
   static properties = {
-    tours: { state: true }
+    tours: { state: true },
+    type: { type: String, reflect: true }
   };
 
   constructor() {
     super();
     this.tours = [];
+    this.type = null;
   }
 
   createRenderRoot() {
@@ -54,7 +56,15 @@ class DeparturesSection extends LitElement {
   }
 
   async loadTours() {
-    this.tours = await fetchToursData();
+    let filterParams = '';
+    
+    // Apply type filter if specified
+    if (this.type) {
+      // Case-insensitive filter for the type field
+      filterParams = `where=(type,eq,${this.type.toLowerCase()})`;
+    }
+    
+    this.tours = await fetchToursData(filterParams);
   }
 
   render() {

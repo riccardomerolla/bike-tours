@@ -39,6 +39,7 @@ class SiteFooter extends LitElement {
               <ul class="space-y-4">
                   <li><a href="our-bikes.html" class="text-gray-400 hover:text-white transition-colors font-light">Our Bikes</a></li>
                   <li><a href="bike-fitting.html" class="text-gray-400 hover:text-white transition-colors font-light">Professional Bike Fitting</a></li>
+                  <li><a href="luxury-tours.html" class="text-gray-400 hover:text-white transition-colors font-light">Luxury Tours</a></li>
               </ul>
             </div>
             <div>
