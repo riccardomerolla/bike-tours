@@ -39,18 +39,45 @@ tailwind.config = {
           // Alternative electric blue #007BFF
           // Deep Royal Purple #6A0DAD
           // Alternative celeste celeste: '#40E0D0', 'celeste-dark': '#359A9A', 'celeste-light': '#B8F3F0',
-          accent: {
-            DEFAULT: '#6A0DAD', // The main purple accent color
-            dark: '#4B0082',    // A darker shade of purple for hover/active states
-            light: '#C3A5DA',   // A lighter shade of purple for subtle highlights
-          },
+          // accent: {
+          //   DEFAULT: '#6A0DAD', // The main purple accent color
+          //   dark: '#4B0082',    // A darker shade of purple for hover/active states
+          //   light: '#C3A5DA',   // A lighter shade of purple for subtle highlights
+          // },
+
+          // accent: {
+          //   DEFAULT: '#FF6B00', // The new main accent orange color
+          //   dark: '#CC5500',    // A darker shade of orange for hover/active states
+          //   light: '#FF9933',   // A lighter shade of orange for subtle highlightsge: text-base-content-subtle
+          // },
+
+          // accent: {
+          //   DEFAULT: '#007BFF', // The new main accent electric blue color
+          //   dark: '#0056B3',    // A darker shade of electric blue for hover/active states
+          //   light: '#66B2FF',   // A lighter shade of electric blue for subtle highlights
+          // },
+
+          // accent: {
+          //   DEFAULT: '#F44336', // The new main accent red color
+          //   dark: '#D32F2F',    // A darker shade of red for hover/active states
+          //   light: '#EF9A9A',   // A lighter shade of red for subtle highlights
+          // },
           
-          // Neutral colors for UI elements and text.
-          'base-content': {
-            DEFAULT: '#FFFFFF', // Default text color on dark backgrounds. Usage: text-base-content
-            subtle: '#6B7280',  // Muted gray for secondary text and metadata. Usage: text-base-content-subtle
+          // accent: {
+          //   DEFAULT: '#E5C100', // The new main accent yellow color
+          //   dark: '#C7A800',    // A darker shade of yellow for hover/active states
+          //   light: '#FAE588',   // A lighter shade of yellow for subtle highlights
+          // },
+          accent: {
+            DEFAULT: '#C2D400', // The new main accent yellowish-green color
+            dark: '#9AA800',    // A darker shade of yellowish-green for hover/active states
+            light: '#E0ED66',   // A lighter shade of yellowish-green for subtle highlights
           },
   
+          'base-content': {
+            DEFAULT: '#FFFFFF',
+            subtle: '#6B7280',
+          },
           // Background colors for sections or cards.
           'base-background': {
             DEFAULT: '#FFFFFF', // Default page background. Usage: bg-base-background
