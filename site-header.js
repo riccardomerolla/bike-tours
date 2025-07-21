@@ -33,6 +33,7 @@ class SiteHeader extends LitElement {
             </button>
             <nav class="hidden md:flex space-x-10">
               <a href="tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Tours</a>
+              <a href="luxury-tours.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Luxury</a>
               <a href="about.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">About</a>
               <a href="contact.html" class="text-primary hover:text-accent font-normal transition-colors uppercase tracking-wider text-sm">Contact</a>
             </nav>
@@ -63,10 +64,20 @@ class SiteHeader extends LitElement {
             
             <!-- Navigation links -->
             <nav class="flex flex-col items-center space-y-8">
+              <a href="index.html" 
+                 class="text-white text-4xl font-light uppercase tracking-widest hover:text-accent transition-all duration-300 transform hover:scale-105"
+                 @click=${() => this._toggleMenu()}>
+                Home
+              </a>
               <a href="tours.html" 
                  class="text-white text-4xl font-light uppercase tracking-widest hover:text-accent transition-all duration-300 transform hover:scale-105"
                  @click=${() => this._toggleMenu()}>
                 Tours
+              </a>
+              <a href="luxury-tours.html" 
+                 class="text-white text-4xl font-light uppercase tracking-widest hover:text-accent transition-all duration-300 transform hover:scale-105"
+                 @click=${() => this._toggleMenu()}>
+                Luxury
               </a>
               <a href="about.html" 
                  class="text-white text-4xl font-light uppercase tracking-widest hover:text-accent transition-all duration-300 transform hover:scale-105"
