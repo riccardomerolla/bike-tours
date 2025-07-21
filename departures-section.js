@@ -96,7 +96,7 @@ class DeparturesSection extends LitElement {
                         <span class="bg-white text-accent font-script text-lg px-2 py-0.5 rounded border border-gray-200">Luxury</span>
                       ` : ''}
                       ${tour.label && !tour.sold_out ? html`
-                        <span class="bg-accent text-black text-xs font-medium px-2 py-1 uppercase tracking-wider">${tour.label}</span>
+                        <span class="bg-accent text-base-content text-xs font-medium px-2 py-1 uppercase tracking-wider">${tour.label}</span>
                       ` : ''}
                   </div>
 
@@ -111,7 +111,7 @@ class DeparturesSection extends LitElement {
                     ${tour.sold_out ? html`
                         <button class="bg-gray-300 text-gray-600 font-medium py-3 px-6 text-center uppercase tracking-wider text-sm rounded cursor-not-allowed" disabled>Sold Out</button>
                     ` : html`
-                        <a href="tour-detail.html?id=${tour.Id}" class="bg-accent hover:bg-accent-dark text-black font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">
+                        <a href="tour-detail.html?id=${tour.Id}" class="bg-accent hover:bg-accent-dark text-base-content font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">
                         View Details
                         </a>
                     `}

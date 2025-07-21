@@ -40,9 +40,9 @@ tailwind.config = {
           // Deep Royal Purple #6A0DAD
           // Alternative celeste celeste: '#40E0D0', 'celeste-dark': '#359A9A', 'celeste-light': '#B8F3F0',
           accent: {
-            DEFAULT: '#6A0DAD', // Usage: bg-accent, text-accent
-            dark: '#C7A800',    // Darker shade for hover/active states. Usage: hover:bg-accent-dark
-            light: '#FAE588',   // Lighter shade for subtle highlights. Usage: bg-accent-light
+            DEFAULT: '#6A0DAD', // The main purple accent color
+            dark: '#4B0082',    // A darker shade of purple for hover/active states
+            light: '#C3A5DA',   // A lighter shade of purple for subtle highlights
           },
           
           // Neutral colors for UI elements and text.

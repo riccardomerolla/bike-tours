@@ -127,7 +127,7 @@ class TourCalendarModalContent extends LitElement {
                         <p class="font-semibold text-primary mb-1">${formatDateRange(departure.start_date, departure.end_date)}</p>
                         <div class="flex flex-wrap items-center gap-2 mb-2">
                             ${departure.label && !departure.sold_out ? html`
-                                <span class="bg-accent text-black text-xs font-medium px-2 py-1 uppercase tracking-wider rounded">${departure.label}</span>
+                                <span class="bg-accent text-base-content text-xs font-medium px-2 py-1 uppercase tracking-wider rounded">${departure.label}</span>
                             ` : ''}
                             ${departure.type === 'luxury' ? html`
                                 <span class="bg-white text-accent font-script text-lg px-2 py-0.5 rounded border border-gray-200">Luxury</span>
@@ -156,7 +156,7 @@ class TourCalendarModalContent extends LitElement {
                             <button class="bg-gray-300 text-gray-600 font-medium py-2 px-4 rounded text-sm uppercase w-full text-center" disabled>Sold Out</button>
                         ` : html`
                             <a href="${departure.deposit_payment_link || '#'}" class="block">
-                                <button class="bg-accent hover:bg-accent-dark text-black font-medium py-2 px-4 rounded text-sm uppercase w-full text-center">Book with ${departure.deposit_amount || '€100'}</button>
+                                <button class="bg-accent hover:bg-accent-dark text-base-content font-medium py-2 px-4 rounded text-sm uppercase w-full text-center">Book with ${departure.deposit_amount || '€100'}</button>
                             </a>
                         `}
                     </div>

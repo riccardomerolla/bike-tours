@@ -68,7 +68,7 @@ class MailingListSubscribe extends LitElement {
         >
         <button
           type="submit"
-          class="bg-accent hover:bg-accent-dark text-black font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded-r-md"
+          class="bg-accent hover:bg-accent-dark text-base-content font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded-r-md"
           ?disabled=${this.loading}
         >
           ${this.loading ? 'Subscribing...' : 'Subscribe'}

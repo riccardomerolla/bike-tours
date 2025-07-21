@@ -26,7 +26,7 @@ class CustomTourSuggestion extends LitElement {
             Describe your ideal cycling experience
           </label>
           <textarea id="tour-description" rows="6" class="w-full px-0 py-4 border-0 border-b border-gray-200 focus:ring-0 focus:border-accent transition-all duration-300 resize-none bg-transparent placeholder-gray-400 font-light" placeholder="e.g., A challenging week in the Swiss Alps, climbing legendary passes..."></textarea>
-          <button @click="${this._submit}" ?disabled="${this.loading}" class="w-full bg-accent hover:bg-accent-dark text-black font-medium py-5 px-8 transition-all duration-300 uppercase tracking-wider text-sm">
+          <button @click="${this._submit}" ?disabled="${this.loading}" class="w-full bg-accent hover:bg-accent-dark text-base-content font-medium py-5 px-8 transition-all duration-300 uppercase tracking-wider text-sm">
             ${this.loading ? "Thinking..." : "✨ Create Custom Tour"}
           </button>
           ${this.error ? html`<div class="error">${this.error}</div>` : ""}

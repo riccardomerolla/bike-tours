@@ -88,7 +88,7 @@ class ToursGrid extends LitElement {
                     </div>
                   ` : ''}
                   ${tour.label && !tour.sold_out ? html`
-                    <div class="absolute top-4 right-4 bg-accent text-black text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">
+                    <div class="absolute top-4 right-4 bg-accent text-base-content text-xs font-medium px-3 py-1 uppercase tracking-wider z-10">
                       ${tour.label}
                     </div>
                   ` : ''}
@@ -117,7 +117,7 @@ class ToursGrid extends LitElement {
                         </div>
                         ${tour.sold_out
                             ? html`<button class="bg-gray-300 text-gray-600 font-medium py-3 px-6 text-center uppercase tracking-wider text-sm rounded cursor-not-allowed" disabled>Sold Out</button>`
-                            : html`<a href="tour-detail.html?id=${tour.Id}" class="bg-accent hover:bg-accent-dark text-black font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">View Details</a>`
+                            : html`<a href="tour-detail.html?id=${tour.Id}" class="bg-accent hover:bg-accent-dark text-base-content font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded">View Details</a>`
                         }
                     </div>
                 </div>
