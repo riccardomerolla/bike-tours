@@ -57,18 +57,18 @@ class MailingListSubscribe extends LitElement {
 
   render() {
     return html`
-      <form class="flex w-full max-w-lg mx-auto" @submit=${this.handleSubmit}>
+      <form class="flex flex-col sm:flex-row w-full max-w-lg mx-auto gap-3 sm:gap-0" @submit=${this.handleSubmit}>
         <input
           type="email"
           .value=${this.email}
           @input=${this.handleInput}
           placeholder="Your email address"
-          class="flex-grow p-3 bg-white text-gray-900 placeholder:text-gray-500 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-accent transition-all duration-300 font-light"
+          class="flex-grow p-3 bg-white text-gray-900 placeholder:text-gray-500 border border-gray-300 rounded-md sm:rounded-l-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-accent transition-all duration-300 font-light"
           required
         >
         <button
           type="submit"
-          class="bg-accent hover:bg-accent-dark text-base-content font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded-r-md"
+          class="bg-accent hover:bg-accent-dark text-base-content font-medium py-3 px-6 transition-all duration-300 text-center uppercase tracking-wider text-sm rounded-md sm:rounded-l-none sm:rounded-r-md"
           ?disabled=${this.loading}
         >
           ${this.loading ? 'Subscribing...' : 'Subscribe'}
