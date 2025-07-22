@@ -46,7 +46,7 @@ class SiteFooter extends LitElement {
               <h3 class="text-sm font-light mb-6 uppercase tracking-widest text-white">Useful Info</h3>
               <ul class="space-y-4">
                 <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors font-light">Contacts</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">FAQ</a></li>
+                <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors font-light">FAQ</a></li>
                 <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">Terms & Conditions</a></li>
                 <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">General Conditions</a></li>
                 <li><a href="#" class="text-gray-400 hover:text-white transition-colors font-light">Privacy Policy</a></li>

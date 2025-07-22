@@ -3,6 +3,7 @@
 const NOCODB_API_URL_TOURS = 'https://app.nocodb.com/api/v2/tables/mmpfmse8st37zwz/records';
 const NOCODB_API_URL_ROUTES = 'https://app.nocodb.com/api/v2/tables/mcj0kkzfqpu587s/records';
 const NOCODB_API_URL_ITINERARY = 'https://app.nocodb.com/api/v2/tables/mcpl1o0aaakplnv/records';
+const NOCODB_API_URL_FAQ = 'https://app.nocodb.com/api/v2/tables/mwqmethbas34wpw/records';
 
 // Your NocoDB Token - Corrected to original full value
 const NOCODB_TOKEN = 'azGmScTi6oyPy2t_Luo6h-MxUflLp57n-r0UOD-V';
@@ -51,6 +52,11 @@ async function fetchData(url, filterParams = '', sortParams = '') {
 // Modified fetchToursData to accept filter and sort parameters
 export async function fetchToursData(filterParams = '', sortParams = '') {
     return await fetchData(NOCODB_API_URL_TOURS, filterParams, sortParams);
+}
+
+// Fetch FAQ data from NocoDB
+export async function fetchFAQData(filterParams = '', sortParams = '') {
+    return await fetchData(NOCODB_API_URL_FAQ, filterParams, sortParams);
 }
 
 export async function fetchCombinedToursData() {

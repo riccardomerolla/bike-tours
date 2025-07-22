@@ -68,12 +68,24 @@ tailwind.config = {
           //   dark: '#C7A800',    // A darker shade of yellow for hover/active states
           //   light: '#FAE588',   // A lighter shade of yellow for subtle highlights
           // },
+          
           accent: {
             DEFAULT: '#C2D400', // The new main accent yellowish-green color
             dark: '#9AA800',    // A darker shade of yellowish-green for hover/active states
             light: '#E0ED66',   // A lighter shade of yellowish-green for subtle highlights
           },
   
+          // accent: {
+          //   DEFAULT: '#FF9900', // The new main accent flashy orange-yellow color
+          //   dark: '#CC7A00',    // A darker shade for hover/active states
+          //   light: '#FFC266',   // A lighter shade for subtle highlights
+          // },
+          // accent: { 
+          //   DEFAULT: '#FF5E00', // The new main accent orange disco flash color
+          //   dark: '#CC4B00',    // A darker shade for hover/active states
+          //   light: '#FFA166',   // A lighter shade for subtle highlights
+          // },
+          
           'base-content': {
             DEFAULT: '#FFFFFF',
             subtle: '#6B7280',
