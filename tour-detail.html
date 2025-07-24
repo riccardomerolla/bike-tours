@@ -330,10 +330,14 @@
             const tourId = parseInt(urlParams.get('id'), 10);
 
             infoRowSection = document.getElementById('info-row-section');
-            mainSiteHeader = document.getElementById('main-site-header'); 
 
-            // Store original header content immediately on DOMContentLoaded
-            originalHeaderContent = mainSiteHeader.innerHTML;
+            mainSiteHeader = document.getElementById('main-site-header'); 
+            // Store original header content immediately on DOMContentLoaded, if header exists
+            if (mainSiteHeader) {
+                originalHeaderContent = mainSiteHeader.innerHTML;
+            } else {
+                originalHeaderContent = '';
+            }
 
             if (!tourId) {
                 document.getElementById('hero-title').textContent = "Tour not found";
