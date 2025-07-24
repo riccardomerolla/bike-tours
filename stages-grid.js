@@ -1,19 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     // List of all GPX track files in the 'tracks' folder
     const gpxTracks = [
-        'tracks/Port-de-Sa-Calobra_course.gpx',
-        'tracks/Formentor_course.gpx',
-        'tracks/Orient_course.gpx',
-        'tracks/Llucmajor_course.gpx',
-        'tracks/Petra_course.gpx',
-        'tracks/Cap-Salines_course.gpx',
-        'tracks/Porto-Cristo_course.gpx',
-        'tracks/Camis_Mallorca.gpx',
-        'tracks/COURSE_383135815.gpx',
-        'tracks/COURSE_383135988.gpx',
-        'tracks/COURSE_383136158.gpx',
-        'tracks/COURSE_383136333.gpx',
-        'tracks/COURSE_383136848.gpx'
+    	'tracks/cala pi_course.1753373884818.gpx',
+	'tracks/Camis_Mallorca.gpx',
+	'tracks/Cap-Salines_course.gpx',
+	'tracks/COURSE_383135815.gpx',
+	'tracks/COURSE_383135988.gpx',
+	'tracks/COURSE_383136158.gpx',
+	'tracks/COURSE_383136333.gpx',
+	'tracks/COURSE_383136848.gpx',
+	'tracks/Formentor_course.gpx',
+	'tracks/Llucmajor_course.gpx',
+	'tracks/Orient_course.gpx',
+	'tracks/Petra_course.gpx',
+	'tracks/Port-de-Sa-Calobra_course.gpx',
+	'tracks/port de saller_course.1753374067557.gpx',
+	'tracks/Porto-Cristo_course.gpx',
+	'tracks/randa _ santuari..._course.1753374034357.gpx',
+	'tracks/sant elm_course.1753374093592.gpx',
+	'tracks/santuari de la m..._course.1753374079786.gpx',
+	'tracks/sa ra pita_course.1753374104707.gpx',
     ];
 
     const gridContainer = document.getElementById('gpx-grid');
