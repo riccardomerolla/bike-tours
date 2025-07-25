@@ -47,11 +47,7 @@ export class TourInfoRowSection extends LitElement {
     const tour = this.tour || {};
     const currentPrice = this._parsePriceToNumber(tour.price);
     const oldPrice = this._parsePriceToNumber(tour.old_price);
-    let discountLabel = '';
-    if (oldPrice && currentPrice && oldPrice > currentPrice) {
-      const discountPercentage = ((oldPrice - currentPrice) / oldPrice) * 100;
-      discountLabel = `Save ${Math.round(discountPercentage)}%`;
-    }
+    const discountPercentage = ((oldPrice - currentPrice) / oldPrice) * 100;
     return html`
       <section class="bg-white py-8 border-b border-base-background-secondary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
@@ -66,9 +62,7 @@ export class TourInfoRowSection extends LitElement {
             <span class="text-lg lg:text-xl font-light text-gray-900 line-through mr-2">
               ${oldPrice && currentPrice && oldPrice > currentPrice ? tour.old_price : ''}
             </span>
-            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">
-              ${discountLabel}
-            </span>
+            ${discountPercentage > 0 ? `<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full mr-2">Save ${Math.round(discountPercentage)}%</span>` : ''}
             <span class="text-3xl lg:text-4xl font-light text-accent tracking-wide">
               ${tour.price || ''}
             </span>
