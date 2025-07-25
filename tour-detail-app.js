@@ -4,6 +4,7 @@ import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/li
  * <tour-detail-app>
  * Main app shell for the tour detail page. Fetches all data and passes structured props to child custom elements.
  */
+
 export class TourDetailApp extends LitElement {
   static properties = {
     tourId: { type: Number },
@@ -13,6 +14,11 @@ export class TourDetailApp extends LitElement {
     highlightsHtml: { type: String },
     isLuxury: { type: Boolean },
     itinerary: { type: Array },
+    calendarModalOpen: { type: Boolean },
+    galleryModalOpen: { type: Boolean },
+    galleryImages: { type: Array },
+    galleryTitle: { type: String },
+    calendarDepartures: { type: Array },
   };
 
   constructor() {
@@ -24,6 +30,11 @@ export class TourDetailApp extends LitElement {
     this.highlightsHtml = '';
     this.isLuxury = false;
     this.itinerary = [];
+    this.calendarModalOpen = false;
+    this.galleryModalOpen = false;
+    this.galleryImages = [];
+    this.galleryTitle = '';
+    this.calendarDepartures = [];
   }
 
   createRenderRoot() {
@@ -53,9 +64,58 @@ export class TourDetailApp extends LitElement {
     this.highlightsHtml = this._markdownListToHtml(this.tour.trip_highlights);
     this.isLuxury = this.tour.type === 'luxury';
     this.itinerary = this.tour.itinerary || [];
-    // Set global for modal
+    // Prepare departures for calendar modal
+    this.calendarDepartures = this.allTours.filter(t =>
+      t.name === this.tour.name && new Date(t.start_date) >= today && !t.sold_out
+    ).sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+    // Prepare gallery images for modal
+    this.galleryImages = [this.tour.image, ...(this.tour.gallery_images || [])].filter(Boolean);
+    this.galleryTitle = `${this.tour.name} Gallery`;
+    // Set global for modal (legacy)
     window.currentTourData = this.tour;
     window.nextAvailableTourData = this.nextDeparture;
+  }
+  // --- MODAL CONTROL METHODS ---
+  openCalendarModal() {
+    this.calendarModalOpen = true;
+    // Pass data to modal
+    const modal = document.getElementById('calendar-modal');
+    if (modal) {
+      modal.departures = this.calendarDepartures;
+      modal.referenceTourName = this.tour.name;
+      modal.currentTourId = this.tour.Id;
+      modal.open = true;
+      // Listen for close event (only once per open)
+      modal.addEventListener('close', this.closeCalendarModal.bind(this), { once: true });
+    }
+  }
+
+  closeCalendarModal() {
+    this.calendarModalOpen = false;
+    const modal = document.getElementById('calendar-modal');
+    if (modal) {
+      modal.open = false;
+      modal.departures = [];
+    }
+  }
+
+  openGalleryModal() {
+    this.galleryModalOpen = true;
+    const modal = document.getElementById('gallery-modal');
+    if (modal) {
+      modal.images = this.galleryImages;
+      modal.title = this.galleryTitle;
+      modal.open = true;
+    }
+  }
+
+  closeGalleryModal() {
+    this.galleryModalOpen = false;
+    const modal = document.getElementById('gallery-modal');
+    if (modal) {
+      modal.open = false;
+      modal.images = [];
+    }
   }
 
   _markdownListToHtml(text) {
@@ -95,6 +155,11 @@ export class TourDetailApp extends LitElement {
     // Hide sticky header initially
     const stickyHeader = this.querySelector('#sticky-header-container');
     if (stickyHeader) stickyHeader.style.display = 'none';
+
+    // Listen for open-gallery event from hero section
+    this.addEventListener('open-gallery', () => {
+      this.openGalleryModal();
+    });
   }
 
   disconnectedCallback() {
@@ -114,10 +179,10 @@ export class TourDetailApp extends LitElement {
     return html`
       <site-header></site-header>
       <div id="sticky-header-container" style="position:fixed;top:0;left:0;right:0;z-index:50;display:none;background:white;box-shadow:0 2px 8px 0 rgba(0,0,0,0.04);">
-        <tour-info-row-section .tour=${this.tour} style="margin-bottom:0;"></tour-info-row-section>
+        <tour-info-row-section .tour=${this.tour} .onShowCalendar=${() => this.openCalendarModal()} style="margin-bottom:0;"></tour-info-row-section>
       </div>
       <tour-hero-section .tour=${this.tour} .allTours=${this.allTours}></tour-hero-section>
-      <tour-info-row-section id="main-info-row-section" .tour=${this.tour}></tour-info-row-section>
+      <tour-info-row-section id="main-info-row-section" .tour=${this.tour} .onShowCalendar=${() => this.openCalendarModal()}></tour-info-row-section>
       <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
@@ -131,15 +196,13 @@ export class TourDetailApp extends LitElement {
               <tour-itinerary .itinerary=${this.itinerary}></tour-itinerary>
             </div>
             <div class="lg:col-span-1">
-              <tour-sidebar-section .tour=${this.tour} .nextDeparture=${this.nextDeparture}></tour-sidebar-section>
+              <tour-sidebar-section .tour=${this.tour} .nextDeparture=${this.nextDeparture} .onShowCalendar=${() => this.openCalendarModal()}></tour-sidebar-section>
             </div>
           </div>
         </div>
       </section>
       <similar-tours-section .tours=${this.allTours} .referenceTourName=${this.tour.name} .currentTourId=${this.tour.Id}></similar-tours-section>
       <site-footer></site-footer>
-      <tour-calendar-modal-content id="tour-calendar-content"></tour-calendar-modal-content>
-      <tour-image-gallery-modal id="tour-gallery-modal"></tour-image-gallery-modal>
     `;
   }
 }
