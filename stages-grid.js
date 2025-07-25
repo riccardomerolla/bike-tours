@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'tracks/COURSE_383136158.gpx',
       'tracks/COURSE_383136333.gpx',
       'tracks/COURSE_383136848.gpx',
+      'tracks/COURSE 383135815-mod.gpx',
       'tracks/Formentor_course.gpx',
       'tracks/Llucmajor_course.gpx',
       'tracks/Orient_course.gpx',
