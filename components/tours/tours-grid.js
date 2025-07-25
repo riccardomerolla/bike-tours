@@ -1,5 +1,5 @@
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-import { fetchToursData } from './tours-data.js';
+import { fetchToursData } from '../../data/tours-data.js';
 
 // Date formatting helper function
 function formatDateRange(startDateStr, endDateStr) {

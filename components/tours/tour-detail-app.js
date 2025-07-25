@@ -49,7 +49,7 @@ export class TourDetailApp extends LitElement {
     this.tourId = parseInt(urlParams.get('id'), 10);
     if (!this.tourId) return;
     // Fetch data
-    const { fetchCombinedToursData } = await import('./tours-data.js');
+    const { fetchCombinedToursData } = await import('../../data/tours-data.js');
     this.allTours = await fetchCombinedToursData();
     this.tour = this.allTours.find(t => t.Id === this.tourId);
     if (!this.tour) return;

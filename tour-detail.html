@@ -6,20 +6,20 @@
     <title>Tour Details - Cycle Tuscany</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="tailwind.config.js"></script>
-    <script type="module" src="site-header.js"></script>
-    <script type="module" src="gpx-elevation-chart.js"></script>
-    <script type="module" src="tour-itinerary.js"></script>
-    <script type="module" src="tours-data.js"></script>
-    <script type="module" src="similar-tours-section.js"></script>
-    <script type="module" src="tour-calendar-modal-content.js"></script>
-    <script type="module" src="tour-image-gallery-modal.js"></script>
-    <script type="module" src="site-footer.js"></script>
-    <script type="module" src="mailing-list-subscribe.js"></script>
-    <script type="module" src="tour-hero-section.js"></script>
-    <script type="module" src="tour-info-row-section.js"></script>
-    <script type="module" src="tour-sidebar-section.js"></script>
-    <script type="module" src="tour-luxury-section.js"></script>
+    <script src="styles/tailwind.config.js"></script>
+    <script type="module" src="components/site-header.js"></script>
+    <script type="module" src="components/tours/gpx-elevation-chart.js"></script>
+    <script type="module" src="components/tours/tour-itinerary.js"></script>
+    <script type="module" src="data/tours-data.js"></script>
+    <script type="module" src="components/tours/similar-tours-section.js"></script>
+    <script type="module" src="components/tours/tour-calendar-modal-content.js"></script>
+    <script type="module" src="components/tours/tour-image-gallery-modal.js"></script>
+    <script type="module" src="components/site-footer.js"></script>
+    <script type="module" src="components/mailing-list/mailing-list-subscribe.js"></script>
+    <script type="module" src="components/tours/tour-hero-section.js"></script>
+    <script type="module" src="components/tours/tour-info-row-section.js"></script>
+    <script type="module" src="components/tours/tour-sidebar-section.js"></script>
+    <script type="module" src="components/tours/tour-luxury-section.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-white text-primary">
@@ -48,7 +48,7 @@
         }
     </script>
 
-    <script type="module" src="tour-detail-app.js"></script>
+    <script type="module" src="components/tours/tour-detail-app.js"></script>
     <tour-detail-app></tour-detail-app>
     <!-- Modals controlled by the app shell -->
     <tour-calendar-modal-content id="calendar-modal"></tour-calendar-modal-content>

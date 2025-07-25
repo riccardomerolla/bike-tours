@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxury Tours - biketours.cc</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="tailwind.config.js"></script>
+    <script src="styles/tailwind.config.js"></script>
+    <script type="module" src="components/tours/departures-section.js"></script>
+    <script type="module" src="components/site-header.js"></script>
+    <script type="module" src="components/site-footer.js"></script>
+    <script type="module" src="components/mailing-list/mailing-list-subscribe.js"></script>
+    <script type="module" src="components/tours/tour-image-gallery-modal.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Parisienne&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -135,49 +140,45 @@
 
     <site-footer></site-footer>
 
-    <script type="module" src="https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js"></script>
-    <script type="module" src="departures-section.js"></script>
-    <script type="module" src="site-header.js"></script>
-    <script type="module" src="site-footer.js"></script>
-    <script type="module" src="mailing-list-subscribe.js"></script>
-    <script type="module" src="tour-image-gallery-modal.js"></script>
-
     <script type="module">
-      const galleryBtnContainer = document.getElementById('gallery-button-container');
-      const galleryModal = document.querySelector('tour-image-gallery-modal');
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
+      document.addEventListener('DOMContentLoaded', () => {
+        const galleryBtnContainer = document.getElementById('gallery-button-container');
+        const galleryModal = document.querySelector('tour-image-gallery-modal');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-      const galleryImages = [
-                'img/sant-jaume-0879005d642d376017fa2d8afc993947eb958dd4cc66065429a03719e40b0b06-d.webp',
-                'img/sonbrull-media__1675793599_OrPx.webp',
-                'img/valldemossa-habitaciones-junior-suite-it-mallorca-mobile.webp',
-                'img/sant-jaume-home-colmado-hotels-it-mallorca-desktop-opt.webp',
-                'img/sonbrull-media__1675793602_Sm89.webp',
-                'img/valldemossa-hotels-it-mallorca-desktop-2048x1111.webp',
-                'img/sant-jaume-home-room-suite-hotels-it-mallorca-desktop.webp',
-                'img/sonbrull-media__1675793606_KV8K.webp',
-                'img/valldemossa-hotels-it-mallorca-desktop.webp',
-                'img/sonbrull-bg-home-spa.webp',
-                'img/sonbrull-media__1675793609_P5Ip.webp'
-            ];
+        const galleryImages = [
+          'img/sant-jaume-0879005d642d376017fa2d8afc993947eb958dd4cc66065429a03719e40b0b06-d.webp',
+          'img/sonbrull-media__1675793599_OrPx.webp',
+          'img/valldemossa-habitaciones-junior-suite-it-mallorca-mobile.webp',
+          'img/sant-jaume-home-colmado-hotels-it-mallorca-desktop-opt.webp',
+          'img/sonbrull-media__1675793602_Sm89.webp',
+          'img/valldemossa-hotels-it-mallorca-desktop-2048x1111.webp',
+          'img/sant-jaume-home-room-suite-hotels-it-mallorca-desktop.webp',
+          'img/sonbrull-media__1675793606_KV8K.webp',
+          'img/valldemossa-hotels-it-mallorca-desktop.webp',
+          'img/sonbrull-bg-home-spa.webp',
+          'img/sonbrull-media__1675793609_P5Ip.webp'
+        ];
 
-      if (galleryBtnContainer && galleryModal) {
+        if (galleryBtnContainer && galleryModal) {
           galleryBtnContainer.innerHTML = `
-              <button id="open-gallery-btn" class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">
-                  See all ${galleryImages.length} photos
-              </button>
+            <button id="open-gallery-btn" class="bg-black/50 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-black/70 transition-colors">
+              See all ${galleryImages.length} photos
+            </button>
           `;
           const galleryBtn = document.getElementById('open-gallery-btn');
           galleryBtn.addEventListener('click', () => {
-              galleryModal.images = galleryImages;
-              galleryModal.isOpen = true;
+            galleryModal.images = galleryImages;
+            // Set the correct property to open the modal
+            galleryModal.open = true;
           });
-      }
-      
-      if (mobileMenuBtn && mobileMenu) {
+        }
+
+        if (mobileMenuBtn && mobileMenu) {
           mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-      }
-  </script>
+        }
+      });
+    </script>
 </body>
 </html>
